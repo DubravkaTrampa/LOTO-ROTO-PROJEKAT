@@ -18,3 +18,13 @@ C:\Users\Trampa\source\repos\LotoRotoProjekat\LotoRotoProjekat\obj\Debug\LotoRot
 C:\Users\Trampa\source\repos\LotoRotoProjekat\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.csproj.CopyComplete
 C:\Users\Trampa\source\repos\LotoRotoProjekat\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.dll
 C:\Users\Trampa\source\repos\LotoRotoProjekat\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.pdb
+C:\Users\Trampa\source\repos\ZavrsniProjekat\LotoRotoProjekat\bin\LotoRotoProjekat.dll.config
+C:\Users\Trampa\source\repos\ZavrsniProjekat\LotoRotoProjekat\bin\LotoRotoProjekat.dll
+C:\Users\Trampa\source\repos\ZavrsniProjekat\LotoRotoProjekat\bin\LotoRotoProjekat.pdb
+C:\Users\Trampa\source\repos\ZavrsniProjekat\LotoRotoProjekat\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Trampa\source\repos\ZavrsniProjekat\LotoRotoProjekat\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Trampa\source\repos\ZavrsniProjekat\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.csprojAssemblyReference.cache
+C:\Users\Trampa\source\repos\ZavrsniProjekat\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.csproj.CoreCompileInputs.cache
+C:\Users\Trampa\source\repos\ZavrsniProjekat\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.csproj.CopyComplete
+C:\Users\Trampa\source\repos\ZavrsniProjekat\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.dll
+C:\Users\Trampa\source\repos\ZavrsniProjekat\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.pdb

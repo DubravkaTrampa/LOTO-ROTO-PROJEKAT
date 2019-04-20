@@ -9,44 +9,44 @@
         <div>
             <input class="btn btn-indigo"style="width:188px;margin-left:130px;" type=button value='Dobitna kombinacija' onClick="lotto(); StOp()">
         </div>
-             <span id=layer1 class=generator style="width:188px;margin-left:110px;color:blue;">Rezultat</span>
+
 
     <link href="stil/lopte_dobitna.css" rel="stylesheet" />
     
     <div class="wrap">
       <section class="stage">
             <figure class="ball">
-              <span class="number" data-number="8">&nbsp;</span>
+              <span class="number" id="loptica_1" data-number="">&nbsp;</span>
             </figure>
       </section>
       <section class="stage">
             <figure class="ball">
-              <span class="number" data-number="2">&nbsp;</span>
+              <span class="number" id="loptica_2" data-number="">&nbsp;</span>
             </figure>
       </section>
       <section class="stage">
             <figure class="ball">
-              <span class="number" data-number="4">&nbsp;</span>
+              <span class="number" id="loptica_3" data-number="">&nbsp;</span>
             </figure>
       </section>
       <section class="stage">
             <figure class="ball">
-              <span class="number" data-number="9">&nbsp;</span>
+              <span class="number" id="loptica_4" data-number="">&nbsp;</span>
             </figure>
       </section>
         <section class="stage">
             <figure class="ball">
-              <span class="number" data-number="7">&nbsp;</span>
+              <span class="number" id="loptica_5" data-number="">&nbsp;</span>
             </figure>
       </section>
         <section class="stage">
             <figure class="ball">
-              <span class="number" data-number="1">&nbsp;</span>
+              <span class="number" id="loptica_6" data-number="">&nbsp;</span>
             </figure>
       </section>
         <section class="stage">
             <figure class="ball">
-              <span class="number" data-number="3">&nbsp;</span>
+              <span class="number" id="loptica_7" data-number="">&nbsp;</span>
             </figure>
       </section>
     </div>

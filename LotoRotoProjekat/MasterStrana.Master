@@ -1,0 +1,115 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterStrana.master.cs" Inherits="LotoRotoProjekat.MasterStrana" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+</head>
+<body  style="background-image:url(slike/gradient_neon.jpg);background-size:cover;background-position: center center;background-repeat: no-repeat;background-attachment: fixed;">
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"> </script>
+    <link href="stil/style.css" rel="stylesheet" />
+    <link href="stil/bootstrap.css" rel="stylesheet" />
+    <link href="stil/bootstrap2.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <form id="form1" runat="server">
+        <div>
+ <!--Main Navigation-->
+  <header>
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark indigo">
+
+      <!-- Additional container -->
+      <div class="container">
+
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="Pocetna.aspx" style="font-size:60px;">Loto Roto</a>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+          aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+
+          <!-- Links -->
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="Pocetna.aspx">Pocetna
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Oigri.aspx">O igri</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Onama.aspx">O nama</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Kontakt.aspx">Kontakt</a>
+            </li>
+
+            <!-- Dropdown -->
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">Administrator</a>
+              <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="Kontakt.aspx">Podaci o korisnicima</a>
+                <a class="dropdown-item" href="Kontakt.aspx">Uplaćene kombinacije</a>
+                <a class="dropdown-item" href="Kontakt.aspx">Podaci o dobitnicima</a>
+                <a class="dropdown-item" href="Kontakt.aspx">Uplate</a>
+                <a class="dropdown-item" href="Kontakt.aspx">Isplate</a>
+                <a class="dropdown-item" href="Kontakt.aspx">Uklanjanje korisnika</a>
+                <a class="dropdown-item" href="Kontakt.aspx">Ažuriranje podataka</a>
+              </div>
+            </li>
+
+          </ul>
+          <!-- Links -->
+
+         <div class="form-inline">
+            <div class="md-form my-0">
+              <input style="color:white;text-align:center"; class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            </div>
+          </div>
+        </div>
+        <!-- Collapsible content -->
+
+      </div>
+      <!-- Additional container -->
+
+    </nav>
+    <!--/.Navbar-->
+
+  </header>
+  <!--Main Navigation-->
+ 
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+             </form><br /><br /><br />
+         <!-- Footer -->
+   <footer style="  position: fixed;height:50px;left: 0;bottom: 0;width: 100%;background-color: #ad1365;color: white;text-align: center;">
+
+            <!-- Copyright -->
+            <div >© 2019 Copyright<p>Loto Roto</p>
+            </div>
+            <!-- Copyright -->
+
+    </footer>
+      <!-- Footer -->
+</body>
+</html>

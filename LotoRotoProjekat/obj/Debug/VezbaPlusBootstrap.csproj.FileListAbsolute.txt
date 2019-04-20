@@ -1,0 +1,69 @@
+C:\Users\User\source\repos\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\VezbaPlusBootstrap.dll.config
+C:\Users\User\source\repos\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\VezbaPlusBootstrap.dll
+C:\Users\User\source\repos\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\VezbaPlusBootstrap.pdb
+C:\Users\User\source\repos\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\User\source\repos\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\User\source\repos\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.csprojResolveAssemblyReference.cache
+C:\Users\User\source\repos\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.dll
+C:\Users\User\source\repos\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.pdb
+G:\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\VezbaPlusBootstrap.dll.config
+G:\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\VezbaPlusBootstrap.dll
+G:\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\VezbaPlusBootstrap.pdb
+G:\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+G:\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+G:\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.csprojAssemblyReference.cache
+G:\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.csproj.CoreCompileInputs.cache
+G:\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.csproj.CopyComplete
+G:\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.dll
+G:\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.pdb
+E:\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\VezbaPlusBootstrap.dll.config
+E:\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\VezbaPlusBootstrap.dll
+E:\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\VezbaPlusBootstrap.pdb
+E:\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.csprojAssemblyReference.cache
+E:\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.csproj.CoreCompileInputs.cache
+E:\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.csproj.CopyComplete
+E:\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.dll
+E:\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.pdb
+E:\KOPIJA usb DOT NET\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\VezbaPlusBootstrap.dll.config
+E:\KOPIJA usb DOT NET\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\VezbaPlusBootstrap.dll
+E:\KOPIJA usb DOT NET\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\VezbaPlusBootstrap.pdb
+E:\KOPIJA usb DOT NET\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\KOPIJA usb DOT NET\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\KOPIJA usb DOT NET\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.csprojAssemblyReference.cache
+E:\KOPIJA usb DOT NET\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.csproj.CoreCompileInputs.cache
+E:\KOPIJA usb DOT NET\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.csproj.CopyComplete
+E:\KOPIJA usb DOT NET\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.dll
+E:\KOPIJA usb DOT NET\SUPER BOOTSTRAP\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.pdb
+G:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\VezbaPlusBootstrap.dll.config
+G:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\VezbaPlusBootstrap.dll
+G:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\VezbaPlusBootstrap.pdb
+G:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+G:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+G:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.csprojAssemblyReference.cache
+G:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.csproj.CoreCompileInputs.cache
+G:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.csproj.CopyComplete
+G:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.dll
+G:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.pdb
+F:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\VezbaPlusBootstrap.dll.config
+F:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\VezbaPlusBootstrap.dll
+F:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\VezbaPlusBootstrap.pdb
+F:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.csprojAssemblyReference.cache
+F:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.csproj.CoreCompileInputs.cache
+F:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.csproj.CopyComplete
+F:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.dll
+F:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.pdb
+I:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\VezbaPlusBootstrap.dll.config
+I:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\VezbaPlusBootstrap.dll
+I:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\VezbaPlusBootstrap.pdb
+I:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+I:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+I:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.csprojAssemblyReference.cache
+I:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.csproj.CoreCompileInputs.cache
+I:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.csproj.CopyComplete
+I:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.dll
+I:\SUPER BOOTSTRAP 2\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\VezbaPlusBootstrap.pdb

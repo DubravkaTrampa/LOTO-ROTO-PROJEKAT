@@ -1,0 +1,20 @@
+E:\LOTO ROTO PROJEKAT2\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\LotoRotoProjekat.csprojAssemblyReference.cache
+E:\LOTO ROTO PROJEKAT2\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\LotoRotoProjekat.csproj.CoreCompileInputs.cache
+E:\LOTO ROTO PROJEKAT2\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\LotoRotoProjekat.dll.config
+E:\LOTO ROTO PROJEKAT2\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\LotoRotoProjekat.dll
+E:\LOTO ROTO PROJEKAT2\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\LotoRotoProjekat.pdb
+E:\LOTO ROTO PROJEKAT2\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\LOTO ROTO PROJEKAT2\VezbaPlusBootstrap\VezbaPlusBootstrap\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\LOTO ROTO PROJEKAT2\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\LotoRotoProjekat.csproj.CopyComplete
+E:\LOTO ROTO PROJEKAT2\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\LotoRotoProjekat.dll
+E:\LOTO ROTO PROJEKAT2\VezbaPlusBootstrap\VezbaPlusBootstrap\obj\Debug\LotoRotoProjekat.pdb
+C:\Users\Trampa\source\repos\LotoRotoProjekat\LotoRotoProjekat\bin\LotoRotoProjekat.dll.config
+C:\Users\Trampa\source\repos\LotoRotoProjekat\LotoRotoProjekat\bin\LotoRotoProjekat.dll
+C:\Users\Trampa\source\repos\LotoRotoProjekat\LotoRotoProjekat\bin\LotoRotoProjekat.pdb
+C:\Users\Trampa\source\repos\LotoRotoProjekat\LotoRotoProjekat\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Trampa\source\repos\LotoRotoProjekat\LotoRotoProjekat\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Trampa\source\repos\LotoRotoProjekat\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.csprojAssemblyReference.cache
+C:\Users\Trampa\source\repos\LotoRotoProjekat\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.csproj.CoreCompileInputs.cache
+C:\Users\Trampa\source\repos\LotoRotoProjekat\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.csproj.CopyComplete
+C:\Users\Trampa\source\repos\LotoRotoProjekat\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.dll
+C:\Users\Trampa\source\repos\LotoRotoProjekat\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.pdb

@@ -76,6 +76,7 @@
     <Content Include="MasterStrana.Master" />
     <Content Include="Oigri.aspx" />
     <Content Include="RegistrujPrijavi.aspx" />
+    <Content Include="WebForm1.aspx" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -103,7 +104,6 @@
     <Content Include="stil\lopte_dobitna.css" />
     <Content Include="stil\social.css" />
     <Content Include="stil\style.css" />
-    <Content Include="TestPrebrojavanjeKombinacija.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -175,12 +175,12 @@
       <DependentUpon>Rezultati.aspx</DependentUpon>
     </Compile>
     <Compile Include="TestKombinacije.cs" />
-    <Compile Include="TestPrebrojavanjeKombinacija.aspx.cs">
-      <DependentUpon>TestPrebrojavanjeKombinacija.aspx</DependentUpon>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TestPrebrojavanjeKombinacija.aspx.designer.cs">
-      <DependentUpon>TestPrebrojavanjeKombinacija.aspx</DependentUpon>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />

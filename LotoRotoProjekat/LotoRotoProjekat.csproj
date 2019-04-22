@@ -76,7 +76,7 @@
     <Content Include="MasterStrana.Master" />
     <Content Include="Oigri.aspx" />
     <Content Include="RegistrujPrijavi.aspx" />
-    <Content Include="WebForm1.aspx" />
+    <Content Include="TestStranica.aspx" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -175,12 +175,12 @@
       <DependentUpon>Rezultati.aspx</DependentUpon>
     </Compile>
     <Compile Include="TestKombinacije.cs" />
-    <Compile Include="WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
+    <Compile Include="TestStranica.aspx.cs">
+      <DependentUpon>TestStranica.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
+    <Compile Include="TestStranica.aspx.designer.cs">
+      <DependentUpon>TestStranica.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />

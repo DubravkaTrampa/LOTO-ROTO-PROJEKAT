@@ -13,15 +13,6 @@ namespace LotoRotoProjekat {
     public partial class Igraj {
         
         /// <summary>
-        /// buttonClick control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button buttonClick;
-        
-        /// <summary>
         /// prikazKombinacijeTiketa control.
         /// </summary>
         /// <remarks>
@@ -29,6 +20,15 @@ namespace LotoRotoProjekat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label prikazKombinacijeTiketa;
+        
+        /// <summary>
+        /// buttonClick control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button buttonClick;
         
         /// <summary>
         /// GridView1 control.

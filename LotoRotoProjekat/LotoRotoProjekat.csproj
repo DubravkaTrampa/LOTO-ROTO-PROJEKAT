@@ -76,6 +76,8 @@
     <Content Include="MasterStrana.Master" />
     <Content Include="Oigri.aspx" />
     <Content Include="RegistrujPrijavi.aspx" />
+    <Content Include="slike\dugme1.jpg" />
+    <Content Include="slike\icon_x.png" />
     <Content Include="TestStranica.aspx" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">

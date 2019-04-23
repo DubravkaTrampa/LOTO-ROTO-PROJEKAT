@@ -28,3 +28,13 @@ C:\Users\Trampa\source\repos\ZavrsniProjekat\LotoRotoProjekat\obj\Debug\LotoRoto
 C:\Users\Trampa\source\repos\ZavrsniProjekat\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.csproj.CopyComplete
 C:\Users\Trampa\source\repos\ZavrsniProjekat\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.dll
 C:\Users\Trampa\source\repos\ZavrsniProjekat\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.pdb
+C:\Users\Trump\Documents\LOTO-ROTO-PROJEKAT\LotoRotoProjekat\bin\LotoRotoProjekat.dll.config
+C:\Users\Trump\Documents\LOTO-ROTO-PROJEKAT\LotoRotoProjekat\bin\LotoRotoProjekat.dll
+C:\Users\Trump\Documents\LOTO-ROTO-PROJEKAT\LotoRotoProjekat\bin\LotoRotoProjekat.pdb
+C:\Users\Trump\Documents\LOTO-ROTO-PROJEKAT\LotoRotoProjekat\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Trump\Documents\LOTO-ROTO-PROJEKAT\LotoRotoProjekat\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Trump\Documents\LOTO-ROTO-PROJEKAT\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.csprojAssemblyReference.cache
+C:\Users\Trump\Documents\LOTO-ROTO-PROJEKAT\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.csproj.CoreCompileInputs.cache
+C:\Users\Trump\Documents\LOTO-ROTO-PROJEKAT\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.csproj.CopyComplete
+C:\Users\Trump\Documents\LOTO-ROTO-PROJEKAT\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.dll
+C:\Users\Trump\Documents\LOTO-ROTO-PROJEKAT\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.pdb

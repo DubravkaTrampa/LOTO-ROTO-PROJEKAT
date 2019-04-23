@@ -17,6 +17,8 @@ namespace LotoRotoProjekat
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Button button = new Button();
+          
             if (!IsPostBack)
             {
                 buttonClick.Text = "Izaberi kombinaciju";
@@ -65,19 +67,17 @@ namespace LotoRotoProjekat
             if (e.CommandName == "Prvi")
             {
                 broj = (Int32.Parse(e.CommandArgument.ToString()) * 3) + 1;
-                ObradiKliknutBrojKombinacije(broj);
-
-
+                ObradiKliknutBrojKombinacije(broj, Int32.Parse(e.CommandArgument.ToString()), 0);
             }
             if (e.CommandName == "Drugi")
             {
                 broj = (Int32.Parse(e.CommandArgument.ToString()) * 3) + 2;
-                ObradiKliknutBrojKombinacije(broj);
+                ObradiKliknutBrojKombinacije(broj, Int32.Parse(e.CommandArgument.ToString()),1);
             }
             if (e.CommandName == "Treci")
             {
                 broj = (Int32.Parse(e.CommandArgument.ToString()) * 3) + 3;
-                ObradiKliknutBrojKombinacije(broj);
+                ObradiKliknutBrojKombinacije(broj, Int32.Parse(e.CommandArgument.ToString()), 2);
             }
             foreach (int trenutni in Class1.kombinacije)
             {
@@ -88,12 +88,13 @@ namespace LotoRotoProjekat
 
         }
 
-        void ObradiKliknutBrojKombinacije(int broj)
+        void ObradiKliknutBrojKombinacije(int broj,int red,int kolona)
         {
             if (Class1.kombinacije.Count == 0)
             {
                 Class1.kombinacije.Add(broj);
                 prikazKombinacijeTiketa.Text = Class1.stringKombinacija();
+                GridView1.Rows[red].Cells[kolona].BackColor = System.Drawing.ColorTranslator.FromHtml("#e83e8c");
                 return;
             }
             int i = 0;
@@ -102,6 +103,7 @@ namespace LotoRotoProjekat
                 if (trenutni == broj)
                 {
                     Class1.kombinacije.RemoveAt(i);
+                    GridView1.Rows[red].Cells[kolona].BackColor = System.Drawing.ColorTranslator.FromHtml("#ffffff");
                     prikazKombinacijeTiketa.Text = Class1.stringKombinacija();
                     return;
                 }
@@ -111,6 +113,7 @@ namespace LotoRotoProjekat
             if (Class1.kombinacije.Count < 14)
             {
                 Class1.kombinacije.Add(broj);
+                GridView1.Rows[red].Cells[kolona].BackColor = System.Drawing.ColorTranslator.FromHtml("#e83e8c");
                 prikazKombinacijeTiketa.Text = Class1.stringKombinacija();
 
             }

@@ -68,6 +68,7 @@
   <ItemGroup>
     <Content Include="Cigla.aspx" />
     <Content Include="Igraj.aspx" />
+    <Content Include="IgrajTiket.aspx" />
     <Content Include="javascript\brojac_do_izvlacenja.js" />
     <Content Include="javascript\cigle.js" />
     <Content Include="javascript\demo1.js" />
@@ -123,6 +124,13 @@
     </Compile>
     <Compile Include="Igraj.aspx.designer.cs">
       <DependentUpon>Igraj.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IgrajTiket.aspx.cs">
+      <DependentUpon>IgrajTiket.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IgrajTiket.aspx.designer.cs">
+      <DependentUpon>IgrajTiket.aspx</DependentUpon>
     </Compile>
     <Compile Include="igraj_button.cs" />
     <Compile Include="konekcija.cs" />

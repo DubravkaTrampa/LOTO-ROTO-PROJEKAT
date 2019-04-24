@@ -114,15 +114,15 @@ namespace LotoRotoProjekat
                 return;
             }
             kombinacije.Sort();
-
+            int idKola = 10;
             StringBuilder potvrdiTiket = new StringBuilder("INSERT INTO");
             potvrdiTiket.Append(" Tiketi (fk_korisnici_id, fk_kola_id)");
             //OVDE TREBA NACI ID TRENUTNOG KORISNIKA I ID TRENUTNOG KOLA
-            potvrdiTiket.Append("VALUES (1,2)");
+            potvrdiTiket.Append("VALUES (" + Session["id_ulogovanog_korisnika"] + "," + idKola + ")");
             conn.Open();
             new SqlCommand(potvrdiTiket.ToString(), conn).ExecuteNonQuery();
             //FK KORISNIKA SE UNOSI KAO VREDNOST TRENUTNO ULOGOVANOG KORISNIKA; Naredba vraca poslednji id kombinacije tiketa
-            string naredbaNadjiKombinacijaId = "SELECT MAX(tiket_kombinacija_id) FROM Tiketi WHERE fk_korisnici_id = 1";
+            string naredbaNadjiKombinacijaId = "SELECT MAX(tiket_kombinacija_id) FROM Tiketi WHERE fk_korisnici_id =" + Session["id_ulogovanog_korisnika"];
             SqlCommand komandaNadjiIdKombinacije = new SqlCommand(naredbaNadjiKombinacijaId, conn);
             int tiketKombinacijaId = Int32.Parse(komandaNadjiIdKombinacije.ExecuteScalar().ToString());
 
@@ -135,7 +135,8 @@ namespace LotoRotoProjekat
 
             new SqlCommand(narebaDodajBrojUKombinaciju, conn).ExecuteNonQuery();
             //TREBA DA SE UNESE BROJ RACUNA NA OSNOVU KORISNIKA KOJI JE ULOGOVAN I DANASNJI DATUM
-            string naredbaNapraviTransakciju = "INSERT INTO Transakcije (iznos,datum,fk_racuni_id,tip_transakcije) VALUES (100,'2019-04-21',2,'tiket')";
+            int idRacuna = Convert.ToInt32(Session["id_racuna"]);
+            string naredbaNapraviTransakciju = "INSERT INTO Transakcije (iznos,datum,fk_racuni_id,tip_transakcije) VALUES (100,'2019-04-21'," + idRacuna + ",'tiket')";
             new SqlCommand(naredbaNapraviTransakciju, conn).ExecuteNonQuery();
 
             conn.Close();

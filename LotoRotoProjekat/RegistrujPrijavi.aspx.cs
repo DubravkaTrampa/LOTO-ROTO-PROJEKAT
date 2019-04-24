@@ -49,6 +49,11 @@ namespace LotoRotoProjekat
                         SqlCommand komandaNadjiIDLogovanog = new SqlCommand(naredbaNadjiIDUlogovanog, conn);
                         int idKorisnika = Int32.Parse(komandaNadjiIDLogovanog.ExecuteScalar().ToString());
 
+                        string naredbaNadjiIdRacunaKorisnika = "SELECT fk_racuni_id FROM Korisnici WHERE pk_korisnici_id =" + idKorisnika + "";
+                        SqlCommand komandaNadjiIDRacuna = new SqlCommand(naredbaNadjiIdRacunaKorisnika, conn);
+                        int idRacuna = Int32.Parse(komandaNadjiIDRacuna.ExecuteScalar().ToString());
+
+                        Session["id_racuna"] = idRacuna;
                         Session["id_ulogovanog_korisnika"] = idKorisnika;
                         Session["tip_korisnika"] = Korisnik.Rows[0]["tip_korisnika"].ToString();
                         Session["ime"] = Korisnik.Rows[0][3].ToString();
@@ -59,7 +64,7 @@ namespace LotoRotoProjekat
                         komandaUpdateLoginDate.ExecuteNonQuery();
                         komandaUpdateLoginTime.ExecuteNonQuery();
                         conn.Close();
-                        Response.Redirect("Igraj.aspx");
+                        Response.Redirect("IgrajTiket.aspx");
                     }
                 
             }

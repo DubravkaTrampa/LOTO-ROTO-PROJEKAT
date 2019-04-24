@@ -30,13 +30,31 @@ namespace LotoRotoProjekat
         protected void buttonZavrsiKolo_Click(object sender, EventArgs e)
         {
 
+        }
+
+
+        protected void buttonZapocniKolo_Click(object sender, EventArgs e)
+        {
+            // UPIT ZA PROVERAVANJE DA LI POSTOJI vrsta_pogotka SA VREDNOSTI 7 
+            bool izvucenaSedmica = true;
+            DopuniFond();
+            UcitajDobitnike();
+            IzracunajFondove(VratiNagradniFondIzBaze(), 4, izvucenaSedmica);
+            IzvrsiNaplateIzFonda();
+            AzurirajFond(izvucenaSedmica);
+
+        }
+
+        private void DopuniFond()
+        {
+
             string pocetniDatum = "'2019-04-20'", zavrsniDatum = "'2019-04-23'";
 
             string naredbaDodajSumuTiketaUFond =
                 "INSERT INTO Fondovi " +
                 "SELECT SUM(iznos) " +
                 "	FROM Transakcije " +
-                "WHERE tip_transakcije = 'tiket' AND datum between"+ pocetniDatum +"  AND"+ zavrsniDatum + ";" +
+                "WHERE tip_transakcije = 'tiket' AND datum between" + pocetniDatum + "  AND" + zavrsniDatum + ";" +
 
                 "INSERT INTO Fondovi " +
                 "SELECT SUM(stanje_na_fondu) " +
@@ -51,39 +69,24 @@ namespace LotoRotoProjekat
             conn.Open();
             new SqlCommand(naredbaDodajSumuTiketaUFond, conn).ExecuteNonQuery();
             conn.Close();
-           // int fkRacuniId = Int32.Parse(komandaNaciIdRacuna.ExecuteScalar().ToString());
         }
 
-        protected void buttonZapocniKolo_Click(object sender, EventArgs e)
-        {
-
-            bool izvucenaSedmica = true;
-            UcitajDobitnike();
-            IzracunajFondove(VratiNagradniFondIzBaze(), 4, izvucenaSedmica);
-            IzvrsiNaplateIzFonda();
-            AzurirajFond(izvucenaSedmica);
-        }
-
-     
         public void UcitajDobitnike()
         {
-            //UPITI ZA PRONALAZENJE BROJA RACUNA, I PREKO BROJA RACUNA NACI USERNAME SVIH DOBITNIKA. TEST PODACI
-            for(int i = 0; i < 4; i++)
+            SqlConnection conn = konekcija.Connect();
+            conn.Open();
+            SqlCommand komandaVratiSveDobitnike = new SqlCommand("SELECT [vrsta_pogotka],[fk_racuni_id] FROM Dobitnici", conn);
+            var reader = komandaVratiSveDobitnike.ExecuteReader();
+            while (reader.Read())
             {
-                dobitnici.Add(new Dobitnik("4", 2));
+                dobitnici.Add(
+                   new Dobitnik (
+                    reader["vrsta_pogotka"].ToString(),
+                    Convert.ToInt32(reader["fk_racuni_id"])
+                    ));
             }
-            for (int i = 0; i < 3; i++)
-            {
-                dobitnici.Add(new Dobitnik("5", 2));
-            }
-            for (int i = 0; i < 2; i++)
-            {
-                dobitnici.Add(new Dobitnik("6", 2));
-            }
-            for (int i = 0; i < 1; i++)
-            {
-                dobitnici.Add(new Dobitnik("7", 2));
-            }
+            conn.Close();
+
         }
 
         public void IzracunajFondove(double ukupanFond,
@@ -110,6 +113,7 @@ namespace LotoRotoProjekat
                 fondZaNaplatuAdministratoru += VratiProcenat(fondZaDobitak7Pogotka, 2d);
                 fondZaDobitak7Pogotka -= VratiProcenat(fondZaDobitak7Pogotka, 22d);
             }
+
         }
 
         public double VratiNagradniFondIzBaze()
@@ -123,6 +127,7 @@ namespace LotoRotoProjekat
             int ukupanFond = Int32.Parse(komandaVratiStanjeNaFondu.ExecuteScalar().ToString());
             conn.Close();
             return Convert.ToDouble(ukupanFond);
+
         }
 
 
@@ -137,30 +142,30 @@ namespace LotoRotoProjekat
             {
                 if(trenutni.vrstaPogotka == "4")
                 {
-                    NapraviTransakciju(pojedinacniDobitakZa4Pogotka, datum , 2, "'nagrada'");
+                    NapraviTransakciju(pojedinacniDobitakZa4Pogotka, datum , trenutni.idRacuna, "'nagrada'");
                 }
                 if (trenutni.vrstaPogotka == "5")
                 {
-                    NapraviTransakciju(pojedinacniDobitakZa5Pogotka, datum , 2, "'nagrada'");
+                    NapraviTransakciju(pojedinacniDobitakZa5Pogotka, datum , trenutni.idRacuna, "'nagrada'");
                 }
                 if (trenutni.vrstaPogotka == "6")
                 {
-                    NapraviTransakciju(pojedinacniDobitakZa6Pogotka, datum , 2, "'nagrada'");
+                    NapraviTransakciju(pojedinacniDobitakZa6Pogotka, datum , trenutni.idRacuna, "'nagrada'");
                 }
                 if (trenutni.vrstaPogotka == "7")
                 {
-                    NapraviTransakciju(pojedinacniDobitakZa7Pogotka, datum , 2, "'nagrada'");
+                    NapraviTransakciju(pojedinacniDobitakZa7Pogotka, datum , trenutni.idRacuna, "'nagrada'");
                 }
             }
-
-            NapraviTransakciju(fondZaHumanitarneSvrhe, datum, 2, "'humanitarna'");
-            NapraviTransakciju(fondZaNaplatuAdministratoru, datum, 2, "'organizatoru'");
+            //NAPISATI U SESSION BROJ RACUNA HUMANITARNOG FONDA I NASE ORGANIZACIJE? 
+            NapraviTransakciju(fondZaHumanitarneSvrhe, datum, 3, "'humanitarna'");
+            NapraviTransakciju(fondZaNaplatuAdministratoru, datum, 4, "'organizatoru'");
 
         }
 
         public void NapraviTransakciju(double novac, string datum , int idRacuna, string tipTransakcije)
         {
-
+            //SVE VREDNOSTI U JEDNOJ NAREDBI MOZDA? Klasa Transakcija
             string naredbaNapraviTransakcijuKorisniku = "INSERT INTO Transakcije " +
                 "(iznos,datum,fk_racuni_id,tip_transakcije) " +
                 "VALUES (" +
@@ -172,6 +177,7 @@ namespace LotoRotoProjekat
             conn.Open();
             new SqlCommand(naredbaNapraviTransakcijuKorisniku, conn).ExecuteNonQuery();
             conn.Close();
+
         }
 
         public void AzurirajFond(bool izvucenaSedmica)
@@ -189,6 +195,7 @@ namespace LotoRotoProjekat
             conn.Open();
             new SqlCommand(naredbaAzuriraj, conn).ExecuteNonQuery();
             conn.Close();
+
         }
         private class Dobitnik
         {

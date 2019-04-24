@@ -41,14 +41,21 @@ namespace LotoRotoProjekat
                     else
                     {
                         // UPISI U SQL PODATKE O LOGOVANJU Time, Date...
-                        Session["Korisnici"] = Korisničko_ime;
-                        Session["tip_korisnika"] = Korisnik.Rows[0]["tip_korisnika"].ToString();
-                        Session["ime"] = Korisnik.Rows[0][3].ToString();
+
 
                         SqlConnection conn = konekcija.Connect();
+                        conn.Open();
+                        string naredbaNadjiIDUlogovanog = "SELECT pk_korisnici_id FROM Korisnici WHERE username LIKE'" + Korisničko_ime + "'";
+                        SqlCommand komandaNadjiIDLogovanog = new SqlCommand(naredbaNadjiIDUlogovanog, conn);
+                        int idKorisnika = Int32.Parse(komandaNadjiIDLogovanog.ExecuteScalar().ToString());
+
+                        Session["id_ulogovanog_korisnika"] = idKorisnika;
+                        Session["tip_korisnika"] = Korisnik.Rows[0]["tip_korisnika"].ToString();
+                        Session["ime"] = Korisnik.Rows[0][3].ToString();
+                        Session["Korisnici"] = Korisničko_ime;
+
                         SqlCommand komandaUpdateLoginDate = new SqlCommand("update Korisnici set log_in_date = GETDATE() where username = '" + Korisničko_ime + "'", conn);
                         SqlCommand komandaUpdateLoginTime = new SqlCommand("UPDATE Korisnici SET log_in_time = CONVERT( TIME, concat(datepart(hour, getdate()), ':',datepart(minute, getdate()), ':',datepart(SECOND, getdate()))) where username = '" + Korisničko_ime + "'", conn);
-                        conn.Open();
                         komandaUpdateLoginDate.ExecuteNonQuery();
                         komandaUpdateLoginTime.ExecuteNonQuery();
                         conn.Close();

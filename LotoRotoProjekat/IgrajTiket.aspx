@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <link href="stil/cigle.css" rel="stylesheet" />
     <asp:ScriptManager ID="script1" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel ID="panel1" runat="server"><ContentTemplate>
     <asp:Label ID="prikazKombinacijeTiketa" runat="server" Text="" style="border-collapse:collapse;width: 280px;height:50px;font-size:24px;margin-left:15px;background-color:#FFFFFF;color:blue;" ></asp:Label>
@@ -33,6 +34,10 @@
         </asp:GridView>
 
     <asp:Button class="btn btn-indigo" ID="Button10" runat="server" OnClick="Button10_Click" Text="Potvrdi" Width="340px" />
-      
-      </div></ContentTemplate></asp:UpdatePanel>
+
+      </div></ContentTemplate></asp:UpdatePanel>      
+
+          <div class="card-body" "ciglica">
+              <a href="Cigla.aspx" target="_blank" class="btn btn-indigo">DOK ČEKATE NA IZVLAČENJE!</a>
+            </div>
 </asp:Content>

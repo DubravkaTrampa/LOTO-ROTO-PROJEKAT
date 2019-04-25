@@ -14,6 +14,7 @@ namespace LotoRotoProjekat
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //IZMENITI U POSLEDNJI PUT STE SE LOGOVALI
             Response.Write("korisnik=" + Session["Korisnik"]);
         }
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -25,45 +26,43 @@ namespace LotoRotoProjekat
                 string naredba = "select * FROM korisnici WHERE username='" + Korisničko_ime + "'";
                 SqlDataAdapter da = new SqlDataAdapter(naredba, konekcija.Connect());
                 DataTable Korisnik = new DataTable();
+
+                //UREDITI KOD
                 da.Fill(Korisnik);
                 if (Korisnik.Rows.Count == 0)
-                {   
-                    Response.Redirect("RegistrujPrijavi.aspx");
+                    {   
+                        Response.Redirect("RegistrujPrijavi.aspx");
                     
-            }
+                    }
                 else
-                {
-                    string DBPass = Korisnik.Rows[0]["password"].ToString();
-                    if (!Lozinka.Equals(DBPass))
                     {
-                        Response.Write("Losa lozinka");
+                        string DBPass = Korisnik.Rows[0]["password"].ToString();
+                        if (!Lozinka.Equals(DBPass))
+                        {
+                        //URADITI ISPIS PORUKE NA EKRANU
+                            Response.Write("Losa lozinka");
                     }
                     else
                     {
-                        // UPISI U SQL PODATKE O LOGOVANJU Time, Date...
 
-
-                        SqlConnection conn = konekcija.Connect();
-                        conn.Open();
-                        string naredbaNadjiIDUlogovanog = "SELECT pk_korisnici_id FROM Korisnici WHERE username LIKE'" + Korisničko_ime + "'";
-                        SqlCommand komandaNadjiIDLogovanog = new SqlCommand(naredbaNadjiIDUlogovanog, conn);
-                        int idKorisnika = Int32.Parse(komandaNadjiIDLogovanog.ExecuteScalar().ToString());
-
-                        string naredbaNadjiIdRacunaKorisnika = "SELECT fk_racuni_id FROM Korisnici WHERE pk_korisnici_id =" + idKorisnika + "";
-                        SqlCommand komandaNadjiIDRacuna = new SqlCommand(naredbaNadjiIdRacunaKorisnika, conn);
-                        int idRacuna = Int32.Parse(komandaNadjiIDRacuna.ExecuteScalar().ToString());
+                        int idKorisnika = Convert.ToInt32(Korisnik.Rows[0]["pk_korisnici_id"]);
+                        int idRacuna = Convert.ToInt32(Korisnik.Rows[0]["fk_racuni_id"]);
 
                         Session["id_racuna"] = idRacuna;
                         Session["id_ulogovanog_korisnika"] = idKorisnika;
                         Session["tip_korisnika"] = Korisnik.Rows[0]["tip_korisnika"].ToString();
-                        Session["ime"] = Korisnik.Rows[0][3].ToString();
+                        Session["ime"] = Korisnik.Rows[0]["ime"].ToString();
+                        // KORISNIK
                         Session["Korisnici"] = Korisničko_ime;
 
+                        SqlConnection conn = konekcija.Connect();
+                        conn.Open();
                         SqlCommand komandaUpdateLoginDate = new SqlCommand("update Korisnici set log_in_date = GETDATE() where username = '" + Korisničko_ime + "'", conn);
                         SqlCommand komandaUpdateLoginTime = new SqlCommand("UPDATE Korisnici SET log_in_time = CONVERT( TIME, concat(datepart(hour, getdate()), ':',datepart(minute, getdate()), ':',datepart(SECOND, getdate()))) where username = '" + Korisničko_ime + "'", conn);
                         komandaUpdateLoginDate.ExecuteNonQuery();
                         komandaUpdateLoginTime.ExecuteNonQuery();
                         conn.Close();
+
                         Response.Redirect("IgrajTiket.aspx");
                     }
                 
@@ -78,14 +77,14 @@ namespace LotoRotoProjekat
                     string prezime = PlaceHolder_prezime.Text;
                     string datumRodj = PlaceHolder_datum_rodj.Text;
                     string adresa = PlaceHolder_adresa.Text;
-                    string grad = PlaceHolder_grad.Text;
                     string brRacuna = PlaceHolder_racun.Text;
                     string tel = PlaceHolder_tel.Text;
                     string email = PlaceHolder_email.Text;
 
                     bool lozinkeJednake = pass == pass2;
 
-            string naredbaUname = "SELECT * FROM Korisnici WHERE username='" + username + "'";
+                    // KLASA PROVERI DA LI KORISNIK POSTOJI
+                    string naredbaUname = "SELECT * FROM Korisnici WHERE username='" + username + "' OR email= '"+email+"' ";
             
                     SqlConnection conn = konekcija.Connect();
                     SqlDataAdapter da = new SqlDataAdapter(naredbaUname, conn);
@@ -96,15 +95,13 @@ namespace LotoRotoProjekat
                     {
                         string naredbaNapraviRacun = "INSERT INTO Racuni (broj_racuna) VALUES (" + brRacuna + ");";
                         
-                        string naredbaBrRacuna = "SELECT pk_racuni_id FROM Racuni WHERE broj_racuna LIKE'" + brRacuna + "'";
-                        SqlCommand komandaNaciIdRacuna = new SqlCommand(naredbaBrRacuna, conn);
+                        string naredbaBrRacuna = "SELECT pk_racuni_id FROM Racuni WHERE broj_racuna ='" + brRacuna + "'";
                         SqlCommand komandaUnesiNoviRacun = new SqlCommand(naredbaNapraviRacun, conn);
+                        SqlCommand komandaNaciIdRacuna = new SqlCommand(naredbaBrRacuna, conn);
                         conn.Open();
                         komandaUnesiNoviRacun.ExecuteNonQuery();
                         int fkRacuniId = Int32.Parse(komandaNaciIdRacuna.ExecuteScalar().ToString());
 
-
-                        Response.Write("Nema ga");
                         string logInDate = DateTime.Now.ToString("yyyy-MM-dd");
                         DateTime sad = DateTime.Now;
                         string logInTime = sad.Hour.ToString() + ":" + sad.Minute.ToString();
@@ -127,16 +124,12 @@ namespace LotoRotoProjekat
                     $"'{email}'," +
                     $"'igrac'," +
                     $"'{fkRacuniId}')");
-                Response.Write(NaredbaBtnPotvrdi.ToString());
 
                         SqlCommand Komanda = new SqlCommand(NaredbaBtnPotvrdi.ToString(), conn);
                         Komanda.ExecuteNonQuery();
                         conn.Close();
                     }
-                    else
-                    {
-                        Response.Write("Ima ga");
-                    }
+                  
                 }
     }
  }

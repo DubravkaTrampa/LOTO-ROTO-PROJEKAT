@@ -79,6 +79,7 @@
     <Content Include="RegistrujPrijavi.aspx" />
     <Content Include="slike\dugme1.jpg" />
     <Content Include="slike\icon_x.png" />
+    <Content Include="stil\cigle.css" />
     <Content Include="TestStranica.aspx" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
@@ -184,7 +185,6 @@
     <Compile Include="Rezultati.aspx.designer.cs">
       <DependentUpon>Rezultati.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TestKombinacije.cs" />
     <Compile Include="TestStranica.aspx.cs">
       <DependentUpon>TestStranica.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -36,12 +36,23 @@ namespace LotoRotoProjekat
         protected void buttonZapocniKolo_Click(object sender, EventArgs e)
         {
             // UPIT ZA PROVERAVANJE DA LI POSTOJI vrsta_pogotka SA VREDNOSTI 7 
-            bool izvucenaSedmica = true;
+            bool izvucenaSedmica = ProveriIzvucenaSedmica();
             DopuniFond();
             UcitajDobitnike();
             IzracunajFondove(VratiNagradniFondIzBaze(), 4, izvucenaSedmica);
             IzvrsiNaplateIzFonda();
             AzurirajFond(izvucenaSedmica);
+
+        }
+
+        public bool ProveriIzvucenaSedmica()
+        {
+            string naredbaPrebrojDobitnijeVrste = "SELECT COUNT(*) AS broj FROM Dobitnici WHERE vrsta_pogotka = '7' ";
+            SqlConnection conn = konekcija.Connect();
+            conn.Open();
+            int brojIzvucenih = Convert.ToInt32(new SqlCommand(naredbaPrebrojDobitnijeVrste, conn).ExecuteScalar());
+            conn.Close();
+            return brojIzvucenih >0;
 
         }
 
@@ -130,14 +141,27 @@ namespace LotoRotoProjekat
 
         }
 
+        public double PrebrojDobitnikeVrste(string vrstaDobitka)
+        {
+            double broj = 0;
+
+            string naredbaPrebrojDobitnijeVrste = "SELECT COUNT(*) AS broj FROM Dobitnici WHERE vrsta_pogotka = '" + vrstaDobitka + "' ";
+            SqlConnection conn = konekcija.Connect();
+            conn.Open();
+            broj = Convert.ToDouble(new SqlCommand(naredbaPrebrojDobitnijeVrste, conn).ExecuteScalar());
+            conn.Close();
+            return broj;
+        }
+
 
         public void IzvrsiNaplateIzFonda()
-        {   //IZVUCI IZ BAZE - BROJEVE DOBITNIKA ODREDJENIM UPITOM KAKO BI MOGLI DA RASPOREDIMO NAGRADE
-            double pojedinacniDobitakZa4Pogotka = fondZaDobitak4Pogotka / 4d;
-            double pojedinacniDobitakZa5Pogotka = fondZaDobitak5Pogotka / 3d;
-            double pojedinacniDobitakZa6Pogotka = fondZaDobitak6Pogotka / 2d;
-            double pojedinacniDobitakZa7Pogotka = fondZaDobitak7Pogotka / 1d;
+        { 
+            double pojedinacniDobitakZa4Pogotka = fondZaDobitak4Pogotka / PrebrojDobitnikeVrste("4");
+            double pojedinacniDobitakZa5Pogotka = fondZaDobitak5Pogotka / PrebrojDobitnikeVrste("5");
+            double pojedinacniDobitakZa6Pogotka = fondZaDobitak6Pogotka / PrebrojDobitnikeVrste("6");
+            double pojedinacniDobitakZa7Pogotka = fondZaDobitak7Pogotka / PrebrojDobitnikeVrste("7");
             string datum = "'" + DateTime.Now.ToString("yyyy-MM-dd") + "'";
+
             foreach (Dobitnik trenutni in dobitnici)
             {
                 if(trenutni.vrstaPogotka == "4")
@@ -157,9 +181,11 @@ namespace LotoRotoProjekat
                     NapraviTransakciju(pojedinacniDobitakZa7Pogotka, datum , trenutni.idRacuna, "'nagrada'");
                 }
             }
-            //NAPISATI U SESSION BROJ RACUNA HUMANITARNOG FONDA I NASE ORGANIZACIJE? 
-            NapraviTransakciju(fondZaHumanitarneSvrhe, datum, 3, "'humanitarna'");
-            NapraviTransakciju(fondZaNaplatuAdministratoru, datum, 4, "'organizatoru'");
+
+            int idRacunaHumanitarneOrganizacije = Convert.ToInt32(Session["humanitarni_fond_racun_id"]);
+            int idRacunaAdmina = Convert.ToInt32(Session["admin_racun_id"]);
+            NapraviTransakciju(fondZaHumanitarneSvrhe, datum, idRacunaHumanitarneOrganizacije, "'humanitarna'");
+            NapraviTransakciju(fondZaNaplatuAdministratoru, datum, idRacunaAdmina, "'organizatoru'");
 
         }
 

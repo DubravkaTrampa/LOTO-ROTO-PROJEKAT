@@ -175,24 +175,6 @@ namespace LotoRotoProjekat {
         protected global::System.Web.UI.WebControls.TextBox PlaceHolder_adresa;
         
         /// <summary>
-        /// register_grad control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label register_grad;
-        
-        /// <summary>
-        /// PlaceHolder_grad control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PlaceHolder_grad;
-        
-        /// <summary>
         /// register_br_racuna control.
         /// </summary>
         /// <remarks>

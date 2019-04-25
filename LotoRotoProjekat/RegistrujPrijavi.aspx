@@ -66,9 +66,6 @@
                                   <asp:Label ID="register_adresa" runat="server" Text="Adresa"></asp:Label>
                                   <asp:TextBox id="PlaceHolder_adresa" required="required" runat="server"></asp:TextBox>
 
-                                  <asp:Label ID="register_grad" runat="server" Text="Grad"></asp:Label>
-                                  <asp:TextBox id="PlaceHolder_grad" required="required" runat="server"></asp:TextBox>
-
                                   <asp:Label ID="register_br_racuna" runat="server" Text="Broj računa"></asp:Label>
                                   <asp:TextBox id="PlaceHolder_racun" required="required" runat="server"></asp:TextBox>
 

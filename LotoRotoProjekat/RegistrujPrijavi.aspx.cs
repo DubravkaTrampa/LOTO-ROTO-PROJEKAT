@@ -29,10 +29,10 @@ namespace LotoRotoProjekat
 
                 //UREDITI KOD
                 da.Fill(Korisnik);
+
                 if (Korisnik.Rows.Count == 0)
                     {   
                         Response.Redirect("RegistrujPrijavi.aspx");
-                    
                     }
                 else
                     {
@@ -47,7 +47,7 @@ namespace LotoRotoProjekat
 
                         int idKorisnika = Convert.ToInt32(Korisnik.Rows[0]["pk_korisnici_id"]);
                         int idRacuna = Convert.ToInt32(Korisnik.Rows[0]["fk_racuni_id"]);
-
+                        
                         Session["id_racuna"] = idRacuna;
                         Session["id_ulogovanog_korisnika"] = idKorisnika;
                         Session["tip_korisnika"] = Korisnik.Rows[0]["tip_korisnika"].ToString();
@@ -68,8 +68,11 @@ namespace LotoRotoProjekat
                 
             }
         }
+
+
                 protected void btnRegister_Click(object sender, EventArgs e)
                 {
+
                     string username = PlaceHolder_register.Text;
                     string pass = PlaceHolder_password.Text;
                     string pass2 = PlaceHolder_pass2.Text;

@@ -74,14 +74,17 @@
 
                                   <asp:Label ID="register_email" runat="server" Text="Unesite E-mail"></asp:Label>
                                   <asp:TextBox id="PlaceHolder_email" required="required" runat="server"></asp:TextBox>
+                            
                                 <p class="signin button"> 
                                     <asp:button runat="server" type="submit"  onclick="btnRegister_Click" UseSubmitBehavior="false" Text="Registruj se" EnableViewState = true></asp:button>
 									<!--<input type="submit" value="Registruj se"/>-->
-								</p>
+								
                                 <p class="change_link">  
 									Već ste registrovani ?
 									<a href="#tologin" class="to_register"> Idi na stranicu prijavi </a>
 								</p>
+                      
+                            
                         </div>
                     </div>
                 </div>  

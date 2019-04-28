@@ -66,6 +66,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminFondovi.aspx" />
+    <Content Include="AdminKombinacije.aspx" />
+    <Content Include="AdminTransakcije.aspx" />
+    <Content Include="AdminUklanjanje.aspx" />
     <Content Include="Cigla.aspx" />
     <Content Include="Igraj.aspx" />
     <Content Include="IgrajTiket.aspx" />
@@ -111,6 +115,34 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminFondovi.aspx.cs">
+      <DependentUpon>AdminFondovi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminFondovi.aspx.designer.cs">
+      <DependentUpon>AdminFondovi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminKombinacije.aspx.cs">
+      <DependentUpon>AdminKombinacije.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminKombinacije.aspx.designer.cs">
+      <DependentUpon>AdminKombinacije.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminTransakcije.aspx.cs">
+      <DependentUpon>AdminTransakcije.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminTransakcije.aspx.designer.cs">
+      <DependentUpon>AdminTransakcije.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminUklanjanje.aspx.cs">
+      <DependentUpon>AdminUklanjanje.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminUklanjanje.aspx.designer.cs">
+      <DependentUpon>AdminUklanjanje.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Cigla.aspx.cs">
       <DependentUpon>Cigla.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

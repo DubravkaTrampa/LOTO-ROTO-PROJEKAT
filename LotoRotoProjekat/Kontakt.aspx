@@ -23,5 +23,4 @@
 					</li>
 				</ul>
     </div> 
-     <a href="https://www.un.org/en/universal-declaration-human-rights/" target="_blank" style="float:right;margin-right:130px;margin-top:40px;"><img src="slike/human_rights.gif"/></a>
 </asp:Content>

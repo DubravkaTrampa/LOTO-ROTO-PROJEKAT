@@ -52,6 +52,14 @@
               </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="RegistrujPrijavi.aspx">Igraj
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Rezultati.aspx">Rezultati
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="Oigri.aspx">O igri</a>
             </li>
             <li class="nav-item">
@@ -67,35 +75,26 @@
               <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">Administrator</a>
               <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="Kontakt.aspx">Podaci o korisnicima</a>
-                <a class="dropdown-item" href="Kontakt.aspx">Uplaćene kombinacije</a>
-                <a class="dropdown-item" href="Kontakt.aspx">Podaci o dobitnicima</a>
-                <a class="dropdown-item" href="Kontakt.aspx">Uplate</a>
-                <a class="dropdown-item" href="Kontakt.aspx">Isplate</a>
-                <a class="dropdown-item" href="Kontakt.aspx">Uklanjanje korisnika</a>
-                <a class="dropdown-item" href="Kontakt.aspx">Ažuriranje podataka</a>
+                <a class="dropdown-item" href="AdminKombinacije.aspx">Uplaćene kombinacije</a>
+                <a class="dropdown-item" href="AdminFondovi.aspx">Podaci o fondovima</a>
+                <a class="dropdown-item" href="AdminTransakcije.aspx">Transakcije</a>
+                <a class="dropdown-item" href="AdminUklanjanje.aspx">Uklanjanje korisnika</a>
               </div>
             </li>
               </asp:ContentPlaceHolder>
           </ul>
           <!-- Links -->
 
-         <div class="form-inline">
-            <div class="md-form my-0">
-              <section id="social-buttons" class="text-center"; style="display:inline; font-size: 30px;width: 50px;text-align: center;text-decoration: none;margin: 5px 2px;">
-         
-                <a href="https://www.facebook.com/" target="_blank" class="fa fa-facebook"style="margin:auto;width: 20%;padding: 10px;"></a>
-                <a href="https://twitter.com/?lang=en" target="_blank" class="fa fa-twitter"style="margin:auto;width: 20%;padding: 10px;"></a>
-                <a href="https://rs.linkedin.com/" target="_blank" class="fa fa-linkedin"style="margin:auto;width: 20%;padding: 10px;"></a>
-              </section>
-            </div>
-          </div>
         </div>
         <!-- Collapsible content -->
 
       </div>
       <!-- Additional container -->
+                <!--<a href="RegistrujPrijavi.aspx" class="btn btn-indigo" style="margin-right:50px;background-color:#910b70 !important;">Registruj/Prijavi se</a> -->
+        <asp:Button ID="btnPrijaviOdjaviSe" runat="server" Text="Prijavi/Registruj se" OnClick="btnPrijaviOdjaviSeClick" />
+                <!--Grid column-->
 
+        <!--Grid column-->
     </nav>
     <!--/.Navbar-->
 

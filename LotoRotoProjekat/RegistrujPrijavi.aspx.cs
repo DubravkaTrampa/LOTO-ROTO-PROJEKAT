@@ -47,7 +47,7 @@ namespace LotoRotoProjekat
 
                         int idKorisnika = Convert.ToInt32(Korisnik.Rows[0]["pk_korisnici_id"]);
                         int idRacuna = Convert.ToInt32(Korisnik.Rows[0]["fk_racuni_id"]);
-                        
+                       
                         Session["id_racuna"] = idRacuna;
                         Session["id_ulogovanog_korisnika"] = idKorisnika;
                         Session["tip_korisnika"] = Korisnik.Rows[0]["tip_korisnika"].ToString();
@@ -62,14 +62,11 @@ namespace LotoRotoProjekat
                         komandaUpdateLoginDate.ExecuteNonQuery();
                         komandaUpdateLoginTime.ExecuteNonQuery();
                         conn.Close();
-
-                        Response.Redirect("IgrajTiket.aspx");
+                        Session["bool_korisnik_ulogovan"] = true;
+                        Response.Redirect("Pocetna.aspx");
                     }
-                
             }
         }
-
-
                 protected void btnRegister_Click(object sender, EventArgs e)
                 {
 
@@ -131,8 +128,8 @@ namespace LotoRotoProjekat
                         SqlCommand Komanda = new SqlCommand(NaredbaBtnPotvrdi.ToString(), conn);
                         Komanda.ExecuteNonQuery();
                         conn.Close();
+                     
                     }
-                  
                 }
     }
  }

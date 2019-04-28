@@ -12,6 +12,21 @@ namespace LotoRotoProjekat
         public ContentPlaceHolder placeHolderDropdown; 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(Session["bool_korisnik_ulogovan"] == null)
+            {
+                Session["bool_korisnik_ulogovan"] = false;
+            }
+
+            if( (bool)Session["bool_korisnik_ulogovan"] == false)
+            {
+                btnPrijaviOdjaviSe.Text = "Prijavi/Registruj se";
+            }
+            else
+            {
+                btnPrijaviOdjaviSe.Text = "Odjavi se";
+            }
+
+            // provera da li je ulogovan admin
             if(Session["tip_korisnika"]!= null)
             {
                 if(Session["tip_korisnika"].ToString() == "admin")
@@ -24,6 +39,23 @@ namespace LotoRotoProjekat
             Session["admin_racun_id"] = 4;
             Session["humanitarni_fond_racun_id"] = 3;
 
+        }
+
+        protected void btnPrijaviOdjaviSeClick(object sender, EventArgs e)
+        {
+            if (btnPrijaviOdjaviSe.Text == "Prijavi/Registruj se")
+            {
+                Response.Redirect("RegistrujPrijavi.aspx");
+            }
+            if(btnPrijaviOdjaviSe.Text == "Odjavi se")
+            {
+                if(Session["tip_korisnika"] != null)
+                Session["tip_korisnika"] = null;
+
+                Session["bool_korisnik_ulogovan"] = false;
+                placeholderAdminDropdown.Visible = false;
+                Response.Redirect("RegistrujPrijavi.aspx");
+            }
         }
     }
 }

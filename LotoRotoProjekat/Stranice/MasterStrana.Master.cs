@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace LotoRotoProjekat
+namespace LotoRotoProjekat.Strane
 {
     public partial class MasterStrana : System.Web.UI.MasterPage
     {

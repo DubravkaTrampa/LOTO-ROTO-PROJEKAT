@@ -66,25 +66,25 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AdminFondovi.aspx" />
-    <Content Include="AdminKombinacije.aspx" />
-    <Content Include="AdminTransakcije.aspx" />
-    <Content Include="AdminUklanjanje.aspx" />
-    <Content Include="Cigla.aspx" />
-    <Content Include="Igraj.aspx" />
-    <Content Include="IgrajTiket.aspx" />
+    <Content Include="Stranice\AdminFondovi.aspx" />
+    <Content Include="Stranice\AdminKombinacije.aspx" />
+    <Content Include="Stranice\AdminTransakcije.aspx" />
+    <Content Include="Stranice\AdminUklanjanje.aspx" />
+    <Content Include="Stranice\Cigla.aspx" />
+    <Content Include="Stranice\Igraj.aspx" />
+    <Content Include="Stranice\IgrajTiket.aspx" />
     <Content Include="javascript\brojac_do_izvlacenja.js" />
     <Content Include="javascript\cigle.js" />
     <Content Include="javascript\demo1.js" />
     <Content Include="javascript\generator_izvlacenja.js" />
-    <Content Include="Kontakt.aspx" />
-    <Content Include="MasterStrana.Master" />
-    <Content Include="Oigri.aspx" />
-    <Content Include="RegistrujPrijavi.aspx" />
+    <Content Include="Stranice\Kontakt.aspx" />
+    <Content Include="Stranice\MasterStrana.Master" />
+    <Content Include="Stranice\Oigri.aspx" />
+    <Content Include="Stranice\RegistrujPrijavi.aspx" />
     <Content Include="slike\dugme1.jpg" />
     <Content Include="slike\icon_x.png" />
     <Content Include="stil\cigle.css" />
-    <Content Include="TestStranica.aspx" />
+    <Content Include="Stranice\TestStranica.aspx" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -95,9 +95,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="javascript\bootstrapjava.js" />
-    <Content Include="Onama.aspx" />
-    <Content Include="Pocetna.aspx" />
-    <Content Include="Rezultati.aspx" />
+    <Content Include="Stranice\Onama.aspx" />
+    <Content Include="Stranice\Pocetna.aspx" />
+    <Content Include="Stranice\Rezultati.aspx" />
     <Content Include="slike\DubravkaTrampa.jpg" />
     <Content Include="slike\DusicaKrstic.jpg" />
     <Content Include="slike\gradient_neon.jpg" />
@@ -115,117 +115,120 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminFondovi.aspx.cs">
+    <Compile Include="Stranice\AdminFondovi.aspx.cs">
       <DependentUpon>AdminFondovi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminFondovi.aspx.designer.cs">
+    <Compile Include="Stranice\AdminFondovi.aspx.designer.cs">
       <DependentUpon>AdminFondovi.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminKombinacije.aspx.cs">
+    <Compile Include="Stranice\AdminKombinacije.aspx.cs">
       <DependentUpon>AdminKombinacije.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminKombinacije.aspx.designer.cs">
+    <Compile Include="Stranice\AdminKombinacije.aspx.designer.cs">
       <DependentUpon>AdminKombinacije.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminTransakcije.aspx.cs">
+    <Compile Include="Stranice\AdminTransakcije.aspx.cs">
       <DependentUpon>AdminTransakcije.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminTransakcije.aspx.designer.cs">
+    <Compile Include="Stranice\AdminTransakcije.aspx.designer.cs">
       <DependentUpon>AdminTransakcije.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminUklanjanje.aspx.cs">
+    <Compile Include="Stranice\AdminUklanjanje.aspx.cs">
       <DependentUpon>AdminUklanjanje.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminUklanjanje.aspx.designer.cs">
+    <Compile Include="Stranice\AdminUklanjanje.aspx.designer.cs">
       <DependentUpon>AdminUklanjanje.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Cigla.aspx.cs">
+    <Compile Include="Stranice\Cigla.aspx.cs">
       <DependentUpon>Cigla.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Cigla.aspx.designer.cs">
+    <Compile Include="Stranice\Cigla.aspx.designer.cs">
       <DependentUpon>Cigla.aspx</DependentUpon>
     </Compile>
     <Compile Include="Class1.cs" />
-    <Compile Include="Igraj.aspx.cs">
+    <Compile Include="Stranice\Igraj.aspx.cs">
       <DependentUpon>Igraj.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Igraj.aspx.designer.cs">
+    <Compile Include="Stranice\Igraj.aspx.designer.cs">
       <DependentUpon>Igraj.aspx</DependentUpon>
     </Compile>
-    <Compile Include="IgrajTiket.aspx.cs">
+    <Compile Include="Stranice\IgrajTiket.aspx.cs">
       <DependentUpon>IgrajTiket.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="IgrajTiket.aspx.designer.cs">
+    <Compile Include="Stranice\IgrajTiket.aspx.designer.cs">
       <DependentUpon>IgrajTiket.aspx</DependentUpon>
     </Compile>
     <Compile Include="igraj_button.cs" />
     <Compile Include="konekcija.cs" />
-    <Compile Include="Kontakt.aspx.cs">
+    <Compile Include="Stranice\Kontakt.aspx.cs">
       <DependentUpon>Kontakt.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Kontakt.aspx.designer.cs">
+    <Compile Include="Stranice\Kontakt.aspx.designer.cs">
       <DependentUpon>Kontakt.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MasterStrana.Master.cs">
+    <Compile Include="Stranice\MasterStrana.Master.cs">
       <DependentUpon>MasterStrana.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterStrana.Master.designer.cs">
+    <Compile Include="Stranice\MasterStrana.Master.designer.cs">
       <DependentUpon>MasterStrana.Master</DependentUpon>
     </Compile>
-    <Compile Include="Oigri.aspx.cs">
+    <Compile Include="Stranice\Oigri.aspx.cs">
       <DependentUpon>Oigri.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Oigri.aspx.designer.cs">
+    <Compile Include="Stranice\Oigri.aspx.designer.cs">
       <DependentUpon>Oigri.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Onama.aspx.cs">
+    <Compile Include="Stranice\Onama.aspx.cs">
       <DependentUpon>Onama.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Onama.aspx.designer.cs">
+    <Compile Include="Stranice\Onama.aspx.designer.cs">
       <DependentUpon>Onama.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pocetna.aspx.cs">
+    <Compile Include="Stranice\Pocetna.aspx.cs">
       <DependentUpon>Pocetna.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pocetna.aspx.designer.cs">
+    <Compile Include="Stranice\Pocetna.aspx.designer.cs">
       <DependentUpon>Pocetna.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegistrujPrijavi.aspx.cs">
+    <Compile Include="Stranice\RegistrujPrijavi.aspx.cs">
       <DependentUpon>RegistrujPrijavi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="RegistrujPrijavi.aspx.designer.cs">
+    <Compile Include="Stranice\RegistrujPrijavi.aspx.designer.cs">
       <DependentUpon>RegistrujPrijavi.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Rezultati.aspx.cs">
+    <Compile Include="Stranice\Rezultati.aspx.cs">
       <DependentUpon>Rezultati.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Rezultati.aspx.designer.cs">
+    <Compile Include="Stranice\Rezultati.aspx.designer.cs">
       <DependentUpon>Rezultati.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TestStranica.aspx.cs">
+    <Compile Include="Stranice\TestStranica.aspx.cs">
       <DependentUpon>TestStranica.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TestStranica.aspx.designer.cs">
+    <Compile Include="Stranice\TestStranica.aspx.designer.cs">
       <DependentUpon>TestStranica.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Logika\" />
+    <Folder Include="Static\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

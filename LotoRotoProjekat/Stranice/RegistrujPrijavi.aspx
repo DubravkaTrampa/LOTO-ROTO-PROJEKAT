@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterStrana.Master" AutoEventWireup="true" CodeBehind="RegistrujPrijavi.aspx.cs" Inherits="LotoRotoProjekat.RegistrujPrijavi" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="MasterStrana.Master" AutoEventWireup="true" CodeBehind="RegistrujPrijavi.aspx.cs" Inherits="LotoRotoProjekat.RegistrujPrijavi" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LotoRotoProjekat {
+namespace LotoRotoProjekat.Strane {
     
     
     public partial class MasterStrana {

@@ -4,10 +4,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
                
     <!--Main container-->
+    <div class="container">
     <main>
-    <section  class="text-center"style="margin-left:450px;margin-right:450px;">
+    <section  class="text-center" style="margin-left:250px;margin-right:250px;">
       <h5 class="py-5"style="color:#275196; text-transform: uppercase;">Naš tim</h5>
-      <div class="row">
+      <div class="row" style="width:650px">
 
               <!--Grid column-->
               <div class="col-md-6 mb-4">
@@ -21,7 +22,7 @@
 
                       <!--Avatar-->
                       <div class="avatar mx-auto white">
-                          <img src="slike/DusicaKrstic.jpg" class="rounded-circle">
+                          <img src="/slike/DusicaKrstic.jpg" class="rounded-circle">
                       </div>
 
                       <div class="card-body" style="color:#275196;">
@@ -50,7 +51,7 @@
 
                       <!--Avatar-->
                       <div class="avatar mx-auto white">
-                          <img src="slike/DubravkaTrampa.jpg" class="rounded-circle">
+                          <img src="/slike/DubravkaTrampa.jpg" class="rounded-circle">
                       </div>
 
                       <div class="card-body" style="color:#275196;">
@@ -70,6 +71,7 @@
           </div>
         </section>
   </main>
+        </div>
   <!--Main layout-->
 
 </asp:Content>

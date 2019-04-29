@@ -22,7 +22,7 @@ namespace LotoRotoProjekat
            
                 string Korisničko_ime = PlaceHolder_login.Text;
                 string Lozinka = PlaceHolder_pass.Text;
-
+                
                 string naredba = "select * FROM korisnici WHERE username='" + Korisničko_ime + "'";
                 SqlDataAdapter da = new SqlDataAdapter(naredba, konekcija.Connect());
                 DataTable Korisnik = new DataTable();

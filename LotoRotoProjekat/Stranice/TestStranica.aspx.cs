@@ -223,6 +223,7 @@ namespace LotoRotoProjekat
             conn.Close();
 
         }
+
         private class Dobitnik
         {
             public string username;

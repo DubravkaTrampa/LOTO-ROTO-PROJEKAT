@@ -66,6 +66,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="slike\avatar.png" />
+    <Content Include="slike\kartica_loptice.jpg" />
     <Content Include="stil\rezultati.css" />
     <Content Include="Stranice\AdminFondovi.aspx" />
     <Content Include="Stranice\AdminKombinacije.aspx" />
@@ -82,7 +84,6 @@
     <Content Include="Stranice\MasterStrana.Master" />
     <Content Include="Stranice\Oigri.aspx" />
     <Content Include="Stranice\RegistrujPrijavi.aspx" />
-    <Content Include="slike\dugme1.jpg" />
     <Content Include="slike\icon_x.png" />
     <Content Include="stil\cigle.css" />
     <Content Include="Stranice\TestStranica.aspx" />
@@ -116,8 +117,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logika\KoloKraj\Dobitnik.cs" />
-    <Compile Include="Logika\KoloKraj\ZavrsiKolo.cs" />
     <Compile Include="Stranice\AdminFondovi.aspx.cs">
       <DependentUpon>AdminFondovi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -229,6 +228,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Logika\KoloKraj\" />
     <Folder Include="Logika\RegistracijaLogovanje\" />
     <Folder Include="Static\" />
   </ItemGroup>

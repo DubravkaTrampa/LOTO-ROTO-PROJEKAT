@@ -7,8 +7,8 @@
         <h5>Uplate se zatvaraju za:</h5> 
             <p id="demo"></p>
                  
-        <script src="javascript/brojac_do_izvlacenja.js"></script>
-              <a href="https://www.un.org/en/universal-declaration-human-rights/" target="_blank" style="float:left;margin-left:40px;margin-top:100px;"><img src="slike/human_rights.gif"/></a>
+        <script src="/javascript/brojac_do_izvlacenja.js"></script>
+              <a href="https://www.un.org/en/universal-declaration-human-rights/" target="_blank" style="float:left;margin-left:40px;margin-top:100px;"><img src="/slike/human_rights.gif"/></a>
     </div>
      
 
@@ -25,7 +25,7 @@
 
           <div class="view overlay z-depth-1-half">
 
-              <img src="slike/lopteBele.jpg"  class="card-img-top" alt="">
+              <img src="/slike/lopteBele.jpg"  class="card-img-top" alt="">
             <div class="mask rgba-white-light"></div>
           </div>
 
@@ -44,7 +44,7 @@
             <a href="https://twitter.com/?lang=en" target="_blank" class="fa fa-twitter"style="margin:auto;width: 20%;padding: 10px;"></a>
             <a href="https://rs.linkedin.com/" target="_blank" class="fa fa-linkedin"style="margin:auto;width: 20%;padding: 10px;"></a>
           </section>
-          <a href="https://www.unicef.org/" target="_blank" style="float:right;margin-right:180px;margin-top:40px;"><img src="slike/unicef.gif"/></a> 
+          <a href="https://www.unicef.org/" target="_blank" style="float:right;margin-right:180px;margin-top:40px;"><img src="/slike/unicef.gif"/></a> 
           
         </div>
         <!--Grid column-->

@@ -3,12 +3,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <link href="stil/generator_stil.css" rel="stylesheet" />
-    <link href="stil/lopte_dobitna.css" rel="stylesheet" />
-    <script src="javascript/generator_izvlacenja.js"></script>
-
+    <link href="/stil/generator_stil.css" rel="stylesheet" />
+    <link href="/stil/lopte_dobitna.css" rel="stylesheet" />
+    <link href="../stil/rezultati.css" rel="stylesheet" />
+    <script src="/javascript/generator_izvlacenja.js"></script>
+    <div class="container-fluid">
         <div>
-            <input class="btn btn-indigo"style="width:188px;margin-left:130px;background-color:#910b70 !important;" type=button value='Dobitna kombinacija' onClick="lotto(); StOp()">
+            <input class="btn btn-indigo"style="width:188px;margin-left:70px;background-color:#910b70 !important;" type=button value='Dobitna kombinacija' onClick="lotto(); StOp()">
                
             <div class="wrap" style="float:right; margin-right:100px;">
               <section class="stage">
@@ -51,40 +52,41 @@
 
                 <!--Main container-->
     <main>
-    <section  class="text-center"style="margin-left:450px;margin-right:450px;">
+    <section  class="text-center"style="margin-left:0px;margin-right:280px;">
       
-      <div class="row">
+      <div class="row" style="width:1200px;height:auto">
 
               <!--Grid column-->
-              <div class="col-md-6 mb-4">
+              <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 
                   <!--Card-->
-                  <div class="card testimonial-card">
+                  <div class="card testimonial-card" style="float:left;">
 
                       <!--Bacground color-->
                       <div class="card-up purple-gradient" style="height:60px;">
                       </div>
 
-                      <!--Avatar-->
-                      <div>
-                                     
-                      </div>
+                      <div class="card-body"  style="color:#275196;">
+            <h4 style="text-align:center;"><strong>FOND</strong></h4>
+        <hr />
+            <h4 class="horizontalno">Ukupno uplaćeno:</h4>
+                <asp:Label ID="LabelUkupnoUplaceno" class="dejavu" runat="server" Text="1.000.000.000 dinara"></asp:Label>
+        <hr />
+            <h4 class="horizontalno">Preneseni fond:</h4>
+                <asp:Label ID="LabelPreneseniFond" class="dejavu" runat="server" Text="50.000 dinara"></asp:Label>
+        <hr />
+            <h4 class="horizontalno">Ukupan iznos fonda:</h4>
+                <asp:Label ID="LabelUkupanIznosFonda" class="dejavu" runat="server" Text="1.050.000 dinara"></asp:Label>
+        <hr />
+            <h4 class="horizontalno">Cena tiketa:</h4>
+                <asp:Label ID="LabelCenaTiketa" class="dejavu" runat="server" Text="100 dinara"></asp:Label>
+        <hr />    
+            <h4 class="horizontalno">Uplaćeno tiketa:</h4>
+                <asp:Label ID="LabelUplacenoTiketa" class="dejavu" runat="server" Text="10.000"></asp:Label>
+        <hr />
+           <h4 class="horizontalno">Izvučeno dobitaka:</h4>
+                <asp:Label ID="LabelIzvucenoDobitaka" class="dejavu" runat="server" Text="60"></asp:Label>
 
-                      <div class="card-body" style="color:#275196;">
-                         <h4>Ukupno uplaćeno:</h4>
-                <asp:Label ID="LabelUkupnoUplaceno" runat="server" Text="1.000.000 dinara" style="font-size: 24px;line-height: 12px;font-family: DejaVu Sans, Arial, Helvetica, Geneva;font-weight: bold;text-align: left" ></asp:Label>
-        
-            <h4>Preneseni fond:</h4>
-                <asp:Label ID="LabelPreneseniFond" runat="server" Text="" style="font-size: 12px;line-height: 12px;font-family: DejaVu Sans, Arial, Helvetica, Geneva;font-weight: bold;text-align: left" ></asp:Label>
-
-            <h4>Ukupan iznos fonda:</h4>
-                <asp:Label ID="LabelUkupanIznosFonda" runat="server" Text="" style="font-size: 12px;line-height: 12px;font-family: DejaVu Sans, Arial, Helvetica, Geneva;font-weight: bold;text-align: left" ></asp:Label>
-
-            <h4>Cena tiketa:</h4>
-                <asp:Label ID="LabelCenaTiketa" runat="server" Text="" style="font-size: 12px;line-height: 12px;font-family: DejaVu Sans, Arial, Helvetica, Geneva;font-weight: bold;text-align: left" ></asp:Label>
-              
-            <h4>Uplaćeno tiketa:</h4>
-                <asp:Label ID="LabelUplacenoTiketa" runat="server" Text="" style="font-size: 12px;line-height: 12px;font-family: DejaVu Sans, Arial, Helvetica, Geneva;font-weight: bold;text-align: left" ></asp:Label>
 
                       </div>
                        <div class="card-up purple-gradient" style="height:60px;" >
@@ -95,8 +97,15 @@
               </div>
               <!--Grid column-->
 
+          </div>
               <!--Grid column-->
-              <div class="col-md-6 mb-4">
+        </section>
+         <section  class="text-center"style="margin-left:280px;margin-right:280px;">
+      
+      <div class="row" style="width:1200px;height:auto">
+
+              <!--Grid column-->
+              <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 
                   <!--Card-->
                   <div class="card testimonial-card">
@@ -105,37 +114,46 @@
                       <div class="card-up purple-gradient" style="height:60px;">
                       </div>
 
-                      <!--Avatar-->
- 
-
-                      <div class="card-body" style="color:#275196;">
-                         <h4>Izvučeno dobitaka:</h4>
-                            <asp:Label ID="LabelIzvucenoDobitaka" runat="server" Text="1.000.000 dinara" style="font-size: 24px;line-height: 12px;font-family: DejaVu Sans, Arial, Helvetica, Geneva;font-weight: bold;text-align: left" ></asp:Label>
-        <h4><strong>VRSTA DOBITAKA:</strong></h4><hr />
-                         <h4>Sedam pogodaka:</h4>
-                            <asp:Label ID="LabelSedamPogodaka" runat="server" Text="" style="font-size: 12px;line-height: 12px;font-family: DejaVu Sans, Arial, Helvetica, Geneva;font-weight: bold;text-align: left" ></asp:Label>
-
-                         <h4>Šest pogodaka:</h4>
-                            <asp:Label ID="LabelSestPogodaka" runat="server" Text="" style="font-size: 12px;line-height: 12px;font-family: DejaVu Sans, Arial, Helvetica, Geneva;font-weight: bold;text-align: left" ></asp:Label>
-
-                         <h4>Pet pogodaka:</h4>
-                            <asp:Label ID="LabePetPogodaka" runat="server" Text="" style="font-size: 12px;line-height: 12px;font-family: DejaVu Sans, Arial, Helvetica, Geneva;font-weight: bold;text-align: left" ></asp:Label>
-              
-                         <h4>Četiri pogotka:</h4>
-                            <asp:Label ID="LabelCetiriPogotka" runat="server" Text="" style="font-size: 12px;line-height: 12px;font-family: DejaVu Sans, Arial, Helvetica, Geneva;font-weight: bold;text-align: left" ></asp:Label>
+                      <div class="card-body"  style="color:#275196;">
+           
+            <h4 style="text-align:center;"><strong>VRSTA DOBITAKA:</strong></h4>
+        <hr />
+            <h4 class="horizontalno">Sedam pogodaka:</h4>
+                <asp:Label ID="LabelSedmica" class="dejavu" runat="server" Text="1"></asp:Label>
+        <hr />
+            <h4 class="horizontalno">Iznos:</h4>
+                <asp:Label ID="LabelSedmicaIznos" class="dejavu" runat="server" Text="1.000.000"></asp:Label>
+        <hr />
+            <h4 class="horizontalno">Šest pogodaka:</h4>
+                <asp:Label ID="LabelSestica" class="dejavu" runat="server" Text="2"></asp:Label>
+                <asp:Label ID="LabelSesticaIznos" class="dejavu" runat="server" Text="80.000"></asp:Label>
+        <hr />
+            <h4 class="horizontalno">Pet pogodaka:</h4>
+                <asp:Label ID="LabelPetica" class="dejavu" runat="server" Text="7"></asp:Label>
+                <asp:Label ID="LabelPeicaIznos" class="dejavu" runat="server" Text="5.000"></asp:Label>
+        <hr />     
+             <h4 class="horizontalno">Četiri pogotka:</h4>
+                <asp:Label ID="LabelCetvorka" class="dejavu" runat="server" Text="50"></asp:Label>
+                <asp:Label ID="LabelCetvorkaIznos" class="dejavu" runat="server" Text="500"></asp:Label>
 
                       </div>
-                    <div class="card-up purple-gradient" style="height:60px;" >
-                </div>
-             </div>
+                       <div class="card-up purple-gradient" style="height:60px;" >
+                      </div>
+                  </div>
                   <!--/.Card-->
 
-          </div></div>
+              </div>
+              <!--Grid column-->
+
+          </div>
               <!--Grid column-->
         </section>
   </main>
   <!--Main layout-->
 
   </div>
-  
+  </div>
+
+    <!--DOVDE-->
+   
 </asp:Content>

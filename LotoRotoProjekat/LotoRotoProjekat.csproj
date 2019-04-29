@@ -66,6 +66,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="stil\rezultati.css" />
     <Content Include="Stranice\AdminFondovi.aspx" />
     <Content Include="Stranice\AdminKombinacije.aspx" />
     <Content Include="Stranice\AdminTransakcije.aspx" />

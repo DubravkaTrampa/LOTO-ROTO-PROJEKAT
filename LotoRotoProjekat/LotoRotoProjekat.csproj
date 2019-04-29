@@ -115,6 +115,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Logika\KoloKraj\Dobitnik.cs" />
+    <Compile Include="Logika\KoloKraj\ZavrsiKolo.cs" />
     <Compile Include="Stranice\AdminFondovi.aspx.cs">
       <DependentUpon>AdminFondovi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -226,7 +228,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Logika\" />
+    <Folder Include="Logika\RegistracijaLogovanje\" />
     <Folder Include="Static\" />
   </ItemGroup>
   <PropertyGroup>

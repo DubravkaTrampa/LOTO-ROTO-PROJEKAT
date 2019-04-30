@@ -41,29 +41,30 @@ namespace LotoRotoProjekat
                         {
                         //URADITI ISPIS PORUKE NA EKRANU
                             Response.Write("Losa lozinka");
-                    }
+                        }
                     else
                     {
 
-                        int idKorisnika = Convert.ToInt32(Korisnik.Rows[0]["pk_korisnici_id"]);
-                        int idRacuna = Convert.ToInt32(Korisnik.Rows[0]["fk_racuni_id"]);
+                    int idKorisnika = Convert.ToInt32(Korisnik.Rows[0]["pk_korisnici_id"]);
+                    int idRacuna = Convert.ToInt32(Korisnik.Rows[0]["fk_racuni_id"]);
                        
-                        Session["id_racuna"] = idRacuna;
-                        Session["id_ulogovanog_korisnika"] = idKorisnika;
-                        Session["tip_korisnika"] = Korisnik.Rows[0]["tip_korisnika"].ToString();
-                        Session["ime"] = Korisnik.Rows[0]["ime"].ToString();
+                    Session["id_racuna"] = idRacuna;
+                    Session["id_ulogovanog_korisnika"] = idKorisnika;
+                    Session["tip_korisnika"] = Korisnik.Rows[0]["tip_korisnika"].ToString();
+                    Session["ime"] = Korisnik.Rows[0]["ime"].ToString();
                         // KORISNIK
-                        Session["Korisnici"] = Korisničko_ime;
+                    Session["Korisnici"] = Korisničko_ime;
 
-                        SqlConnection conn = konekcija.Connect();
-                        conn.Open();
-                        SqlCommand komandaUpdateLoginDate = new SqlCommand("update Korisnici set log_in_date = GETDATE() where username = '" + Korisničko_ime + "'", conn);
-                        SqlCommand komandaUpdateLoginTime = new SqlCommand("UPDATE Korisnici SET log_in_time = CONVERT( TIME, concat(datepart(hour, getdate()), ':',datepart(minute, getdate()), ':',datepart(SECOND, getdate()))) where username = '" + Korisničko_ime + "'", conn);
-                        komandaUpdateLoginDate.ExecuteNonQuery();
-                        komandaUpdateLoginTime.ExecuteNonQuery();
-                        conn.Close();
-                        Session["bool_korisnik_ulogovan"] = true;
-                        Response.Redirect("Pocetna.aspx");
+                    string naredbaAzurirajLogInDate = "update Korisnici set log_in_date = GETDATE()" +
+                        " where username = '" + Korisničko_ime + "'";
+                    string naredbaAzurirajLogInTime = "UPDATE Korisnici SET log_in_time =" +
+                        " CONVERT( TIME, concat(datepart(hour, getdate()), ':',datepart(minute, getdate()), ':',datepart(SECOND, getdate())))" +
+                        " where username = '" + Korisničko_ime + "'";
+                    
+                    konekcija.IzvrsiNonQuery(naredbaAzurirajLogInDate);
+                    konekcija.IzvrsiNonQuery(naredbaAzurirajLogInTime);
+                    Session["bool_korisnik_ulogovan"] = true;
+                    Response.Redirect("Pocetna.aspx");
                     }
             }
         }
@@ -90,17 +91,9 @@ namespace LotoRotoProjekat
                     SqlDataAdapter da = new SqlDataAdapter(naredbaUname, conn);
                     DataTable korisnik = new DataTable();
                     da.Fill(korisnik);
-
                     if (korisnik.Rows.Count == 0)
                     {
-                        string naredbaNapraviRacun = "INSERT INTO Racuni (broj_racuna) VALUES (" + brRacuna + ");";
-                        
-                        string naredbaBrRacuna = "SELECT pk_racuni_id FROM Racuni WHERE broj_racuna ='" + brRacuna + "'";
-                        SqlCommand komandaUnesiNoviRacun = new SqlCommand(naredbaNapraviRacun, conn);
-                        SqlCommand komandaNaciIdRacuna = new SqlCommand(naredbaBrRacuna, conn);
-                        conn.Open();
-                        komandaUnesiNoviRacun.ExecuteNonQuery();
-                        int fkRacuniId = Int32.Parse(komandaNaciIdRacuna.ExecuteScalar().ToString());
+                        int fkRacuniId = DodajRacunUBazuIVratiID(brRacuna);
 
                         string logInDate = DateTime.Now.ToString("yyyy-MM-dd");
                         DateTime sad = DateTime.Now;
@@ -125,11 +118,21 @@ namespace LotoRotoProjekat
                     $"'igrac'," +
                     $"'{fkRacuniId}')");
 
-                        SqlCommand Komanda = new SqlCommand(NaredbaBtnPotvrdi.ToString(), conn);
-                        Komanda.ExecuteNonQuery();
-                        conn.Close();
+                       
+                    konekcija.IzvrsiNonQuery(NaredbaBtnPotvrdi.ToString());
                      
                     }
                 }
+
+        int DodajRacunUBazuIVratiID(string brojRacuna)
+        {
+            string naredbaNapraviRacun = "INSERT INTO Racuni (broj_racuna) VALUES (" + brojRacuna + ");";
+            string naredbaBrRacuna = "SELECT pk_racuni_id FROM Racuni WHERE broj_racuna ='" + brojRacuna + "'";
+
+            konekcija.IzvrsiNonQuery(naredbaNapraviRacun);
+            int idRacunaHumanitarnogFonda = Int32.Parse(konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaBrRacuna));
+            return idRacunaHumanitarnogFonda;
+        }
+
     }
  }

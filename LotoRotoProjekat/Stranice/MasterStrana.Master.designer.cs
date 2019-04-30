@@ -31,6 +31,15 @@ namespace LotoRotoProjekat.Strane {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// linkIgraj control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink linkIgraj;
+        
+        /// <summary>
         /// placeholderAdminDropdown control.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,15 @@ namespace LotoRotoProjekat.Strane {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder placeholderAdminDropdown;
+        
+        /// <summary>
+        /// linkIgrajTiket control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button linkIgrajTiket;
         
         /// <summary>
         /// btnPrijaviOdjaviSe control.

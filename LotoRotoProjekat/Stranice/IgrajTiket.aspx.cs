@@ -70,7 +70,6 @@ namespace LotoRotoProjekat
 
         protected void Button10_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = konekcija.Connect();
             List<Int32> kombinacije = KombinacijeKlasa.kombinacije;
             int maxBrojevaPoTiketu = 14;
 
@@ -82,9 +81,9 @@ namespace LotoRotoProjekat
             kombinacije.Sort();
             //POSLEDNJE KOLO PREKO UPITA
             int idKola = 10;
-            BazaPodatakaNapraviTiket(idKola, conn);
-            BazaPodatakaNapraviKombinacijuTiketa(kombinacije, NadjiTiketKombinacijaId(conn), conn);
-            BazaPodatakaNapraviTransakcijuTiketa(conn);
+            BazaPodatakaNapraviTiket(idKola);
+            BazaPodatakaNapraviKombinacijuTiketa(kombinacije, NadjiTiketKombinacijaId());
+            BazaPodatakaNapraviTransakcijuTiketa();
             ResetujTiket(kombinacije);
         }
 
@@ -149,19 +148,18 @@ namespace LotoRotoProjekat
         }
 
 
-        public void BazaPodatakaNapraviTiket(int idKola, SqlConnection conn)
+        public void BazaPodatakaNapraviTiket(int idKola)
         {
             StringBuilder potvrdiTiket = new StringBuilder("INSERT INTO");
             potvrdiTiket.Append(" Tiketi (fk_korisnici_id, fk_kola_id)");
             potvrdiTiket.Append("VALUES (" + Session["id_ulogovanog_korisnika"] + "," + idKola + ")");
-            conn.Open();
-            new SqlCommand(potvrdiTiket.ToString(), conn).ExecuteNonQuery();
-            conn.Close();
+            konekcija.IzvrsiNonQuery(potvrdiTiket.ToString());
         }
 
 
-        public void BazaPodatakaNapraviKombinacijuTiketa(List<int> kombinacije, int tiketKombinacijaId, SqlConnection conn)
+        public void BazaPodatakaNapraviKombinacijuTiketa(List<int> kombinacije, int tiketKombinacijaId)
         {
+            //STRING BUILDER
             string narebaDodajBrojUKombinaciju = "INSERT INTO Kombinacije(broj,kombinacija_id) VALUES ";
             for (int i = 0; i < 13; i++)
             {
@@ -169,32 +167,30 @@ namespace LotoRotoProjekat
             }
             narebaDodajBrojUKombinaciju += "(" + kombinacije[13] + "," + tiketKombinacijaId + ")";
 
-            conn.Open();
-            new SqlCommand(narebaDodajBrojUKombinaciju, conn).ExecuteNonQuery();
-            conn.Close();
+            konekcija.IzvrsiNonQuery(narebaDodajBrojUKombinaciju);
 
         }
 
-        public int NadjiTiketKombinacijaId(SqlConnection conn)
+        public int NadjiTiketKombinacijaId()
         {
-            string naredbaNadjiKombinacijaId = "SELECT MAX(tiket_kombinacija_id) FROM Tiketi WHERE fk_korisnici_id =" + Session["id_ulogovanog_korisnika"];
-            conn.Open();
-            SqlCommand komandaNadjiIdKombinacije = new SqlCommand(naredbaNadjiKombinacijaId, conn);
-            int tiketKombinacijaId = Int32.Parse(komandaNadjiIdKombinacije.ExecuteScalar().ToString());
-            conn.Close();
+            string naredbaNadjiKombinacijaId = "SELECT MAX(tiket_kombinacija_id)" +
+                " FROM Tiketi" +
+                " WHERE fk_korisnici_id =" + Session["id_ulogovanog_korisnika"];
+            int tiketKombinacijaId = Int32.Parse(konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaNadjiKombinacijaId));
             return tiketKombinacijaId;
 
         }
 
-        public void BazaPodatakaNapraviTransakcijuTiketa(SqlConnection conn)
+        public void BazaPodatakaNapraviTransakcijuTiketa()
         {
             //TREBA DA SE UNESE DANASNJI DATUM
             int idRacuna = Convert.ToInt32(Session["id_racuna"]);
             //KLASA ZA RAD SA TRANSAKCIJAMA SA METODOM NAPRAVI TRANSAKCIJU
-            string naredbaNapraviTransakciju = "INSERT INTO Transakcije (iznos,datum,fk_racuni_id,tip_transakcije) VALUES (100,'2019-04-21'," + idRacuna + ",'tiket')";
-            conn.Open();
-            new SqlCommand(naredbaNapraviTransakciju, conn).ExecuteNonQuery();
-            conn.Close();
+            string naredbaNapraviTransakciju = "INSERT INTO Transakcije" +
+                " (iznos,datum,fk_racuni_id,tip_transakcije)" +
+                " VALUES (100,'2019-04-21'," + idRacuna + ",'tiket')";
+          
+            konekcija.IzvrsiNonQuery(naredbaNapraviTransakciju);
 
         }
         public void ResetujTiket(List<int> kombinacije) {

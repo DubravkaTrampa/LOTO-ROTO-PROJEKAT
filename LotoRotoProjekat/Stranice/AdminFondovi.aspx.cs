@@ -26,7 +26,7 @@ namespace LotoRotoProjekat
                  "'" + TextBoxOpisFonda.Text + "', " +
                 idRacunaHumanitarnogFonda +
                 ");";
-            konekcija.IzvrsiIzvrsiNonQuery(naredbaDodajNoviHumanitarniFond);
+            konekcija.IzvrsiNonQuery(naredbaDodajNoviHumanitarniFond);
         }
 
         int DodajRacunUBazuIVratiID(string brojRacuna)
@@ -34,7 +34,7 @@ namespace LotoRotoProjekat
             string naredbaNapraviRacun = "INSERT INTO Racuni (broj_racuna) VALUES (" +brojRacuna + ");";
             string naredbaBrRacuna = "SELECT pk_racuni_id FROM Racuni WHERE broj_racuna ='" + brojRacuna + "'";
 
-            konekcija.IzvrsiIzvrsiNonQuery(naredbaNapraviRacun);
+            konekcija.IzvrsiNonQuery(naredbaNapraviRacun);
             int idRacunaHumanitarnogFonda = Int32.Parse(konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaBrRacuna));
             return idRacunaHumanitarnogFonda;
         }

@@ -43,10 +43,9 @@ namespace LotoRotoProjekat
         public bool ProveriIzvucenaSedmica()
         {
             string naredbaPrebrojDobitnijeVrste = "SELECT COUNT(*) AS broj FROM Dobitnici WHERE vrsta_pogotka = '7' ";
-            SqlConnection conn = konekcija.Connect();
-            conn.Open();
-            int brojIzvucenih = Convert.ToInt32(new SqlCommand(naredbaPrebrojDobitnijeVrste, conn).ExecuteScalar());
-            conn.Close();
+        
+            string brojIzvucenihString = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaPrebrojDobitnijeVrste);
+            int brojIzvucenih = Convert.ToInt32(brojIzvucenihString);
             return brojIzvucenih > 0;
 
         }
@@ -75,6 +74,7 @@ namespace LotoRotoProjekat
             conn.Open();
             new SqlCommand(naredbaDodajSumuTiketaUFond, conn).ExecuteNonQuery();
             conn.Close();
+            konekcija.IzvrsiNonQuery(naredbaDodajSumuTiketaUFond);
         }
 
         public void UcitajDobitnike()
@@ -131,12 +131,9 @@ namespace LotoRotoProjekat
             string naredbaVratiPoslednjuVrednostFonda = "SELECT stanje_na_fondu " +
                 "FROM Fondovi " +
                 "WHERE [pk_fondovi_id] = (SELECT MAX(pk_fondovi_id)-" + polozajOdPoslednjeg + " FROM Fondovi)";
-            SqlConnection conn = konekcija.Connect();
-            conn.Open();
-            SqlCommand komandaVratiStanjeNaFondu = new SqlCommand(naredbaVratiPoslednjuVrednostFonda, conn);
-            int ukupanFond = Int32.Parse(komandaVratiStanjeNaFondu.ExecuteScalar().ToString());
-            conn.Close();
-            return Convert.ToDouble(ukupanFond);
+         
+            string ukupanFondString = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaVratiPoslednjuVrednostFonda);
+            return Convert.ToDouble(ukupanFondString);
 
         }
 
@@ -145,10 +142,9 @@ namespace LotoRotoProjekat
             double broj = 0;
 
             string naredbaPrebrojDobitnijeVrste = "SELECT COUNT(*) AS broj FROM Dobitnici WHERE vrsta_pogotka = '" + vrstaDobitka + "' ";
-            SqlConnection conn = konekcija.Connect();
-            conn.Open();
-            broj = Convert.ToDouble(new SqlCommand(naredbaPrebrojDobitnijeVrste, conn).ExecuteScalar());
-            conn.Close();
+         
+            string brojString = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaPrebrojDobitnijeVrste);
+            broj = Convert.ToDouble(brojString);
             return broj;
         }
 
@@ -198,10 +194,8 @@ namespace LotoRotoProjekat
                  datum + "," +
                  idRacuna + "," +
                  tipTransakcije + ");";
-            SqlConnection conn = konekcija.Connect();
-            conn.Open();
-            new SqlCommand(naredbaNapraviTransakcijuKorisniku, conn).ExecuteNonQuery();
-            conn.Close();
+         
+            konekcija.IzvrsiNonQuery(naredbaNapraviTransakcijuKorisniku);
 
         }
 
@@ -216,10 +210,8 @@ namespace LotoRotoProjekat
             {
                 naredbaAzuriraj = "INSERT INTO Fondovi (stanje_na_fondu) VALUES (" + fondZaDobitak7Pogotka + "); ";
             }
-            SqlConnection conn = konekcija.Connect();
-            conn.Open();
-            new SqlCommand(naredbaAzuriraj, conn).ExecuteNonQuery();
-            conn.Close();
+
+            konekcija.IzvrsiNonQuery(naredbaAzuriraj);
 
         }
 
@@ -234,10 +226,10 @@ namespace LotoRotoProjekat
 
             int idPoslednjegKola = 10;
             string naredbaPrebrojUplacenoTiketa = "SELECT COUNT(*) FROM Tiketi WHERE fk_kola_id =" + idPoslednjegKola + ";";
-            string uplacenoTiketa = IzvrsiScalarQueryIVratiVrednost(naredbaPrebrojUplacenoTiketa);
+            string uplacenoTiketa = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaPrebrojUplacenoTiketa);
 
             string naredbaPrebrojIzvuceneDobitnike = "SELECT COUNT(*) FROM Dobitnici ";
-            string izvucenoDobitaka = IzvrsiScalarQueryIVratiVrednost(naredbaPrebrojIzvuceneDobitnike);
+            string izvucenoDobitaka = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaPrebrojIzvuceneDobitnike);
 
             LabelUkupanIznosFonda.Text = ukupanIznosFonda.ToString();
             LabelPreneseniFond.Text = preneseniFondZaSledeceKolo.ToString();
@@ -254,30 +246,6 @@ namespace LotoRotoProjekat
             LabelIsplataPetice.Text = fondZaDobitak5Pogotka.ToString();
             LabelIsplataCetvorke.Text = fondZaDobitak4Pogotka.ToString();
         }
-        /// <summary>
-        /// Metoda koja uneti string upit izvrsava i treba da vrati njegovu skalarnu vrednost.
-        /// Izvrsava je nad konekcijom definisanom u konekcija klasi
-        /// </summary>
-        /// <returns>string vrednost koju ExecuteScalarQuery vraca kao string</returns>
-        public string IzvrsiScalarQueryIVratiVrednost(string naredba)
-        {
-            //PROVERITI DA LI POSTOJE JOS NEKE LOKACIJE U KODU GDE SE OVA METODA MOZE PRIMENITI
-            string scalar = "";
-            SqlConnection conn = konekcija.Connect();
-            conn.Open();
-            scalar = new SqlCommand(naredba, conn).ExecuteScalar().ToString();
-            conn.Close();
-            return scalar;
-        }
-        public void IzvrsiNonQuery(string naredba)
-        {
-            //PROVERITI DA LI POSTOJE JOS NEKE LOKACIJE U KODU GDE SE OVA METODA MOZE PRIMENITI
-            SqlConnection conn = konekcija.Connect();
-            conn.Open();
-            new SqlCommand(naredba, conn).ExecuteNonQuery();
-            conn.Close();
-        }
-
 
         private class Dobitnik
         {

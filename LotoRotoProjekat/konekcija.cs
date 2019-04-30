@@ -25,7 +25,7 @@ namespace LotoRotoProjekat
             return conn;
         }
 
-        public static void IzvrsiIzvrsiNonQuery(string naredba)
+        public static void IzvrsiNonQuery(string naredba)
         {
             //PROVERITI DA LI POSTOJE JOS NEKE LOKACIJE U KODU GDE SE OVA METODA MOZE PRIMENITI
             SqlConnection conn = Connect();
@@ -34,6 +34,11 @@ namespace LotoRotoProjekat
             conn.Close();
         }
 
+        /// <summary>
+        /// Metoda koja uneti string upit izvrsava i treba da vrati njegovu skalarnu vrednost.
+        /// Izvrsava je nad konekcijom definisanom u konekcija klasi
+        /// </summary>
+        /// <returns>string vrednost koju ExecuteScalarQuery vraca kao string</returns>
         public static string IzvrsiScalarQueryIVratiVrednost(string naredba)
         {
             //PROVERITI DA LI POSTOJE JOS NEKE LOKACIJE U KODU GDE SE OVA METODA MOZE PRIMENITI

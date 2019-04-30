@@ -70,6 +70,10 @@ namespace LotoRotoProjekat
 
         protected void Button10_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
+            SqlConnection conn = konekcija.Connect();
+=======
+>>>>>>> e31ae5226b6d7e68f9c4291dbcc73bd97d5981a8
             List<Int32> kombinacije = KombinacijeKlasa.kombinacije;
             int maxBrojevaPoTiketu = 14;
 

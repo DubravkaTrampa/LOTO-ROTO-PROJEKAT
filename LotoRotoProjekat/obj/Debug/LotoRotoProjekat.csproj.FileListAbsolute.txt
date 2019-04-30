@@ -38,3 +38,13 @@ C:\Users\Trump\Documents\LOTO-ROTO-PROJEKAT\LotoRotoProjekat\obj\Debug\LotoRotoP
 C:\Users\Trump\Documents\LOTO-ROTO-PROJEKAT\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.csproj.CopyComplete
 C:\Users\Trump\Documents\LOTO-ROTO-PROJEKAT\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.dll
 C:\Users\Trump\Documents\LOTO-ROTO-PROJEKAT\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.pdb
+C:\Users\Aleksandar\Desktop\lotoroto repos\LotoRotoProjekat\bin\LotoRotoProjekat.dll.config
+C:\Users\Aleksandar\Desktop\lotoroto repos\LotoRotoProjekat\bin\LotoRotoProjekat.dll
+C:\Users\Aleksandar\Desktop\lotoroto repos\LotoRotoProjekat\bin\LotoRotoProjekat.pdb
+C:\Users\Aleksandar\Desktop\lotoroto repos\LotoRotoProjekat\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Aleksandar\Desktop\lotoroto repos\LotoRotoProjekat\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Aleksandar\Desktop\lotoroto repos\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.csprojAssemblyReference.cache
+C:\Users\Aleksandar\Desktop\lotoroto repos\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.csproj.CoreCompileInputs.cache
+C:\Users\Aleksandar\Desktop\lotoroto repos\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.csproj.CopyComplete
+C:\Users\Aleksandar\Desktop\lotoroto repos\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.dll
+C:\Users\Aleksandar\Desktop\lotoroto repos\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.pdb

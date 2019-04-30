@@ -52,7 +52,7 @@
             </div>
         </div>
             <!--IZVESTAJI-->
-
+    <asp:Button ID="BtnZavrsiKolo" runat="server" OnClick="BtnZavrsiKolo_Click" Text =" Zavrsi kolo"/>
    <!--KARTICE-->
     <section class="details-card" style="padding: 100px 0;background:none !important;">
         <div class="container" style="margin-left:70px;">

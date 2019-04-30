@@ -25,7 +25,7 @@
                     <div class="card-content">
                         <div class="card-img">
                             <div class="card-desc">
-                               <asp:Button ID="btnPronadjiNeaktivne" runat="server" OnClick="btnPronadjiNeaktivne_Click"  Text="Pronadji neaktivne korisnike" class="btn btn-indigo" style="background-color:#910b70 !important;margin-left:15px;"/>
+                               <asp:Button ID="btnUkloniNeaktivne" runat="server" OnClick="btnUkloniNeaktive_Click"  Text="Ukloni neaktivne korisnike" class="btn btn-indigo" style="background-color:#910b70 !important;margin-left:15px;"/>
 
                                 <asp:DropDownList ID="neaktivni" runat="server">
                                 </asp:DropDownList>

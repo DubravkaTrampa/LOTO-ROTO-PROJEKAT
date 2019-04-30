@@ -22,13 +22,13 @@ namespace LotoRotoProjekat {
         protected global::System.Web.UI.WebControls.Button btnUkloniKorisnika;
         
         /// <summary>
-        /// btnPronadjiNeaktivne control.
+        /// btnUkloniNeaktivne control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPronadjiNeaktivne;
+        protected global::System.Web.UI.WebControls.Button btnUkloniNeaktivne;
         
         /// <summary>
         /// neaktivni control.

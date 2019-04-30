@@ -71,7 +71,7 @@ namespace LotoRotoProjekat
         protected void Button10_Click(object sender, EventArgs e)
         {
             SqlConnection conn = konekcija.Connect();
-            List<Int32> kombinacije = Class1.kombinacije;
+            List<Int32> kombinacije = KombinacijeKlasa.kombinacije;
             int maxBrojevaPoTiketu = 14;
 
             if (kombinacije.Count < maxBrojevaPoTiketu)
@@ -108,44 +108,44 @@ namespace LotoRotoProjekat
 
         void AzurirajTiket(int broj, int red, int kolona)
         {
-            if (Class1.kombinacije.Count == 0)
+            if (KombinacijeKlasa.kombinacije.Count == 0)
             {
-                Class1.kombinacije.Add(broj);
-                LabelPrikazKombinacijeTiketa.Text = Class1.stringKombinacija();
+                KombinacijeKlasa.kombinacije.Add(broj);
+                LabelPrikazKombinacijeTiketa.Text = KombinacijeKlasa.stringKombinacija();
                 GridViewNov.Rows[red].Cells[kolona].BackColor = ColorTranslator.FromHtml("#e83e8c");
                 return;
             }
             int i = 0;
-            foreach (int trenutni in Class1.kombinacije)
+            foreach (int trenutni in KombinacijeKlasa.kombinacije)
                 {
                 if (trenutni == broj)
                 {
-                    Class1.kombinacije.RemoveAt(i);
+                    KombinacijeKlasa.kombinacije.RemoveAt(i);
                     GridViewNov.Rows[red].Cells[kolona].BackColor = ColorTranslator.FromHtml("#ffffff");
-                    LabelPrikazKombinacijeTiketa.Text = Class1.stringKombinacija();
+                    LabelPrikazKombinacijeTiketa.Text = KombinacijeKlasa.stringKombinacija();
 
                     return;
                 }
                 i++;
 
             }
-            if (Class1.kombinacije.Count < 14)
+            if (KombinacijeKlasa.kombinacije.Count < 14)
             {
-                  Class1.kombinacije.Add(broj);
+                  KombinacijeKlasa.kombinacije.Add(broj);
                 GridViewNov.Rows[red].Cells[kolona].BackColor =ColorTranslator.FromHtml("#e83e8c");
-                LabelPrikazKombinacijeTiketa.Text = Class1.stringKombinacija();
+                LabelPrikazKombinacijeTiketa.Text = KombinacijeKlasa.stringKombinacija();
 
             }
         }
 
         void PrikazTrenutneKombinacije()
         {
-            foreach (int trenutni in Class1.kombinacije)
+            foreach (int trenutni in KombinacijeKlasa.kombinacije)
             {
                 ispis += Convert.ToString(trenutni) + " , ";
             }
 
-            ButtonOtvoriTiket.Text = Class1.kombinacije.Count.ToString();
+            ButtonOtvoriTiket.Text = KombinacijeKlasa.kombinacije.Count.ToString();
         }
 
 

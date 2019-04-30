@@ -5,7 +5,7 @@ using System.Web;
 
 namespace LotoRotoProjekat
 {
-    public class Class1
+    public class KombinacijeKlasa
     {
         public static List<Int32> kombinacije = new List<int>();
 

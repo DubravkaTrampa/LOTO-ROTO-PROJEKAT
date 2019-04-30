@@ -152,7 +152,7 @@
     <Compile Include="Stranice\Cigla.aspx.designer.cs">
       <DependentUpon>Cigla.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
+    <Compile Include="KombinacijeKlasa.cs" />
     <Compile Include="Stranice\Igraj.aspx.cs">
       <DependentUpon>Igraj.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

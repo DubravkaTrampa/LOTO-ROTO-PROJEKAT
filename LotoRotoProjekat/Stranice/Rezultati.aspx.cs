@@ -69,11 +69,6 @@ namespace LotoRotoProjekat
                 "DELETE FROM Fondovi " +
                 "WHERE  [pk_fondovi_id] = (SELECT MAX(pk_fondovi_id) FROM Fondovi)-1";
 
-
-            SqlConnection conn = konekcija.Connect();
-            conn.Open();
-            new SqlCommand(naredbaDodajSumuTiketaUFond, conn).ExecuteNonQuery();
-            conn.Close();
             konekcija.IzvrsiNonQuery(naredbaDodajSumuTiketaUFond);
         }
 

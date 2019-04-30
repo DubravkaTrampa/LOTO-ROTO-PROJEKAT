@@ -79,42 +79,42 @@ namespace LotoRotoProjekat
                 broj = (Int32.Parse(e.CommandArgument.ToString()) * 3) + 3;
                 ObradiKliknutBrojKombinacije(broj, Int32.Parse(e.CommandArgument.ToString()), 2);
             }
-            foreach (int trenutni in Class1.kombinacije)
+            foreach (int trenutni in KombinacijeKlasa.kombinacije)
             {
                 ispis += Convert.ToString(trenutni) + " , ";
             }
-            buttonClick.Text = Class1.kombinacije.Count.ToString();
+            buttonClick.Text = KombinacijeKlasa.kombinacije.Count.ToString();
 
 
         }
 
         void ObradiKliknutBrojKombinacije(int broj,int red,int kolona)
         {
-            if (Class1.kombinacije.Count == 0)
+            if (KombinacijeKlasa.kombinacije.Count == 0)
             {
-                Class1.kombinacije.Add(broj);
-                prikazKombinacijeTiketa.Text = Class1.stringKombinacija();
+                KombinacijeKlasa.kombinacije.Add(broj);
+                prikazKombinacijeTiketa.Text = KombinacijeKlasa.stringKombinacija();
                 GridView1.Rows[red].Cells[kolona].BackColor = System.Drawing.ColorTranslator.FromHtml("#e83e8c");
                 return;
             }
             int i = 0;
-            foreach (int trenutni in Class1.kombinacije)
+            foreach (int trenutni in KombinacijeKlasa.kombinacije)
             {
                 if (trenutni == broj)
                 {
-                    Class1.kombinacije.RemoveAt(i);
+                    KombinacijeKlasa.kombinacije.RemoveAt(i);
                     GridView1.Rows[red].Cells[kolona].BackColor = System.Drawing.ColorTranslator.FromHtml("#ffffff");
-                    prikazKombinacijeTiketa.Text = Class1.stringKombinacija();
+                    prikazKombinacijeTiketa.Text = KombinacijeKlasa.stringKombinacija();
                     return;
                 }
                 i++;
 
             }
-            if (Class1.kombinacije.Count < 14)
+            if (KombinacijeKlasa.kombinacije.Count < 14)
             {
-                Class1.kombinacije.Add(broj);
+                KombinacijeKlasa.kombinacije.Add(broj);
                 GridView1.Rows[red].Cells[kolona].BackColor = System.Drawing.ColorTranslator.FromHtml("#e83e8c");
-                prikazKombinacijeTiketa.Text = Class1.stringKombinacija();
+                prikazKombinacijeTiketa.Text = KombinacijeKlasa.stringKombinacija();
 
             }
         }
@@ -122,7 +122,7 @@ namespace LotoRotoProjekat
         protected void Button1_Click(object sender, EventArgs e)
         {
             SqlConnection conn = konekcija.Connect();
-            List<Int32> kombinacije = Class1.kombinacije;
+            List<Int32> kombinacije = KombinacijeKlasa.kombinacije;
             if (kombinacije.Count < 14)
             {
                 return;

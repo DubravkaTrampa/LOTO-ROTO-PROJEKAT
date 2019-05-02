@@ -126,12 +126,16 @@ namespace LotoRotoProjekat
             }
 
         }
-
-        public double VratiNagradniFondIzBaze()
+        /// <summary>
+        /// Pomocna Metoda koja poziva SQL upit nad bazom fondova
+        /// </summary>
+        /// <param name="polozajOdPoslednjeg">0 je poslednji, 1 pretposlednji itd.</param>
+        /// <returns>Vraca nagradni fond iz baze na zadatom polozaju od pozadi</returns>
+        public double VratiNagradniFondIzBaze(int polozajOdPoslednjeg = 0)
         {
             string naredbaVratiPoslednjuVrednostFonda = "SELECT stanje_na_fondu " +
                 "FROM Fondovi " +
-                "WHERE [pk_fondovi_id] = (SELECT MAX(pk_fondovi_id) FROM Fondovi)";
+                "WHERE [pk_fondovi_id] = (SELECT MAX(pk_fondovi_id)-" + polozajOdPoslednjeg + " FROM Fondovi)";
             SqlConnection conn = konekcija.Connect();
             conn.Open();
             SqlCommand komandaVratiStanjeNaFondu = new SqlCommand(naredbaVratiPoslednjuVrednostFonda, conn);
@@ -223,6 +227,55 @@ namespace LotoRotoProjekat
             conn.Close();
 
         }
+
+        public void PrikaziRezultateNaStranici()
+        {
+            int pretposlednjiIzFonda = 1;
+            double ukupanIznosFonda = VratiNagradniFondIzBaze(pretposlednjiIzFonda);
+
+            double preneseniFondZaSledeceKolo = fondZaDobitak7Pogotka;
+            if (ProveriIzvucenaSedmica())
+            preneseniFondZaSledeceKolo = 0;
+
+            int idPoslednjegKola = 10;
+            string naredbaPrebrojUplacenoTiketa = "SELECT COUNT(*) FROM Tiketi WHERE fk_kola_id =" + idPoslednjegKola + ";";
+            string uplacenoTiketa = IzvrsiScalarQueryIVratiVrednost(naredbaPrebrojUplacenoTiketa);
+
+            string naredbaPrebrojIzvuceneDobitnike = "SELECT COUNT(*) FROM Dobitnici ";
+            string izvucenoDobitaka = IzvrsiScalarQueryIVratiVrednost(naredbaPrebrojIzvuceneDobitnike);
+
+            string izvucenoSedmica = PrebrojDobitnikeVrste("7").ToString();
+            string izvucenoSestica = PrebrojDobitnikeVrste("6").ToString();
+            string izvucenoPetica = PrebrojDobitnikeVrste("5").ToString();
+            string izvucenoCetvorki = PrebrojDobitnikeVrste("4").ToString();
+
+
+        }
+        /// <summary>
+        /// Metoda koja uneti string upit izvrsava i treba da vrati njegovu skalarnu vrednost.
+        /// Izvrsava je nad konekcijom definisanom u konekcija klasi
+        /// </summary>
+        /// <returns>string vrednost koju ExecuteScalarQuery vraca</returns>
+        public string IzvrsiScalarQueryIVratiVrednost(string naredba)
+        {
+            //PROVERITI DA LI POSTOJE JOS NEKE LOKACIJE U KODU GDE SE OVA METODA MOZE PRIMENITI
+            string scalar = "";
+            SqlConnection conn = konekcija.Connect();
+            conn.Open();
+            scalar =(string) new SqlCommand(naredba, conn).ExecuteScalar();
+            conn.Close();
+            return scalar;
+        }
+        public void IzvrsiNonQuery(string naredba)
+        {
+            //PROVERITI DA LI POSTOJE JOS NEKE LOKACIJE U KODU GDE SE OVA METODA MOZE PRIMENITI
+            SqlConnection conn = konekcija.Connect();
+            conn.Open();
+            new SqlCommand(naredba, conn).ExecuteNonQuery();
+            conn.Close();
+        }
+
+
         private class Dobitnik
         {
             public string username;

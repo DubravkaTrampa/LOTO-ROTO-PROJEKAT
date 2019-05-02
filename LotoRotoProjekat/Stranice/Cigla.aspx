@@ -8,5 +8,5 @@
 
 <canvas id="myCanvas" width="730" height="420" style="float:left;margin-left:400px;margin-top:50px;margin-bottom: 450px;"></canvas>
 
-    <script src="javascript/cigle.js"></script>
+    <script src="/javascript/cigle.js"></script>
 </asp:Content>

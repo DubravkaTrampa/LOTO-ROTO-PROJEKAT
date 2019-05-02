@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 </head>
-<body  style="background-image:url(slike/gradient_neon.jpg);background-size:cover;background-position: center center;background-repeat: no-repeat;background-attachment: fixed;">
+<body  style="background-image:url(/slike/gradient_neon.jpg);background-size:cover;background-position: center center;background-repeat: no-repeat;background-attachment: fixed;">
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -51,10 +51,11 @@
               <a class="nav-link" href="Pocetna.aspx">Pocetna
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="RegistrujPrijavi.aspx">Igraj
+            <!--<li class="nav-item">
+                <asp:HyperLink class="nav-link" ID="linkIgraj" runat="server" Text="Igraj" OnClick="LinkIgraj_Click"></asp:HyperLink>
+              <a class="nav-link" href="IgrajTiket.aspx">Igraj
               </a>
-            </li>
+            </li>-->
             <li class="nav-item">
               <a class="nav-link" href="Rezultati.aspx">Rezultati
               </a>
@@ -87,11 +88,11 @@
 
         </div>
         <!-- Collapsible content -->
-
+          <asp:Button class="nav-link" ID="linkIgrajTiket" runat="server" Text="Igraj" OnClick="LinkIgraj_Click"></asp:Button>
       </div>
       <!-- Additional container -->
-                <!--<a href="RegistrujPrijavi.aspx" class="btn btn-indigo" style="margin-right:50px;background-color:#910b70 !important;">Registruj/Prijavi se</a> -->
-        <asp:Button ID="btnPrijaviOdjaviSe" runat="server" Text="Prijavi/Registruj se" OnClick="btnPrijaviOdjaviSeClick" />
+                <!--<a href="RegistrujPrijavi.aspx" >Registruj/Prijavi se</a> -->
+        <asp:Button ID="btnPrijaviOdjaviSe" class="btn btn-indigo" style="margin-right:50px;background-color:#910b70 !important;" runat="server" Text="Prijavi/Registruj se" OnClick="btnPrijaviOdjaviSeClick" />
                 <!--Grid column-->
 
         <!--Grid column-->

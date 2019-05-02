@@ -4,4 +4,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="placeholderAdminDropdown" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+              <asp:DropDownList ID="transakcijeIzvestaj" runat="server">
+                </asp:DropDownList>
+
 </asp:Content>

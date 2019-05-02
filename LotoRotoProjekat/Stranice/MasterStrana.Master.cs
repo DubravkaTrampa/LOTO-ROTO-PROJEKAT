@@ -41,7 +41,14 @@ namespace LotoRotoProjekat.Strane
 
         }
 
-        protected void btnPrijaviOdjaviSeClick(object sender, EventArgs e)
+        protected void LinkIgraj_Click(object sender, EventArgs e)
+        {
+            if((bool)Session["bool_korisnik_ulogovan"] == true)
+            Response.Redirect("IgrajTiket.aspx");
+            Response.Redirect("RegistrujPrijavi.aspx");
+        }
+
+            protected void btnPrijaviOdjaviSeClick(object sender, EventArgs e)
         {
             if (btnPrijaviOdjaviSe.Text == "Prijavi/Registruj se")
             {

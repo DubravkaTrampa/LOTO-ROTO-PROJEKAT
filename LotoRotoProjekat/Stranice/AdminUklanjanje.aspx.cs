@@ -13,5 +13,17 @@ namespace LotoRotoProjekat
         {
 
         }
+
+        protected void btnUkloniKorisnika_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnUkloniNeaktive_Click(object sender, EventArgs e)
+        {
+            string otklanjanjePreDatuma = DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd");
+            string naredbaIzbrisiNeaktivne = "DELETE FROM Korisnici  WHERE log_in_date < '" + otklanjanjePreDatuma + "'";
+            konekcija.IzvrsiNonQuery(naredbaIzbrisiNeaktivne);
+        }
     }
 }

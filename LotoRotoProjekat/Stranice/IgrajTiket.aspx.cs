@@ -70,8 +70,11 @@ namespace LotoRotoProjekat
 
         protected void Button10_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             SqlConnection conn = konekcija.Connect();
-            List<Int32> kombinacije = Class1.kombinacije;
+=======
+>>>>>>> e31ae5226b6d7e68f9c4291dbcc73bd97d5981a8
+            List<Int32> kombinacije = KombinacijeKlasa.kombinacije;
             int maxBrojevaPoTiketu = 14;
 
             if (kombinacije.Count < maxBrojevaPoTiketu)
@@ -82,9 +85,9 @@ namespace LotoRotoProjekat
             kombinacije.Sort();
             //POSLEDNJE KOLO PREKO UPITA
             int idKola = 10;
-            BazaPodatakaNapraviTiket(idKola, conn);
-            BazaPodatakaNapraviKombinacijuTiketa(kombinacije, NadjiTiketKombinacijaId(conn), conn);
-            BazaPodatakaNapraviTransakcijuTiketa(conn);
+            BazaPodatakaNapraviTiket(idKola);
+            BazaPodatakaNapraviKombinacijuTiketa(kombinacije, NadjiTiketKombinacijaId());
+            BazaPodatakaNapraviTransakcijuTiketa();
             ResetujTiket(kombinacije);
         }
 
@@ -108,60 +111,59 @@ namespace LotoRotoProjekat
 
         void AzurirajTiket(int broj, int red, int kolona)
         {
-            if (Class1.kombinacije.Count == 0)
+            if (KombinacijeKlasa.kombinacije.Count == 0)
             {
-                Class1.kombinacije.Add(broj);
-                LabelPrikazKombinacijeTiketa.Text = Class1.stringKombinacija();
+                KombinacijeKlasa.kombinacije.Add(broj);
+                LabelPrikazKombinacijeTiketa.Text = KombinacijeKlasa.stringKombinacija();
                 GridViewNov.Rows[red].Cells[kolona].BackColor = ColorTranslator.FromHtml("#e83e8c");
                 return;
             }
             int i = 0;
-            foreach (int trenutni in Class1.kombinacije)
+            foreach (int trenutni in KombinacijeKlasa.kombinacije)
                 {
                 if (trenutni == broj)
                 {
-                    Class1.kombinacije.RemoveAt(i);
+                    KombinacijeKlasa.kombinacije.RemoveAt(i);
                     GridViewNov.Rows[red].Cells[kolona].BackColor = ColorTranslator.FromHtml("#ffffff");
-                    LabelPrikazKombinacijeTiketa.Text = Class1.stringKombinacija();
+                    LabelPrikazKombinacijeTiketa.Text = KombinacijeKlasa.stringKombinacija();
 
                     return;
                 }
                 i++;
 
             }
-            if (Class1.kombinacije.Count < 14)
+            if (KombinacijeKlasa.kombinacije.Count < 14)
             {
-                  Class1.kombinacije.Add(broj);
+                  KombinacijeKlasa.kombinacije.Add(broj);
                 GridViewNov.Rows[red].Cells[kolona].BackColor =ColorTranslator.FromHtml("#e83e8c");
-                LabelPrikazKombinacijeTiketa.Text = Class1.stringKombinacija();
+                LabelPrikazKombinacijeTiketa.Text = KombinacijeKlasa.stringKombinacija();
 
             }
         }
 
         void PrikazTrenutneKombinacije()
         {
-            foreach (int trenutni in Class1.kombinacije)
+            foreach (int trenutni in KombinacijeKlasa.kombinacije)
             {
                 ispis += Convert.ToString(trenutni) + " , ";
             }
 
-            ButtonOtvoriTiket.Text = Class1.kombinacije.Count.ToString();
+            ButtonOtvoriTiket.Text = KombinacijeKlasa.kombinacije.Count.ToString();
         }
 
 
-        public void BazaPodatakaNapraviTiket(int idKola, SqlConnection conn)
+        public void BazaPodatakaNapraviTiket(int idKola)
         {
             StringBuilder potvrdiTiket = new StringBuilder("INSERT INTO");
             potvrdiTiket.Append(" Tiketi (fk_korisnici_id, fk_kola_id)");
             potvrdiTiket.Append("VALUES (" + Session["id_ulogovanog_korisnika"] + "," + idKola + ")");
-            conn.Open();
-            new SqlCommand(potvrdiTiket.ToString(), conn).ExecuteNonQuery();
-            conn.Close();
+            konekcija.IzvrsiNonQuery(potvrdiTiket.ToString());
         }
 
 
-        public void BazaPodatakaNapraviKombinacijuTiketa(List<int> kombinacije, int tiketKombinacijaId, SqlConnection conn)
+        public void BazaPodatakaNapraviKombinacijuTiketa(List<int> kombinacije, int tiketKombinacijaId)
         {
+            //STRING BUILDER
             string narebaDodajBrojUKombinaciju = "INSERT INTO Kombinacije(broj,kombinacija_id) VALUES ";
             for (int i = 0; i < 13; i++)
             {
@@ -169,32 +171,30 @@ namespace LotoRotoProjekat
             }
             narebaDodajBrojUKombinaciju += "(" + kombinacije[13] + "," + tiketKombinacijaId + ")";
 
-            conn.Open();
-            new SqlCommand(narebaDodajBrojUKombinaciju, conn).ExecuteNonQuery();
-            conn.Close();
+            konekcija.IzvrsiNonQuery(narebaDodajBrojUKombinaciju);
 
         }
 
-        public int NadjiTiketKombinacijaId(SqlConnection conn)
+        public int NadjiTiketKombinacijaId()
         {
-            string naredbaNadjiKombinacijaId = "SELECT MAX(tiket_kombinacija_id) FROM Tiketi WHERE fk_korisnici_id =" + Session["id_ulogovanog_korisnika"];
-            conn.Open();
-            SqlCommand komandaNadjiIdKombinacije = new SqlCommand(naredbaNadjiKombinacijaId, conn);
-            int tiketKombinacijaId = Int32.Parse(komandaNadjiIdKombinacije.ExecuteScalar().ToString());
-            conn.Close();
+            string naredbaNadjiKombinacijaId = "SELECT MAX(tiket_kombinacija_id)" +
+                " FROM Tiketi" +
+                " WHERE fk_korisnici_id =" + Session["id_ulogovanog_korisnika"];
+            int tiketKombinacijaId = Int32.Parse(konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaNadjiKombinacijaId));
             return tiketKombinacijaId;
 
         }
 
-        public void BazaPodatakaNapraviTransakcijuTiketa(SqlConnection conn)
+        public void BazaPodatakaNapraviTransakcijuTiketa()
         {
             //TREBA DA SE UNESE DANASNJI DATUM
             int idRacuna = Convert.ToInt32(Session["id_racuna"]);
             //KLASA ZA RAD SA TRANSAKCIJAMA SA METODOM NAPRAVI TRANSAKCIJU
-            string naredbaNapraviTransakciju = "INSERT INTO Transakcije (iznos,datum,fk_racuni_id,tip_transakcije) VALUES (100,'2019-04-21'," + idRacuna + ",'tiket')";
-            conn.Open();
-            new SqlCommand(naredbaNapraviTransakciju, conn).ExecuteNonQuery();
-            conn.Close();
+            string naredbaNapraviTransakciju = "INSERT INTO Transakcije" +
+                " (iznos,datum,fk_racuni_id,tip_transakcije)" +
+                " VALUES (100,'2019-04-21'," + idRacuna + ",'tiket')";
+          
+            konekcija.IzvrsiNonQuery(naredbaNapraviTransakciju);
 
         }
         public void ResetujTiket(List<int> kombinacije) {

@@ -20,8 +20,30 @@ namespace LotoRotoProjekat
             if (!IsPostBack)
             {
                 NapraviTiketGridView();
+                NapraviMojiTiketiGridView();
             }
 
+        }
+
+        void NapraviMojiTiketiGridView()
+        {
+            SqlConnection conn = konekcija.Connect();//connection name
+
+            conn.Open();
+            int idUlogovanogKorisnika = Convert.ToInt32(Session["id_ulogovanog_korisnika"]);
+            string naredbaSelektujMojeTikete = "SELECT * FROM Tiketi WHERE [fk_korisnici_id]=" + idUlogovanogKorisnika;
+            SqlCommand cmd = new SqlCommand(naredbaSelektujMojeTikete, conn);
+
+            cmd.CommandType = CommandType.Text;
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+            DataSet ds = new DataSet();
+
+            da.Fill(ds, "ss");
+
+            GridViewMojiTiketi.DataSource = ds.Tables["ss"];
+            GridViewMojiTiketi.DataBind();
         }
 
         void NapraviTiketGridView()
@@ -50,13 +72,15 @@ namespace LotoRotoProjekat
             DataRow NewRow = dt.NewRow();
             for (int j = 0; j < brojKolona; j++)
             {
+                //1,2,3,4... 37,38,39
                 NewRow[j] = Convert.ToString((indeksReda * brojKolona) + j + 1);
             }
+            //nakon punjenja reda podacima, dodajemo ga u tabelu
             dt.Rows.Add(NewRow);
         }
 
 
-        protected void buttonClick_Click1(object sender, EventArgs e)
+        protected void ButtonOtvoriTiket_Click(object sender, EventArgs e)
         {
             GridViewNov.Visible = true;
         }
@@ -64,16 +88,63 @@ namespace LotoRotoProjekat
         protected void GridViewNov_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             ObradiKlikIAzurirajTiket(e);
-            PrikazTrenutneKombinacije();
+            ButtonOtvoriTiket.Text = KombinacijeKlasa.kombinacije.Count.ToString();
 
         }
 
-        protected void Button10_Click(object sender, EventArgs e)
+        void ObradiKlikIAzurirajTiket(GridViewCommandEventArgs e)
         {
-<<<<<<< HEAD
-            SqlConnection conn = konekcija.Connect();
-=======
->>>>>>> e31ae5226b6d7e68f9c4291dbcc73bd97d5981a8
+            string[] naziviKolona = { "Prvo", "Drugo", "Trece", "Cetvrto", "Peto", "Sesto", "Sedmo", "Osmo", "Deveto"
+                ,"Deseto", "Jedanaesto", "Dvanaesto", "Trinaesto"};
+            int brojKolona = naziviKolona.Length;
+
+            for (int i = 0; i < brojKolona; i++)
+            {
+                // ako je naziv kliknute kolone jednak i-tom nazivu kolone
+                if (e.CommandName == naziviKolona[i])
+                {
+                    // commandArgument = indeks Reda
+                    int broj = (Int32.Parse(e.CommandArgument.ToString()) * brojKolona) + i + 1;
+                    AzurirajTiket(broj, Int32.Parse(e.CommandArgument.ToString()), i);
+                }
+            }
+        }
+        void AzurirajTiket(int broj, int red, int kolona)
+        {
+            if (KombinacijeKlasa.kombinacije.Count == 0)
+            {
+                KombinacijeKlasa.kombinacije.Add(broj);
+                LabelPrikazKombinacijeTiketa.Text = KombinacijeKlasa.stringKombinacija();
+                GridViewNov.Rows[red].Cells[kolona].BackColor = ColorTranslator.FromHtml("#e83e8c");
+                return;
+            }
+            int i = 0;
+            foreach (int trenutni in KombinacijeKlasa.kombinacije)
+            {
+                if (trenutni == broj)
+                {
+                    KombinacijeKlasa.kombinacije.RemoveAt(i);
+                    GridViewNov.Rows[red].Cells[kolona].BackColor = ColorTranslator.FromHtml("#ffffff");
+                    LabelPrikazKombinacijeTiketa.Text = KombinacijeKlasa.stringKombinacija();
+
+                    return;
+                }
+                i++;
+
+            }
+            if (KombinacijeKlasa.kombinacije.Count < 14)
+            {
+                KombinacijeKlasa.kombinacije.Add(broj);
+                GridViewNov.Rows[red].Cells[kolona].BackColor = ColorTranslator.FromHtml("#e83e8c");
+                LabelPrikazKombinacijeTiketa.Text = KombinacijeKlasa.stringKombinacija();
+
+            }
+        }
+
+
+        protected void BtnPotvrdiTiket_Click(object sender, EventArgs e)
+        {
+
             List<Int32> kombinacije = KombinacijeKlasa.kombinacije;
             int maxBrojevaPoTiketu = 14;
 
@@ -89,66 +160,6 @@ namespace LotoRotoProjekat
             BazaPodatakaNapraviKombinacijuTiketa(kombinacije, NadjiTiketKombinacijaId());
             BazaPodatakaNapraviTransakcijuTiketa();
             ResetujTiket(kombinacije);
-        }
-
-
-        void ObradiKlikIAzurirajTiket(GridViewCommandEventArgs e)
-        {
-            string[] naziviKolona = { "Prvo", "Drugo", "Trece", "Cetvrto", "Peto", "Sesto", "Sedmo", "Osmo", "Deveto"
-                ,"Deseto", "Jedanaesto", "Dvanaesto", "Trinaesto"};
-            int brojKolona = naziviKolona.Length;
-            int broj = 0;
-
-            for (int i = 0; i < brojKolona; i++)
-            {
-                if (e.CommandName == naziviKolona[i])
-                {
-                    broj = (Int32.Parse(e.CommandArgument.ToString()) * brojKolona) + i + 1;
-                    AzurirajTiket(broj, Int32.Parse(e.CommandArgument.ToString()), i);
-                }
-            }
-        }
-
-        void AzurirajTiket(int broj, int red, int kolona)
-        {
-            if (KombinacijeKlasa.kombinacije.Count == 0)
-            {
-                KombinacijeKlasa.kombinacije.Add(broj);
-                LabelPrikazKombinacijeTiketa.Text = KombinacijeKlasa.stringKombinacija();
-                GridViewNov.Rows[red].Cells[kolona].BackColor = ColorTranslator.FromHtml("#e83e8c");
-                return;
-            }
-            int i = 0;
-            foreach (int trenutni in KombinacijeKlasa.kombinacije)
-                {
-                if (trenutni == broj)
-                {
-                    KombinacijeKlasa.kombinacije.RemoveAt(i);
-                    GridViewNov.Rows[red].Cells[kolona].BackColor = ColorTranslator.FromHtml("#ffffff");
-                    LabelPrikazKombinacijeTiketa.Text = KombinacijeKlasa.stringKombinacija();
-
-                    return;
-                }
-                i++;
-
-            }
-            if (KombinacijeKlasa.kombinacije.Count < 14)
-            {
-                  KombinacijeKlasa.kombinacije.Add(broj);
-                GridViewNov.Rows[red].Cells[kolona].BackColor =ColorTranslator.FromHtml("#e83e8c");
-                LabelPrikazKombinacijeTiketa.Text = KombinacijeKlasa.stringKombinacija();
-
-            }
-        }
-
-        void PrikazTrenutneKombinacije()
-        {
-            foreach (int trenutni in KombinacijeKlasa.kombinacije)
-            {
-                ispis += Convert.ToString(trenutni) + " , ";
-            }
-
-            ButtonOtvoriTiket.Text = KombinacijeKlasa.kombinacije.Count.ToString();
         }
 
 
@@ -200,8 +211,10 @@ namespace LotoRotoProjekat
         public void ResetujTiket(List<int> kombinacije) {
 
             kombinacije.Clear();
+            // GridViewNov.Rows.Count = broj redova
             for (int i = 0; i < GridViewNov.Rows.Count; i++)
             {
+                //GridViewNov.Rows[i].Cells.Count = broj kolona
                 for (int j = 0; j < GridViewNov.Rows[i].Cells.Count; j++)
                 {
                     GridViewNov.Rows[i].Cells[j].BackColor = ColorTranslator.FromHtml("#ffffff");

@@ -25,34 +25,36 @@ namespace LotoRotoProjekat
                 
                 string naredba = "select * FROM korisnici WHERE username='" + Korisničko_ime + "'";
                 SqlDataAdapter da = new SqlDataAdapter(naredba, konekcija.Connect());
-                DataTable Korisnik = new DataTable();
+                DataTable tabelaKorisnici = new DataTable();
 
                 //UREDITI KOD
-                da.Fill(Korisnik);
+                da.Fill(tabelaKorisnici);
 
-                if (Korisnik.Rows.Count == 0)
+                if (tabelaKorisnici.Rows.Count == 0)
                     {   
                         Response.Redirect("RegistrujPrijavi.aspx");
                     }
                 else
                     {
-                        string DBPass = Korisnik.Rows[0]["password"].ToString();
+                  
+
+                string DBPass = VratiPodatakIzTabele(tabelaKorisnici, "password").ToString();
+
                         if (!Lozinka.Equals(DBPass))
                         {
-                        //URADITI ISPIS PORUKE NA EKRANU
+                        //URADITI ISPIS PORUKE NA EKRANU I SPRECITI LOGOVANJE
                             Response.Write("Losa lozinka");
                         }
                     else
                     {
+                    int idKorisnika = Convert.ToInt32(VratiPodatakIzTabele(tabelaKorisnici, "pk_korisnici_id"));
+                    int idRacuna = Convert.ToInt32(VratiPodatakIzTabele(tabelaKorisnici, "fk_racuni_id"));
 
-                    int idKorisnika = Convert.ToInt32(Korisnik.Rows[0]["pk_korisnici_id"]);
-                    int idRacuna = Convert.ToInt32(Korisnik.Rows[0]["fk_racuni_id"]);
-                       
                     Session["id_racuna"] = idRacuna;
                     Session["id_ulogovanog_korisnika"] = idKorisnika;
-                    Session["tip_korisnika"] = Korisnik.Rows[0]["tip_korisnika"].ToString();
-                    Session["ime"] = Korisnik.Rows[0]["ime"].ToString();
-                        // KORISNIK
+                    Session["tip_korisnika"] = VratiPodatakIzTabele(tabelaKorisnici, "tip_korisnika").ToString();
+                    Session["ime"] = VratiPodatakIzTabele(tabelaKorisnici, "ime").ToString();
+                    // KORISNIK
                     Session["Korisnici"] = Korisničko_ime;
 
                     string naredbaAzurirajLogInDate = "update Korisnici set log_in_date = GETDATE()" +
@@ -68,6 +70,12 @@ namespace LotoRotoProjekat
                     }
             }
         }
+
+        public object VratiPodatakIzTabele(DataTable tabela, string nazivKolone, int pronadjeniKorisnik = 0)
+        {
+            return tabela.Rows[pronadjeniKorisnik][nazivKolone];
+        }
+        
                 protected void btnRegister_Click(object sender, EventArgs e)
                 {
 
@@ -83,17 +91,24 @@ namespace LotoRotoProjekat
                     string email = PlaceHolder_email.Text;
 
                     bool lozinkeJednake = pass == pass2;
+                    if (!lozinkeJednake)
+                    {
+                        //UBACITI PORUKU KOJA KAZE DA NISU JEDNAKE LOZINKE
+                        return;
+                    }
 
                     // KLASA PROVERI DA LI KORISNIK POSTOJI
                     string naredbaUname = "SELECT * FROM Korisnici WHERE username='" + username + "' OR email= '"+email+"' ";
             
                     SqlConnection conn = konekcija.Connect();
                     SqlDataAdapter da = new SqlDataAdapter(naredbaUname, conn);
-                    DataTable korisnik = new DataTable();
-                    da.Fill(korisnik);
-                    if (korisnik.Rows.Count == 0)
+                    DataTable tabelaKorisnici = new DataTable();
+                    da.Fill(tabelaKorisnici);
+
+                    bool korisnikNePostoji = tabelaKorisnici.Rows.Count == 0;
+                    if (korisnikNePostoji)
                     {
-                        int fkRacuniId = DodajRacunUBazuIVratiID(brRacuna);
+                        int fkRacuniId = DodajNovRacunUBazuIVratiID(brRacuna);
 
                         string logInDate = DateTime.Now.ToString("yyyy-MM-dd");
                         DateTime sad = DateTime.Now;
@@ -118,20 +133,19 @@ namespace LotoRotoProjekat
                     $"'igrac'," +
                     $"'{fkRacuniId}')");
 
-                       
                     konekcija.IzvrsiNonQuery(NaredbaBtnPotvrdi.ToString());
                      
                     }
                 }
 
-        int DodajRacunUBazuIVratiID(string brojRacuna)
+        int DodajNovRacunUBazuIVratiID(string brojRacuna)
         {
             string naredbaNapraviRacun = "INSERT INTO Racuni (broj_racuna) VALUES (" + brojRacuna + ");";
-            string naredbaBrRacuna = "SELECT pk_racuni_id FROM Racuni WHERE broj_racuna ='" + brojRacuna + "'";
+            string naredbaIdRacuna = "SELECT pk_racuni_id FROM Racuni WHERE broj_racuna ='" + brojRacuna + "'";
 
             konekcija.IzvrsiNonQuery(naredbaNapraviRacun);
-            int idRacunaHumanitarnogFonda = Int32.Parse(konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaBrRacuna));
-            return idRacunaHumanitarnogFonda;
+            int idRacuna = Int32.Parse(konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaIdRacuna));
+            return idRacuna;
         }
 
     }

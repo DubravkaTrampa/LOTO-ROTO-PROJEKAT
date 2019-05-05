@@ -29,6 +29,7 @@ namespace LotoRotoProjekat
 
         }
 
+
         protected void BtnZavrsiKolo_Click(object sender, EventArgs e)
         {
             bool izvucenaSedmica = ProveriIzvucenaSedmica();
@@ -38,10 +39,16 @@ namespace LotoRotoProjekat
             IzvrsiNaplateIzFonda();
             AzurirajFond(izvucenaSedmica);
             PrikaziRezultateNaStranici();
+            BazaPromeniStatusKola(false);
         }
 
         protected void BtnZapocniKolo_Click(object sender, EventArgs e)
         {
+            if(BazaKoloAktivno() == true)
+            {
+                //Kolo je vec zapoceto pa ne moze da bude opet startovano
+                return;
+            }
             int idDobitneKombinacije = 24;
             string naredbaNadjiDatumPoslednjegKola = "SELECT datum FROM Kola WHERE [pk_kola_id] = (SELECT MAX(pk_kola_id) FROM Kola)";
             DateTime datum = DateTime.Parse(konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaNadjiDatumPoslednjegKola));
@@ -49,6 +56,7 @@ namespace LotoRotoProjekat
             string naredbaNovoKolo = "INSERT INTO Kola (datum,redni_broj,dobitna_kombinacija_id) VALUES (" +
                 datumNarednogKola + ",(SELECT MAX(redni_broj)+1 FROM Kola) , "+ idDobitneKombinacije + ");";
             konekcija.IzvrsiNonQuery(naredbaNovoKolo);
+            BazaPromeniStatusKola(true);
         }
 
         public void BazaObradiTiketeUnesiDobitnike()
@@ -265,6 +273,18 @@ namespace LotoRotoProjekat
             LabelIsplataSestice.Text = fondZaDobitak6Pogotka.ToString();
             LabelIsplataPetice.Text = fondZaDobitak5Pogotka.ToString();
             LabelIsplataCetvorke.Text = fondZaDobitak4Pogotka.ToString();
+        }
+
+        public void BazaPromeniStatusKola(bool aktivno)
+        {
+            string naredba = "UPDATE PostojiAktuelnoKolo SET kolo_aktivno = '" + aktivno + "'";
+            konekcija.IzvrsiNonQuery(naredba);
+        }
+
+        public bool BazaKoloAktivno()
+        {
+            string naredba = "SELECT kolo_aktivno FROM PostojiAktuelnoKolo ";
+            return Convert.ToBoolean(konekcija.IzvrsiScalarQueryIVratiVrednost(naredba));
         }
 
         private class Dobitnik

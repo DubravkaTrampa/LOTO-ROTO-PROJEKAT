@@ -117,6 +117,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NaredbaOdrediDobitnike.cs" />
     <Compile Include="Stranice\AdminFondovi.aspx.cs">
       <DependentUpon>AdminFondovi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

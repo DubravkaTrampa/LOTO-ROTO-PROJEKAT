@@ -34,6 +34,7 @@
         </asp:GridView>
 
     <asp:Button class="btn btn-indigo" ID="BtnPotvrdiTiket" runat="server" OnClick="BtnPotvrdiTiket_Click" Text="Potvrdi" Width="340px" />
+           <asp:Button class="btn btn-indigo" ID="BtnDodajRandomTiket" runat="server" OnClick="BtnDodajRandomTiket_Click" Text="Potvrdi" Width="340px" />
           <asp:GridView ID="GridViewMojiTiketi" runat="server" >
               <Columns>
 

@@ -30,6 +30,7 @@
 
                                         <asp:Label ID="login_pass" runat="server" Text="Lozinka"></asp:Label>
                                         <asp:TextBox id="PlaceHolder_pass" required="required" TextMode="Password" runat="server" placeholder="obavezno polje!"></asp:TextBox>
+                                        <asp:Label ID="Label_poruka_los_unos"  runat="server" ForeColor="Red" Visible="false" Text="Uneli ste pogrešnu lozinku ili korisničko ime!"></asp:Label>
 
                                 
                                 <p class="login button"> 
@@ -41,7 +42,8 @@
 									<asp:Button ID="register_redirect" runat="server" OnClick="btnRedirectToRegisterClick" Text="Registruj se" UseSubmitBehavior="false" class="to_register"></asp:Button>
                                     <!--href="#toregister"-->
 								</p>
-
+                            <p>
+                            </p>
                         </div>
                             </asp:Panel>
                             <asp:Panel ID="panel_register" runat="server" Visible="false">
@@ -93,10 +95,10 @@
                                 </asp:Panel>
                     </div>
                 </div> 
-                <asp:Panel ID="panel_uspesan_redirect_msg" runat="server" Visible ="false">
-                    <asp:Label ID="Label_uspesan_redirect" runat="server" Text="Uspešno ste se registrovali!"></asp:Label>
-                    <asp:Button ID="btn_uspesan_redirect" runat="server" OnClick="btnUspesanRedirectClick" UseSubmitBehavior="false" Text="U redu"></asp:Button >
-                </asp:Panel>
+                    <asp:Panel ID="panel_uspesan_redirect_msg" runat="server" Visible ="false">
+                        <asp:Label ID="Label_uspesan_redirect" runat="server" Text="Uspešno ste se registrovali!"></asp:Label>
+                        <asp:Button ID="btn_uspesan_redirect" runat="server" OnClick="btnUspesanRedirectClick" UseSubmitBehavior="false" Text="U redu"></asp:Button >
+                    </asp:Panel>
             </section>
         </div></ContentTemplate></asp:UpdatePanel>  
 </asp:Content>

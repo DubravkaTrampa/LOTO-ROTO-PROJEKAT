@@ -25,49 +25,46 @@ namespace LotoRotoProjekat
                 string naredba = "select * FROM korisnici WHERE username='" + Korisničko_ime + "'";
                 SqlDataAdapter da = new SqlDataAdapter(naredba, konekcija.Connect());
                 DataTable tabelaKorisnici = new DataTable();
-
-                //UREDITI KOD
                 da.Fill(tabelaKorisnici);
 
-                if (tabelaKorisnici.Rows.Count == 0)
-                    {   
-                        Response.Redirect("RegistrujPrijavi.aspx");
-                    }
-                else
-                    {
-                  
+                bool nijeNadjenKorisnik = tabelaKorisnici.Rows.Count == 0;
+                if (nijeNadjenKorisnik)
+                {
+                Label_poruka_los_unos.Visible = true;
+                return;
+                }
 
                 string DBPass = VratiPodatakIzTabele(tabelaKorisnici, "password").ToString();
+                bool ispravnaLozinka = Lozinka.Equals(DBPass);
 
-                        if (!Lozinka.Equals(DBPass))
-                        {
-                        //URADITI ISPIS PORUKE NA EKRANU I SPRECITI LOGOVANJE
-                            Response.Write("Losa lozinka");
-                        }
-                    else
-                    {
-                    int idKorisnika = Convert.ToInt32(VratiPodatakIzTabele(tabelaKorisnici, "pk_korisnici_id"));
-                    int idRacuna = Convert.ToInt32(VratiPodatakIzTabele(tabelaKorisnici, "fk_racuni_id"));
+                if (!ispravnaLozinka)
+                {
+                Label_poruka_los_unos.Visible = true;
+                return;
+                }
 
-                    Session["id_racuna"] = idRacuna;
-                    Session["id_ulogovanog_korisnika"] = idKorisnika;
-                    Session["tip_korisnika"] = VratiPodatakIzTabele(tabelaKorisnici, "tip_korisnika").ToString();
-                    Session["ime"] = VratiPodatakIzTabele(tabelaKorisnici, "ime").ToString();
+                int idKorisnika = Convert.ToInt32(VratiPodatakIzTabele(tabelaKorisnici, "pk_korisnici_id"));
+                int idRacuna = Convert.ToInt32(VratiPodatakIzTabele(tabelaKorisnici, "fk_racuni_id"));
+
+                Session["id_racuna"] = idRacuna;
+                Session["id_ulogovanog_korisnika"] = idKorisnika;
+                Session["tip_korisnika"] = VratiPodatakIzTabele(tabelaKorisnici, "tip_korisnika").ToString();
+                Session["ime"] = VratiPodatakIzTabele(tabelaKorisnici, "ime").ToString();
                     // KORISNIK
-                    Session["Korisnici"] = Korisničko_ime;
+                Session["Korisnici"] = Korisničko_ime;
 
-                    string naredbaAzurirajLogInDate = "update Korisnici set log_in_date = GETDATE()" +
+                string naredbaAzurirajLogInDate = "update Korisnici set log_in_date = GETDATE()" +
                         " where username = '" + Korisničko_ime + "'";
-                    string naredbaAzurirajLogInTime = "UPDATE Korisnici SET log_in_time =" +
+                string naredbaAzurirajLogInTime = "UPDATE Korisnici SET log_in_time =" +
                         " CONVERT( TIME, concat(datepart(hour, getdate()), ':',datepart(minute, getdate()), ':',datepart(SECOND, getdate())))" +
                         " where username = '" + Korisničko_ime + "'";
                     
-                    konekcija.IzvrsiNonQuery(naredbaAzurirajLogInDate);
-                    konekcija.IzvrsiNonQuery(naredbaAzurirajLogInTime);
-                    Session["bool_korisnik_ulogovan"] = true;
-                    Response.Redirect("Pocetna.aspx");
-                    }
-            }
+                konekcija.IzvrsiNonQuery(naredbaAzurirajLogInDate);
+                konekcija.IzvrsiNonQuery(naredbaAzurirajLogInTime);
+                Session["bool_korisnik_ulogovan"] = true;
+                Response.Redirect("Pocetna.aspx");
+
+
         }
 
         public object VratiPodatakIzTabele(DataTable tabela, string nazivKolone, int pronadjeniKorisnik = 0)

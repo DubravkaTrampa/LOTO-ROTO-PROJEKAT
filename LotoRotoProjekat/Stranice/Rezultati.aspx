@@ -53,6 +53,7 @@
         </div>
             <!--IZVESTAJI-->
     <asp:Button ID="BtnZavrsiKolo" runat="server" OnClick="BtnZavrsiKolo_Click" Text =" Zavrsi kolo"/>
+        <asp:Button ID="BtnZapocniKolo" runat="server" OnClick="BtnZapocniKolo_Click" Text =" Zapocni kolo"/>
    <!--KARTICE-->
     <section class="details-card" style="padding: 100px 0;background:none !important;">
         <div class="container" style="margin-left:70px;">
@@ -90,7 +91,7 @@
 
                 <!--DRUGA KARTICA-->
                 <div class="col-md-4">
-                    <div class="card-content" style="width:420px;height:610px;margin-left:70px;margin-right:50;">
+                    <div class="card-content" style="width:420px;height:610px;margin-left:70px;margin-right:50px;">
                         <div class="card-img">
                             <img src="../slike/kartica_loptice.jpg" alt="">                  
                         </div>

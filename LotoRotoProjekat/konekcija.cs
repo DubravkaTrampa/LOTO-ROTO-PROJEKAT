@@ -18,7 +18,11 @@ namespace LotoRotoProjekat
 
 
         static string myServer = Environment.MachineName;
+<<<<<<< HEAD
         static string CS = ("Data Source= DESKTOP-DKJJ47P\\SQLEXPRESS;Initial Catalog= LotoRotoNovo ;Integrated Security=True;MultipleActiveResultSets=True");
+=======
+        static string CS = ("Data Source= DESKTOP-2HGNRFM\\DUDASQL;Initial Catalog= LotoRotoNovo ;Integrated Security=True;MultipleActiveResultSets=True");
+>>>>>>> 26dd8f22e3a7c68aedd73eb5c5f3caa625f4d61e
         static public SqlConnection Connect()
         {
             SqlConnection conn = new SqlConnection(CS);

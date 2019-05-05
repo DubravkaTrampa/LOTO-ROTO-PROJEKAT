@@ -13,8 +13,7 @@ namespace LotoRotoProjekat
 {
     public partial class IgrajTiket : System.Web.UI.Page
     {
-
-        String ispis ;
+     
         protected void Page_Load(object sender, EventArgs e)
         { 
             if (!IsPostBack)
@@ -198,11 +197,50 @@ namespace LotoRotoProjekat
             }
         }
 
+        protected void BtnDodajRandomTiket_Click(object sender, EventArgs e)
+        {
+            List<int> randomKombinacije = new List<int>();
+            int[] moguciBrojevi = new int[39];
+            for (int i = 0; i < moguciBrojevi.Length; i++)
+            {
+                moguciBrojevi[i] = i + 1;
+            }
+            for(int i = 0; i < 5; i++)
+            {
+                randomKombinacije = NapraviRandomKombinaciju(moguciBrojevi);
+                PotvrdiTiketSaKombinacijom(randomKombinacije);
+            }
+           
+        }
+
+        List<int> NapraviRandomKombinaciju(int[] moguciBrojevi)
+        {
+            Random rnd = new Random();
+            for (int i = moguciBrojevi.Length - 1; i > 0; i--)
+            {
+                int index = rnd.Next(i + 1);
+                // Simple swap
+                int a = moguciBrojevi[index];
+                moguciBrojevi[index] = moguciBrojevi[i];
+                moguciBrojevi[i] = a;
+            }
+            List<int> izmesanaLista = new List<int>();
+            for(int i=0; i < 14; i++)
+            {
+                izmesanaLista.Add(moguciBrojevi[i]); 
+            }
+            return izmesanaLista;
+        }
 
         protected void BtnPotvrdiTiket_Click(object sender, EventArgs e)
         {
 
             List<Int32> kombinacije = KombinacijeKlasa.kombinacije;
+            PotvrdiTiketSaKombinacijom(kombinacije);
+        }
+
+        void PotvrdiTiketSaKombinacijom(List<int> kombinacije)
+        {
             int maxBrojevaPoTiketu = 14;
 
             if (kombinacije.Count < maxBrojevaPoTiketu)
@@ -211,13 +249,15 @@ namespace LotoRotoProjekat
             }
 
             kombinacije.Sort();
-            //POSLEDNJE KOLO PREKO UPITA
-            int idKola = 10;
+            //UPIT ZA NALAZENJE ID-A POSLEDNJEG KOLA U POMOCNOJ KLASI
+            string naredbaNadjiPoslednjeKolo = "SELECT pk_kola_id FROM Kola WHERE pk_kola_id = (SELECT MAX(pk_kola_id) FROM Kola)";
+            string idKolaString = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaNadjiPoslednjeKolo);
+            int idKola = Convert.ToInt32(idKolaString);
             BazaPodatakaNapraviTiket(idKola);
             BazaPodatakaNapraviKombinacijuTiketa(kombinacije, NadjiTiketKombinacijaId());
             BazaPodatakaNapraviTransakcijuTiketa();
             ResetujTiket(kombinacije);
-        }
+        } 
 
 
         public void BazaPodatakaNapraviTiket(int idKola)
@@ -257,10 +297,11 @@ namespace LotoRotoProjekat
         {
             //TREBA DA SE UNESE DANASNJI DATUM
             int idRacuna = Convert.ToInt32(Session["id_racuna"]);
+            string datum = "'"+DateTime.Now.ToString("yyyy-MM-dd")+"'";
             //KLASA ZA RAD SA TRANSAKCIJAMA SA METODOM NAPRAVI TRANSAKCIJU
             string naredbaNapraviTransakciju = "INSERT INTO Transakcije" +
                 " (iznos,datum,fk_racuni_id,tip_transakcije)" +
-                " VALUES (100,'2019-04-21'," + idRacuna + ",'tiket')";
+                " VALUES (100," +datum+ "," + idRacuna + ",'tiket')";
           
             konekcija.IzvrsiNonQuery(naredbaNapraviTransakciju);
 

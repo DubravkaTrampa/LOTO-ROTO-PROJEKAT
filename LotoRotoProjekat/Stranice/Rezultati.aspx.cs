@@ -32,9 +32,10 @@ namespace LotoRotoProjekat
         protected void BtnZavrsiKolo_Click(object sender, EventArgs e)
         {
             bool izvucenaSedmica = ProveriIzvucenaSedmica();
+
             DopuniFond();
             UcitajDobitnike();
-            IzracunajFondove(VratiNagradniFondIzBaze(), 4, izvucenaSedmica);
+            IzracunajFondove(VratiNagradniFondIzBaze(), izvucenaSedmica);
             IzvrsiNaplateIzFonda();
             AzurirajFond(izvucenaSedmica);
             PrikaziRezultateNaStranici();
@@ -42,9 +43,9 @@ namespace LotoRotoProjekat
 
         public bool ProveriIzvucenaSedmica()
         {
-            string naredbaPrebrojDobitnijeVrste = "SELECT COUNT(*) AS broj FROM Dobitnici WHERE vrsta_pogotka = '7' ";
+            string naredbaPrebrojDobitnikeVrste = "SELECT COUNT(*) AS broj FROM Dobitnici WHERE vrsta_pogotka = '7' ";
         
-            string brojIzvucenihString = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaPrebrojDobitnijeVrste);
+            string brojIzvucenihString = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaPrebrojDobitnikeVrste);
             int brojIzvucenih = Convert.ToInt32(brojIzvucenihString);
             return brojIzvucenih > 0;
 
@@ -52,7 +53,7 @@ namespace LotoRotoProjekat
 
         private void DopuniFond()
         {
-
+            //pocetni datum treba da je datum zavrsetka prethodnog kola; zavrsni datum je zavrsni datum tekuceg kola
             string pocetniDatum = "'2019-04-20'", zavrsniDatum = "'2019-04-23'";
 
             string naredbaDodajSumuTiketaUFond =
@@ -91,11 +92,12 @@ namespace LotoRotoProjekat
         }
 
         public void IzracunajFondove(double ukupanFond,
-                                    int brojDobitnika4Kombinacije,
                                     bool izvucenaSedmica)
         {
+            int brojDobitnika4Vrste = Convert.ToInt32(PrebrojDobitnikeVrste("4"));
+
             //Izvaja se fond za cetiri dobitaka(zamena) od ukupnog fonda, pre racunanja fondova za vece dobitke
-            ukupanFond -= fondZaDobitak4Pogotka = brojDobitnika4Kombinacije * cenaJednogTiketa;
+            ukupanFond -= fondZaDobitak4Pogotka = brojDobitnika4Vrste * cenaJednogTiketa;
             fondZaDobitak5Pogotka = VratiProcenat(ukupanFond, 10d);
             fondZaDobitak6Pogotka = VratiProcenat(ukupanFond, 30d);
             fondZaDobitak7Pogotka = VratiProcenat(ukupanFond, 60d);
@@ -136,9 +138,9 @@ namespace LotoRotoProjekat
         {
             double broj = 0;
 
-            string naredbaPrebrojDobitnijeVrste = "SELECT COUNT(*) AS broj FROM Dobitnici WHERE vrsta_pogotka = '" + vrstaDobitka + "' ";
+            string naredbaPrebrojDobitnikeVrste = "SELECT COUNT(*) AS broj FROM Dobitnici WHERE vrsta_pogotka = '" + vrstaDobitka + "' ";
          
-            string brojString = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaPrebrojDobitnijeVrste);
+            string brojString = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaPrebrojDobitnikeVrste);
             broj = Convert.ToDouble(brojString);
             return broj;
         }
@@ -156,30 +158,30 @@ namespace LotoRotoProjekat
             {
                 if (trenutni.vrstaPogotka == "4")
                 {
-                    NapraviTransakciju(pojedinacniDobitakZa4Pogotka, datum, trenutni.idRacuna, "'nagrada'");
+                    BazaNapraviTransakciju(pojedinacniDobitakZa4Pogotka, datum, trenutni.idRacuna, "'nagrada'");
                 }
                 if (trenutni.vrstaPogotka == "5")
                 {
-                    NapraviTransakciju(pojedinacniDobitakZa5Pogotka, datum, trenutni.idRacuna, "'nagrada'");
+                    BazaNapraviTransakciju(pojedinacniDobitakZa5Pogotka, datum, trenutni.idRacuna, "'nagrada'");
                 }
                 if (trenutni.vrstaPogotka == "6")
                 {
-                    NapraviTransakciju(pojedinacniDobitakZa6Pogotka, datum, trenutni.idRacuna, "'nagrada'");
+                    BazaNapraviTransakciju(pojedinacniDobitakZa6Pogotka, datum, trenutni.idRacuna, "'nagrada'");
                 }
                 if (trenutni.vrstaPogotka == "7")
                 {
-                    NapraviTransakciju(pojedinacniDobitakZa7Pogotka, datum, trenutni.idRacuna, "'nagrada'");
+                    BazaNapraviTransakciju(pojedinacniDobitakZa7Pogotka, datum, trenutni.idRacuna, "'nagrada'");
                 }
             }
 
             int idRacunaHumanitarneOrganizacije = Convert.ToInt32(Session["humanitarni_fond_racun_id"]);
             int idRacunaAdmina = Convert.ToInt32(Session["admin_racun_id"]);
-            NapraviTransakciju(fondZaHumanitarneSvrhe, datum, idRacunaHumanitarneOrganizacije, "'humanitarna'");
-            NapraviTransakciju(fondZaNaplatuAdministratoru, datum, idRacunaAdmina, "'organizatoru'");
+            BazaNapraviTransakciju(fondZaHumanitarneSvrhe, datum, idRacunaHumanitarneOrganizacije, "'humanitarna'");
+            BazaNapraviTransakciju(fondZaNaplatuAdministratoru, datum, idRacunaAdmina, "'organizatoru'");
 
         }
 
-        public void NapraviTransakciju(double novac, string datum, int idRacuna, string tipTransakcije)
+        public void BazaNapraviTransakciju(double novac, string datum, int idRacuna, string tipTransakcije)
         {
             //SVE VREDNOSTI U JEDNOJ NAREDBI MOZDA? Klasa Transakcija
             string naredbaNapraviTransakcijuKorisniku = "INSERT INTO Transakcije " +
@@ -215,10 +217,8 @@ namespace LotoRotoProjekat
             int pretposlednjiIzFonda = 1;
             double ukupanIznosFonda = VratiNagradniFondIzBaze(pretposlednjiIzFonda);
 
-            double preneseniFondZaSledeceKolo = fondZaDobitak7Pogotka;
-            if (ProveriIzvucenaSedmica())
-                preneseniFondZaSledeceKolo = 0;
-
+            double preneseniFondZaSledeceKolo = VratiNagradniFondIzBaze();
+            // fiksirano na 10 jer nam je to kolo u kojem imamo sve test podatke
             int idPoslednjegKola = 10;
             string naredbaPrebrojUplacenoTiketa = "SELECT COUNT(*) FROM Tiketi WHERE fk_kola_id =" + idPoslednjegKola + ";";
             string uplacenoTiketa = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaPrebrojUplacenoTiketa);

@@ -11,7 +11,12 @@ namespace LotoRotoProjekat
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+        }
 
+        protected void cigle_pokreni_Click(object sender, EventArgs e)
+        {
+            panel1.Visible = true;
         }
     }
 }

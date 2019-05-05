@@ -2,7 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
- 
+    <asp:ScriptManager ID="script1" runat="server"></asp:ScriptManager>
+    <asp:UpdatePanel ID="panel1" runat="server"><ContentTemplate>
     <div class="container" style="padding:15px";>
             <!-- Codrops top bar -->
             <div class="codrops-top">
@@ -19,6 +20,7 @@
                     <a class="hiddenanchor" id="toregister"></a>
                     <a class="hiddenanchor" id="tologin"></a>
                     <div id="wrapper">
+                        <asp:Panel ID="panel_login" runat="server">
                         <div id="login" class="animate form">
                            <!-- <form autocomplete="on" >  -->
                                 <h1>Prijavi se</h1> 
@@ -27,21 +29,23 @@
                                         <asp:TextBox id="PlaceHolder_login" required="required" runat="server" placeholder="obavezno polje!"></asp:TextBox >
 
                                         <asp:Label ID="login_pass" runat="server" Text="Lozinka"></asp:Label>
-                                        <asp:TextBox id="PlaceHolder_pass" required="required" runat="server" placeholder="obavezno polje!"></asp:TextBox>
+                                        <asp:TextBox id="PlaceHolder_pass" required="required" TextMode="Password" runat="server" placeholder="obavezno polje!"></asp:TextBox>
 
                                 
                                 <p class="login button"> 
-                                    <asp:button runat="server" type="submit" class="signinbtn" onclick="btnLogin_Click" EnableViewState = true UseSubmitBehavior="false" Text="Prijavi se"></asp:button>
+                                    <asp:button runat="server" type="submit" class="signinbtn" onclick="btnLogin_Click" EnableViewState = true  Text="Prijavi se"></asp:button>
                                     <!--<input type="submit" value="Prijavi se" />-->
 								</p>
                                 <p class="change_link">
 									Još uvek niste registrovani ?
-									<a href="#toregister" class="to_register">Registruj se</a>
+									<asp:Button ID="register_redirect" runat="server" OnClick="btnRedirectToRegisterClick" Text="Registruj se" UseSubmitBehavior="false" class="to_register"></asp:Button>
+                                    <!--href="#toregister"-->
 								</p>
 
                         </div>
-
-                        <div id="register" class="animate form">
+                            </asp:Panel>
+                            <asp:Panel ID="panel_register" runat="server" Visible="false">
+                        <div class="animate form">
 
                                 <h1> Registruj se</h1> 
 
@@ -49,10 +53,10 @@
                                   <asp:TextBox id="PlaceHolder_register"  required="required" runat="server" ></asp:TextBox >
     
                                   <asp:Label ID="register_pass" runat="server" Text="Unesite lozinku"></asp:Label>
-                                  <asp:TextBox id="PlaceHolder_password" required="required"  runat="server" ></asp:TextBox >
+                                  <asp:TextBox id="PlaceHolder_password" TextMode="Password" required="required"  runat="server" ></asp:TextBox >
        
                                   <asp:Label ID="register_pass2" runat="server" Text="Ponovite lozinku"></asp:Label>
-                                  <asp:TextBox id="PlaceHolder_pass2" required="required" runat="server" ></asp:TextBox >
+                                  <asp:TextBox id="PlaceHolder_pass2" TextMode="Password" required="required" runat="server" ></asp:TextBox >
   
                                   <asp:Label ID="register_ime" runat="server" Text="Unesite ime"></asp:Label>
                                   <asp:TextBox id="PlaceHolder_ime" required="required" runat="server" ></asp:TextBox >
@@ -76,18 +80,23 @@
                                   <asp:TextBox id="PlaceHolder_email" required="required" runat="server"></asp:TextBox>
                             
                                 <p class="signin button"> 
-                                    <asp:button runat="server" type="submit"  onclick="btnRegister_Click" UseSubmitBehavior="false" Text="Registruj se" EnableViewState = true></asp:button>
+                                    <asp:button runat="server" type="submit"  onclick="btnRegister_Click" Text="Registruj se" EnableViewState = true></asp:button>
 									<!--<input type="submit" value="Registruj se"/>-->
 								
                                 <p class="change_link">  
 									Već ste registrovani ?
-									<a href="#tologin" class="to_register"> Idi na stranicu prijavi </a>
+									<asp:Button ID="login_redirect" runat="server" OnClick="btnRedirectToLoginClick" UseSubmitBehavior="false" Text=" Idi na stranicu prijavi" class="to_register" ></asp:Button>
 								</p>
                       
                             
                         </div>
+                                </asp:Panel>
                     </div>
-                </div>  
+                </div> 
+                <asp:Panel ID="panel_uspesan_redirect_msg" runat="server" Visible ="false">
+                    <asp:Label ID="Label_uspesan_redirect" runat="server" Text="Uspešno ste se registrovali!"></asp:Label>
+                    <asp:Button ID="btn_uspesan_redirect" runat="server" OnClick="btnUspesanRedirectClick" UseSubmitBehavior="false" Text="U redu"></asp:Button >
+                </asp:Panel>
             </section>
-        </div>
+        </div></ContentTemplate></asp:UpdatePanel>  
 </asp:Content>

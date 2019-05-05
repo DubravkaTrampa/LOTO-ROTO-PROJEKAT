@@ -88,7 +88,7 @@
 
         </div>
         <!-- Collapsible content -->
-          <asp:Button class="nav-link" ID="linkIgrajTiket" runat="server" UseSubmitBehavior="false" Text="Igraj" OnClick="LinkIgraj_Click"></asp:Button>
+          <asp:Button class="btn btn-indigo" ID="linkIgrajTiket"  runat="server" UseSubmitBehavior="false" Text="Igraj" OnClick="LinkIgraj_Click"></asp:Button>
       </div>
       <!-- Additional container -->
                 <!--<a href="RegistrujPrijavi.aspx" >Registruj/Prijavi se</a> -->

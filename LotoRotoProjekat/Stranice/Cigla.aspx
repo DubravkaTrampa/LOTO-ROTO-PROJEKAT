@@ -12,5 +12,24 @@
 
     <script src="/javascript/cigle.js"></script>
         </ContentTemplate></asp:UpdatePanel>
-    <asp:Button ID="cigle_pokreni" runat="server" OnClic="btnCiglePokreni" Text="Start" OnClick="cigle_pokreni_Click"></asp:Button>
+     <div class="container-fluid">
+        <div>
+         <section class="details-card" style="padding: 100px 0;background:none !important;">
+        <div class="container" style="margin-left:70px;">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card-content">
+                        <div class="card-img">
+                            <img src="../slike/slika_cigla.jpg" alt="" style="width:450px; height:250px">                  
+                        </div>
+                        <div class="card-desc">
+                           <asp:Button ID="cigle_pokreni" style="width:450px;height:50px;background-color:#910b70;color:#FFFFFF;" runat="server" OnClic="btnCiglePokreni" Text="Start" OnClick="cigle_pokreni_Click"></asp:Button>
+                                </div>
+                             </div>
+                           </div>
+                        </div>
+                    </div>
+                 </section>
+             </div>
+        </div>
 </asp:Content>

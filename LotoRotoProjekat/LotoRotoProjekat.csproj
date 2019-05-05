@@ -68,6 +68,7 @@
   <ItemGroup>
     <Content Include="slike\avatar.png" />
     <Content Include="slike\kartica_loptice.jpg" />
+    <Content Include="slike\slika_cigla.jpg" />
     <Content Include="stil\rezultati.css" />
     <Content Include="Stranice\AdminFondovi.aspx" />
     <Content Include="Stranice\AdminKombinacije.aspx" />

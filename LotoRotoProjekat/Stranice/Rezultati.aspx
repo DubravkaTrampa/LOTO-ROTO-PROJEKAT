@@ -90,7 +90,7 @@
 
                 <!--DRUGA KARTICA-->
                 <div class="col-md-4">
-                    <div class="card-content" style="width:420px;height:610px;margin-left:70px;margin-right:50;">
+                    <div class="card-content" style="width:420px;height:610px;margin-left:70px;margin-right:50px;">
                         <div class="card-img">
                             <img src="../slike/kartica_loptice.jpg" alt="">                  
                         </div>

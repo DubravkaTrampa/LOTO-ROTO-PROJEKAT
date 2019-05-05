@@ -88,11 +88,11 @@
 
         </div>
         <!-- Collapsible content -->
-          <asp:Button class="nav-link" ID="linkIgrajTiket" runat="server" Text="Igraj" OnClick="LinkIgraj_Click"></asp:Button>
+          <asp:Button class="nav-link" ID="linkIgrajTiket" runat="server" UseSubmitBehavior="false" Text="Igraj" OnClick="LinkIgraj_Click"></asp:Button>
       </div>
       <!-- Additional container -->
                 <!--<a href="RegistrujPrijavi.aspx" >Registruj/Prijavi se</a> -->
-        <asp:Button ID="btnPrijaviOdjaviSe" class="btn btn-indigo" style="margin-right:50px;background-color:#910b70 !important;" runat="server" Text="Prijavi/Registruj se" OnClick="btnPrijaviOdjaviSeClick" />
+        <asp:Button ID="btnPrijaviOdjaviSe" class="btn btn-indigo" style="margin-right:50px;background-color:#910b70 !important;" runat="server" UseSubmitBehavior="false" Text="Prijavi/Registruj se" OnClick="btnPrijaviOdjaviSeClick" />
                 <!--Grid column-->
 
         <!--Grid column-->

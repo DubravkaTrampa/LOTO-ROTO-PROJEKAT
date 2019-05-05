@@ -14,8 +14,7 @@ namespace LotoRotoProjekat
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //IZMENITI U POSLEDNJI PUT STE SE LOGOVALI
-            Response.Write("korisnik=" + Session["Korisnik"]);
+            
         }
         protected void btnLogin_Click(object sender, EventArgs e)
         {
@@ -134,7 +133,8 @@ namespace LotoRotoProjekat
                     $"'{fkRacuniId}')");
 
                     konekcija.IzvrsiNonQuery(NaredbaBtnPotvrdi.ToString());
-                     
+                    panel_uspesan_redirect_msg.Visible = true;
+                    panel_register.Visible = false;
                     }
                 }
 
@@ -147,6 +147,23 @@ namespace LotoRotoProjekat
             int idRacuna = Int32.Parse(konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaIdRacuna));
             return idRacuna;
         }
+        
+        protected void btnRedirectToRegisterClick(object sender, EventArgs e)
+        {/*resen bug*/
+            panel_login.Visible = false;
+            panel_register.Visible = true;
+        }
 
+        protected void btnRedirectToLoginClick(object sender, EventArgs e)
+        {
+            panel_login.Visible = true;
+            panel_register.Visible = false;
+        }
+
+        protected void btnUspesanRedirectClick(object sender, EventArgs e)
+        {
+            panel_uspesan_redirect_msg.Visible = false;
+            panel_login.Visible = true;
+        }
     }
  }

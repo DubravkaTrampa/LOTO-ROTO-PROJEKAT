@@ -27,23 +27,80 @@ namespace LotoRotoProjekat
 
         void NapraviMojiTiketiGridView()
         {
-            SqlConnection conn = konekcija.Connect();//connection name
 
-            conn.Open();
-            int idUlogovanogKorisnika = Convert.ToInt32(Session["id_ulogovanog_korisnika"]);
-            string naredbaSelektujMojeTikete = "SELECT * FROM Tiketi WHERE [fk_korisnici_id]=" + idUlogovanogKorisnika;
-            SqlCommand cmd = new SqlCommand(naredbaSelektujMojeTikete, conn);
+            DataTable dt = new DataTable();
+            DodajKoloneUGridViewMojTiket(dt);
+            //lista id-eva svih kombinacija koje je korisnik uplatio u trenutnom kolu
+            List<int> IdkombinacijaTiketaLista = VratiListuIdTiketKombinacija();
 
-            cmd.CommandType = CommandType.Text;
+            foreach (int trenutniIdKombinacije in IdkombinacijaTiketaLista)
+            {
+                DataRow novRed = NapraviRedOdBrojevaKombinacije(trenutniIdKombinacije, dt);
+                //nakon punjenja reda podacima, dodajemo ga u tabelu
+                dt.Rows.Add(novRed);
+            }
 
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-
-            DataSet ds = new DataSet();
-
-            da.Fill(ds, "ss");
-
-            GridViewMojiTiketi.DataSource = ds.Tables["ss"];
+           
+            GridViewMojiTiketi.DataSource = dt;
             GridViewMojiTiketi.DataBind();
+        }
+
+        void DodajKoloneUGridViewMojTiket(DataTable dt)
+        {
+            string[] naziviKolona = { "Broj 1", "Broj 2", "Broj 3", "Broj 4", "Broj 5", "Broj 6", "Broj 7", "Broj 8", "Broj 9"
+                ,"Broj 10", "Broj 11", "Broj 12", "Broj 13", "Broj 14"};
+            int brojKolona = 14;
+            //dodaj kolone u grid view
+            for (int i = 0; i < brojKolona; i++)
+            {
+                dt.Columns.Add(naziviKolona[i], typeof(string));
+            }
+        }
+
+        List<int> VratiListuIdTiketKombinacija()
+        {
+            string naredbaBrojTiketaKorisnikaTrenutnoKolo = "SELECT [tiket_kombinacija_id]" +
+               " FROM Tiketi" +
+               " WHERE fk_korisnici_id = " + Session["id_ulogovanog_korisnika"]+
+                     " AND fk_kola_id = 10";
+
+            List<int> tiketKombinacijaIdevi = new List<int>();
+            SqlConnection conn = konekcija.Connect();
+            conn.Open();
+
+            SqlCommand komanda = new SqlCommand(naredbaBrojTiketaKorisnikaTrenutnoKolo, conn);
+            var readerTiketKombinacija = komanda.ExecuteReader();
+
+            while (readerTiketKombinacija.Read())
+            {
+                int trenutniTiketKombinacijaId = Convert.ToInt32(readerTiketKombinacija["tiket_kombinacija_id"]);
+                tiketKombinacijaIdevi.Add(trenutniTiketKombinacijaId);
+            }
+
+            conn.Close();
+            return tiketKombinacijaIdevi;
+        }
+
+        DataRow NapraviRedOdBrojevaKombinacije(int idKombinacije, DataTable dt)
+        {
+            DataRow NewRow = dt.NewRow();
+            SqlConnection conn = konekcija.Connect();
+            conn.Open();
+
+            string naredbaNadjiKombinaciju = "SELECT [broj] FROM Kombinacije WHERE kombinacija_id = " + idKombinacije;
+            SqlCommand komanda = new SqlCommand(naredbaNadjiKombinaciju, conn);
+            var reader = komanda.ExecuteReader();
+            //promenljiva kolona sluzi za kretanje po kolonama
+            int kolona = 0;
+
+            while (reader.Read())
+            {
+                //u kolonu dodaj vrednost procitanog broja
+                NewRow[kolona] = reader["broj"].ToString();
+                kolona++;
+            }
+
+            return NewRow;
         }
 
         void NapraviTiketGridView()
@@ -60,14 +117,14 @@ namespace LotoRotoProjekat
 
             for (int i = 0; i < brojRedova; i++)
             {
-                DodajRed(brojKolona, dt, i);
+                DodajRedTiketa(brojKolona, dt, i);
             }
             //dodaj podatke u grid view
             GridViewNov.DataSource = dt;
             GridViewNov.DataBind();
         }
 
-        void DodajRed(int brojKolona, DataTable dt, int indeksReda)
+        void DodajRedTiketa(int brojKolona, DataTable dt, int indeksReda)
         {
             DataRow NewRow = dt.NewRow();
             for (int j = 0; j < brojKolona; j++)

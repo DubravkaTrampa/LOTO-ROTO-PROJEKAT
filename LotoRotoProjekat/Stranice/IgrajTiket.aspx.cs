@@ -13,8 +13,7 @@ namespace LotoRotoProjekat
 {
     public partial class IgrajTiket : System.Web.UI.Page
     {
-
-        String ispis ;
+     
         protected void Page_Load(object sender, EventArgs e)
         { 
             if (!IsPostBack)

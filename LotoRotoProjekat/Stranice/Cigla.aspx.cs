@@ -17,6 +17,7 @@ namespace LotoRotoProjekat
         protected void cigle_pokreni_Click(object sender, EventArgs e)
         {
             panel1.Visible = true;
+            panelSaSlikomIdugmetom.Visible = false;
         }
     }
 }

@@ -59,7 +59,9 @@
        
                                   <asp:Label ID="register_pass2" runat="server" Text="Ponovite lozinku"></asp:Label>
                                   <asp:TextBox id="PlaceHolder_pass2" TextMode="Password" required="required" runat="server" ></asp:TextBox >
-  
+                            <p>
+                                  <asp:Label ID="label_nejednake_lozinke_register" Visible="false" runat="server" ForeColor="Red" Text="Lozinke nisu iste!"></asp:Label>
+                            </p>
                                   <asp:Label ID="register_ime" runat="server" Text="Unesite ime"></asp:Label>
                                   <asp:TextBox id="PlaceHolder_ime" required="required" runat="server" ></asp:TextBox >
    

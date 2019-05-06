@@ -68,11 +68,11 @@ namespace LotoRotoProjekat
             conn.Open();
 
             SqlCommand komanda = new SqlCommand(naredbaBrojTiketaKorisnikaTrenutnoKolo, conn);
-            var readerTiketKombinacija = komanda.ExecuteReader();
+            var reader = komanda.ExecuteReader();
 
-            while (readerTiketKombinacija.Read())
+            while (reader.Read())
             {
-                int trenutniTiketKombinacijaId = Convert.ToInt32(readerTiketKombinacija["tiket_kombinacija_id"]);
+                int trenutniTiketKombinacijaId = Convert.ToInt32(reader["tiket_kombinacija_id"]);
                 tiketKombinacijaIdevi.Add(trenutniTiketKombinacijaId);
             }
 
@@ -205,7 +205,8 @@ namespace LotoRotoProjekat
             {
                 moguciBrojevi[i] = i + 1;
             }
-            for(int i = 0; i < 5; i++)
+            int brojDodatihRandomTiketaPoKliku = 5;
+            for(int i = 0; i < brojDodatihRandomTiketaPoKliku; i++)
             {
                 randomKombinacije = NapraviRandomKombinaciju(moguciBrojevi);
                 PotvrdiTiketSaKombinacijom(randomKombinacije);
@@ -215,6 +216,7 @@ namespace LotoRotoProjekat
 
         List<int> NapraviRandomKombinaciju(int[] moguciBrojevi)
         {
+            //Mesanje niza
             Random rnd = new Random();
             for (int i = moguciBrojevi.Length - 1; i > 0; i--)
             {
@@ -224,6 +226,7 @@ namespace LotoRotoProjekat
                 moguciBrojevi[index] = moguciBrojevi[i];
                 moguciBrojevi[i] = a;
             }
+            //punjenje liste sa prvih 14 izmesanih brojeva
             List<int> izmesanaLista = new List<int>();
             for(int i=0; i < 14; i++)
             {

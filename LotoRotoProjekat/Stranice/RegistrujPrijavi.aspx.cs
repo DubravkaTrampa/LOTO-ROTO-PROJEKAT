@@ -89,11 +89,10 @@ namespace LotoRotoProjekat
                     bool lozinkeJednake = pass == pass2;
                     if (!lozinkeJednake)
                     {
-                        //UBACITI PORUKU KOJA KAZE DA NISU JEDNAKE LOZINKE
+                        label_nejednake_lozinke_register.Visible = true;
                         return;
                     }
 
-                    // KLASA PROVERI DA LI KORISNIK POSTOJI
                     string naredbaUname = "SELECT * FROM Korisnici WHERE username='" + username + "' OR email= '"+email+"' ";
             
                     SqlConnection conn = konekcija.Connect();
@@ -146,7 +145,7 @@ namespace LotoRotoProjekat
         }
         
         protected void btnRedirectToRegisterClick(object sender, EventArgs e)
-        {/*resen bug*/
+        {
             panel_login.Visible = false;
             panel_register.Visible = true;
         }

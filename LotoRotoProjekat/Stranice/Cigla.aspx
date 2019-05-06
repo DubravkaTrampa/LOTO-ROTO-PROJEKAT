@@ -8,14 +8,15 @@
     	canvas { background: #eee; }
     </style>
     
-<canvas id="myCanvas" width="730" height="420" style="float:left;margin-left:400px;margin-top:50px;margin-bottom: 450px;"></canvas>
+<canvas id="myCanvas" width="730" height="420" style="float:left;margin-left:250px;margin-top:50px;margin-bottom: 450px;"></canvas>
 
     <script src="/javascript/cigle.js"></script>
         </ContentTemplate></asp:UpdatePanel>
+    <asp:Panel ID="panelSaSlikomIdugmetom" runat="server" Visible="true">
      <div class="container-fluid">
         <div>
          <section class="details-card" style="padding: 100px 0;background:none !important;">
-        <div class="container" style="margin-left:70px;">
+        <div class="container" style="margin-left:240px;">
             <div class="row">
                 <div class="col-md-4">
                     <div class="card-content">
@@ -32,4 +33,6 @@
                  </section>
              </div>
         </div>
+
+    </asp:Panel>
 </asp:Content>

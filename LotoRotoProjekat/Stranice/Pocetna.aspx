@@ -2,13 +2,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="btn-indigo" style="float:left;margin-left:20px; margin-top:50px; width:220px;height:62px;text-align:center;background-color:#910b70 !important;">
+    <div class="btn-indigo" style="float:left;margin-left:20px; margin-top:80px; width:220px;height:62px;text-align:center;background-color:#910b70 !important;">
                   
         <h5>Uplate se zatvaraju za:</h5> 
             <p id="demo"></p>
                  
         <script src="/javascript/brojac_do_izvlacenja.js"></script>
-              <a href="https://www.un.org/en/universal-declaration-human-rights/" target="_blank" style="float:left;margin-left:40px;margin-top:100px;"><img src="/slike/human_rights.gif"/></a>
+              <a href="https://www.unicef.org/" target="_blank" style="float:left;margin-left:2px;margin-top:40px;"><img src="/slike/unicef.gif" style="width:220px;height:134px;"/></a>
     </div>
      
 
@@ -44,7 +44,6 @@
             <a href="https://twitter.com/?lang=en" target="_blank" class="fa fa-twitter"style="margin:auto;width: 20%;padding: 10px;"></a>
             <a href="https://rs.linkedin.com/" target="_blank" class="fa fa-linkedin"style="margin:auto;width: 20%;padding: 10px;"></a>
           </section>
-          <a href="https://www.unicef.org/" target="_blank" style="float:right;margin-right:180px;margin-top:40px;"><img src="/slike/unicef.gif"/></a> 
           
         </div>
         <!--Grid column-->

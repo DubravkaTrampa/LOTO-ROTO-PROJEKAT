@@ -26,7 +26,7 @@ namespace LotoRotoProjekat
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            PrikaziRezultateNaStranici();
         }
 
 
@@ -258,6 +258,13 @@ namespace LotoRotoProjekat
 
             string naredbaPrebrojIzvuceneDobitnike = "SELECT COUNT(*) FROM Dobitnici ";
             string izvucenoDobitaka = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaPrebrojIzvuceneDobitnike);
+
+
+            //moj.InnerHtml = ukupanIznosFonda.ToString();
+            rezultatiUkupnoUplaceno.InnerText = ukupanIznosFonda.ToString();
+            rezultatiPreneseniFond.InnerText = preneseniFondZaSledeceKolo.ToString();
+            rezultatiUkupnoUplaceno.InnerText = ukupanIznosFonda.ToString();
+            rezultatiCenaTiketa.InnerText =
 
             LabelUkupanIznosFonda.Text = ukupanIznosFonda.ToString();
             LabelPreneseniFond.Text = preneseniFondZaSledeceKolo.ToString();

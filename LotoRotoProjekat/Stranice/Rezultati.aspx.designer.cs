@@ -31,13 +31,58 @@ namespace LotoRotoProjekat {
         protected global::System.Web.UI.WebControls.Button BtnZapocniKolo;
         
         /// <summary>
-        /// LabelUkupnoUplaceno control.
+        /// rezultatiUkupnoUplaceno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelUkupnoUplaceno;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl rezultatiUkupnoUplaceno;
+        
+        /// <summary>
+        /// rezultatiPreneseniFond control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl rezultatiPreneseniFond;
+        
+        /// <summary>
+        /// rezultatiUkupanIznosFonda control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl rezultatiUkupanIznosFonda;
+        
+        /// <summary>
+        /// rezultatiCenaTiketa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl rezultatiCenaTiketa;
+        
+        /// <summary>
+        /// rezultatiUplacenoTiketa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl rezultatiUplacenoTiketa;
+        
+        /// <summary>
+        /// rezultatiIzvucenoDobitaka control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl rezultatiIzvucenoDobitaka;
         
         /// <summary>
         /// LabelPreneseniFond control.

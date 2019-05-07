@@ -32,14 +32,17 @@ namespace LotoRotoProjekat
 
         protected void BtnZavrsiKolo_Click(object sender, EventArgs e)
         {
-            bool izvucenaSedmica = ProveriIzvucenaSedmica();
-            BazaObradiTiketeUnesiDobitnike();
-            DopuniFond();
-            IzracunajFondove(VratiNagradniFondIzBaze(), izvucenaSedmica);
-            IzvrsiNaplateIzFonda();
-            AzurirajFond(izvucenaSedmica);
-            PrikaziRezultateNaStranici();
-            BazaPromeniStatusKola(false);
+            if (BazaKoloAktivno() == true)
+            {
+                bool izvucenaSedmica = ProveriIzvucenaSedmica();
+                BazaObradiTiketeUnesiDobitnike();
+                DopuniFond();
+                IzracunajFondove(VratiNagradniFondIzBaze(), izvucenaSedmica);
+                IzvrsiNaplateIzFonda();
+                AzurirajFond(izvucenaSedmica);
+                PrikaziRezultateNaStranici();
+                BazaPromeniStatusKola(false);
+            }
         }
 
         protected void BtnZapocniKolo_Click(object sender, EventArgs e)

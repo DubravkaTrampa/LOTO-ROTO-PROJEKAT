@@ -155,14 +155,16 @@ namespace LotoRotoProjekat
                 ,"Deseto", "Jedanaesto", "Dvanaesto", "Trinaesto"};
             int brojKolona = naziviKolona.Length;
 
-            for (int i = 0; i < brojKolona; i++)
+            //kretanje po kolonama
+            for (int indeksKolone = 0; indeksKolone < brojKolona; indeksKolone++)
             {
                 // ako je naziv kliknute kolone jednak i-tom nazivu kolone
-                if (e.CommandName == naziviKolona[i])
+                if (e.CommandName == naziviKolona[indeksKolone])
                 {
                     // commandArgument = indeks Reda
-                    int broj = (Int32.Parse(e.CommandArgument.ToString()) * brojKolona) + i + 1;
-                    AzurirajTiket(broj, Int32.Parse(e.CommandArgument.ToString()), i);
+                    int indeksReda = Int32.Parse(e.CommandArgument.ToString());
+                    int kliknutBroj = (indeksReda * brojKolona) + indeksKolone + 1;
+                    AzurirajTiket(kliknutBroj, Int32.Parse(e.CommandArgument.ToString()), indeksKolone);
                 }
             }
         }

@@ -26,7 +26,7 @@ namespace LotoRotoProjekat
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            PrikaziRezultateNaStranici();
+            //PrikaziRezultateNaStranici();
         }
 
 
@@ -64,30 +64,34 @@ namespace LotoRotoProjekat
             SqlConnection conn = konekcija.Connect();
             conn.Open();
             //izvrsi stored proceduru
-            var reader = new SqlCommand("EXEC ObradiTiketeNadjiDobitnike", conn).ExecuteReader();
+            var reader = new SqlCommand("EXEC NadjiDobitnike", conn).ExecuteReader();
             while (reader.Read())
             {
                 dobitnici.Add(
                 new Dobitnik(
                  reader["vrsta_pogotka"].ToString(),
                  Convert.ToInt32(reader["fk_racuni_id"]),
-                 Convert.ToInt32(reader["pk_tiketi_id"])
+                 Convert.ToInt32(reader["pk_tiketi_id"]),
+                 Convert.ToInt32(reader["pk_kola_id"])
                  ));
             }
-            StringBuilder naredbaDodajDobitnike = new StringBuilder("INSERT INTO Dobitnici(vrsta_pogotka,fk_tiketi_id,fk_racuni_id) VALUES ");
+            StringBuilder naredbaDodajDobitnike = new StringBuilder("INSERT INTO Dobitnici(vrsta_pogotka,fk_tiketi_id,fk_racuni_id,fk_kola_id) VALUES ");
                 for(int i=0; i < dobitnici.Count-1; i++)
             {
-                naredbaDodajDobitnike.Append($"({dobitnici[i].vrstaPogotka},{dobitnici[i].idTiketa}, {dobitnici[i].idRacuna}),");
+                naredbaDodajDobitnike.Append($"({dobitnici[i].vrstaPogotka},{dobitnici[i].idTiketa}," +
+                    $" {dobitnici[i].idRacuna}, {dobitnici[i].idKola}),");
             }
             int poslednjiIndeks = dobitnici.Count-1;
-                naredbaDodajDobitnike.Append($"({dobitnici[poslednjiIndeks].vrstaPogotka},{dobitnici[poslednjiIndeks].idTiketa}, {dobitnici[poslednjiIndeks].idRacuna});");
+                naredbaDodajDobitnike.Append($"({dobitnici[poslednjiIndeks].vrstaPogotka},{dobitnici[poslednjiIndeks].idTiketa}," +
+                    $" {dobitnici[poslednjiIndeks].idRacuna},{dobitnici[poslednjiIndeks].idKola});");
            // konekcija.IzvrsiNonQuery("DELETE FROM Dobitnici");
             konekcija.IzvrsiNonQuery(naredbaDodajDobitnike.ToString());
         }
 
         public bool ProveriIzvucenaSedmica()
         {
-            string naredbaPrebrojDobitnikeVrste = "SELECT COUNT(*) AS broj FROM Dobitnici WHERE vrsta_pogotka = '7' ";
+            string naredbaPrebrojDobitnikeVrste = "SELECT COUNT(*) AS broj FROM Dobitnici WHERE vrsta_pogotka = '7'" +
+                " AND fk_kola_id = " + konekcija.IzvrsiScalarQueryIVratiVrednost("(SELECT MAX(pk_kola_id) FROM Kola)");
         
             string brojIzvucenihString = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaPrebrojDobitnikeVrste);
             int brojIzvucenih = Convert.ToInt32(brojIzvucenihString);
@@ -169,7 +173,8 @@ namespace LotoRotoProjekat
         {
             double broj = 0;
 
-            string naredbaPrebrojDobitnikeVrste = "SELECT COUNT(*) AS broj FROM Dobitnici WHERE vrsta_pogotka = '" + vrstaDobitka + "' ";
+            string naredbaPrebrojDobitnikeVrste = "SELECT COUNT(*) AS broj FROM Dobitnici WHERE vrsta_pogotka = '" + vrstaDobitka + "' " +
+                " AND fk_kola_id = " + konekcija.IzvrsiScalarQueryIVratiVrednost("(SELECT MAX(pk_kola_id) FROM Kola)");
          
             string brojString = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaPrebrojDobitnikeVrste);
             broj = Convert.ToDouble(brojString);
@@ -179,10 +184,26 @@ namespace LotoRotoProjekat
 
         public void IzvrsiNaplateIzFonda()
         {
+           // double brojDobitnikaVrste5 = PrebrojDobitnikeVrste("5");
+           // double brojDobitnikaVrste6 = PrebrojDobitnikeVrste("6");
+
             double pojedinacniDobitakZa4Pogotka = fondZaDobitak4Pogotka / PrebrojDobitnikeVrste("4");
             double pojedinacniDobitakZa5Pogotka = fondZaDobitak5Pogotka / PrebrojDobitnikeVrste("5");
             double pojedinacniDobitakZa6Pogotka = fondZaDobitak6Pogotka / PrebrojDobitnikeVrste("6");
+
+            /*if (brojDobitnikaVrste5 == 0)
+            {
+                fondZaDobitak7Pogotka += fondZaDobitak5Pogotka;
+                pojedinacniDobitakZa5Pogotka = 0;
+            }
+            if (brojDobitnikaVrste6 == 0)
+            {
+                fondZaDobitak7Pogotka += fondZaDobitak6Pogotka;
+                pojedinacniDobitakZa6Pogotka = 0;
+            }*/
             double pojedinacniDobitakZa7Pogotka = fondZaDobitak7Pogotka / PrebrojDobitnikeVrste("7");
+
+
             string datum = "'" + DateTime.Now.ToString("yyyy-MM-dd") + "'";
 
             foreach (Dobitnik trenutni in dobitnici)
@@ -256,17 +277,28 @@ namespace LotoRotoProjekat
             string naredbaPrebrojUplacenoTiketa = "SELECT COUNT(*) FROM Tiketi WHERE fk_kola_id =" + idPoslednjegKola + ";";
             string uplacenoTiketa = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaPrebrojUplacenoTiketa);
 
-            string naredbaPrebrojIzvuceneDobitnike = "SELECT COUNT(*) FROM Dobitnici ";
+            string naredbaPrebrojIzvuceneDobitnike = "SELECT COUNT(*) FROM Dobitnici where fk_kola_id = " + konekcija.IzvrsiScalarQueryIVratiVrednost("(SELECT MAX(pk_kola_id) FROM Kola)");
             string izvucenoDobitaka = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaPrebrojIzvuceneDobitnike);
 
 
             //moj.InnerHtml = ukupanIznosFonda.ToString();
-            rezultatiUkupnoUplaceno.InnerText = ukupanIznosFonda.ToString();
             rezultatiPreneseniFond.InnerText = preneseniFondZaSledeceKolo.ToString();
-            rezultatiUkupnoUplaceno.InnerText = ukupanIznosFonda.ToString();
-            rezultatiCenaTiketa.InnerText =
+            rezultatiUkupanIznosFonda.InnerText = ukupanIznosFonda.ToString();
+            rezultatiCenaTiketa.InnerText = "100";
+            rezultatiUplacenoTiketa.InnerText = uplacenoTiketa;
+            rezultatiIzvucenoDobitaka.InnerText = izvucenoDobitaka;
 
-            LabelUkupanIznosFonda.Text = ukupanIznosFonda.ToString();
+            rezultatiSedamPogodaka.InnerText = PrebrojDobitnikeVrste("7").ToString();
+            rezultatiSestPogodaka.InnerText = PrebrojDobitnikeVrste("6").ToString();
+            rezultatiPetPogotka.InnerText = PrebrojDobitnikeVrste("5").ToString();
+            rezultatiCetiriPogotka.InnerText = PrebrojDobitnikeVrste("4").ToString();
+
+            rezultatIsplacenoSedmice.InnerText = fondZaDobitak7Pogotka.ToString();
+            rezultatIsplacenoSestice.InnerText = fondZaDobitak6Pogotka.ToString();
+            rezultatIsplacenoPetice.InnerText = fondZaDobitak5Pogotka.ToString();
+            rezultatIsplacenoCetvorke.InnerText = fondZaDobitak4Pogotka.ToString();
+
+            /*LabelUkupanIznosFonda.Text = ukupanIznosFonda.ToString();
             LabelPreneseniFond.Text = preneseniFondZaSledeceKolo.ToString();
             LabelUplacenoTiketa.Text = uplacenoTiketa;
             LabelIzvucenoDobitaka.Text = izvucenoDobitaka;
@@ -279,7 +311,7 @@ namespace LotoRotoProjekat
             LabelIsplataSedmice.Text = fondZaDobitak7Pogotka.ToString();
             LabelIsplataSestice.Text = fondZaDobitak6Pogotka.ToString();
             LabelIsplataPetice.Text = fondZaDobitak5Pogotka.ToString();
-            LabelIsplataCetvorke.Text = fondZaDobitak4Pogotka.ToString();
+            LabelIsplataCetvorke.Text = fondZaDobitak4Pogotka.ToString();*/
         }
 
         public void BazaPromeniStatusKola(bool aktivno)
@@ -300,6 +332,7 @@ namespace LotoRotoProjekat
             public string vrstaPogotka;
             public int idRacuna;
             public int idTiketa;
+            public int idKola;
 
             public Dobitnik(string vrstaPogotka, int idRacuna)
             {
@@ -312,12 +345,21 @@ namespace LotoRotoProjekat
                 this.idRacuna = idRacuna;
                 this.idTiketa = idTiketa;
             }
+            public Dobitnik(string vrstaPogotka, int idRacuna, int idTiketa, int idKola)
+            {
+                this.vrstaPogotka = vrstaPogotka;
+                this.idRacuna = idRacuna;
+                this.idTiketa = idTiketa;
+                this.idKola = idKola;
+            }
         }
 
         public double VratiProcenat(double vrednost, double procenat)
         {
             return vrednost / (100d / procenat);
         }
+
+     
 
     
     }

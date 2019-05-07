@@ -4,13 +4,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="stil/cigle.css" rel="stylesheet" />
     <asp:ScriptManager ID="script1" runat="server"></asp:ScriptManager>
-    <asp:UpdatePanel ID="panel1" runat="server"><ContentTemplate>
+    <asp:UpdatePanel ID="panel1" style="padding-top:150px;margin-left:250px;" runat="server"><ContentTemplate>
     <asp:Label ID="LabelPrikazKombinacijeTiketa" runat="server" Text="" style="border-collapse:collapse;width: 280px;height:50px;font-size:24px;margin-left:15px;background-color:#FFFFFF;color:blue;" ></asp:Label>
 
-      <div class="btn-indigo" style="width:350px;margin-left:30px;margin-top:20px;"> 
-          <asp:Button class="btn btn-indigo" ID="ButtonOtvoriTiket" Text="Izaberi kombinaciju" runat="server" OnClick="ButtonOtvoriTiket_Click" Width="340px"/>
+      <div class="btn-indigo" style="width:405px;margin-left:30px;margin-top:20px;"> 
+          <asp:Button class="btn btn-indigo" ID="ButtonOtvoriTiket" Text="Izaberi kombinaciju" runat="server" OnClick="ButtonOtvoriTiket_Click" Width="395px"/>
       
-          <asp:GridView ID="GridViewNov" style="width: 320px;height:100px;margin-left:16px;background-color:#ffffff;text-align:center;font-size:14px;color:#b200ff;" runat="server" Visible="False"
+          <asp:GridView ID="GridViewNov" style="width: 320px;height:100px;margin-left:40px;background-color:#ffffff;text-align:center;font-size:14px;color:#b200ff;" runat="server" Visible="False"
       OnRowCommand="GridViewNov_RowCommand"  ForeColor="#0a10b5" BackColor="#66ffff"  AutoGenerateColumns="False">
       
       <Columns>
@@ -33,16 +33,19 @@
             
         </asp:GridView>
 
-    <asp:Button class="btn btn-indigo" ID="BtnPotvrdiTiket" runat="server" OnClick="BtnPotvrdiTiket_Click" Text="Potvrdi" Width="340px" />
-           <asp:Button class="btn btn-indigo" ID="BtnDodajRandomTiket" runat="server" OnClick="BtnDodajRandomTiket_Click" Text="Potvrdi" Width="340px" />
-          <asp:GridView ID="GridViewMojiTiketi" runat="server" >
+    <asp:Button class="btn btn-indigo" ID="BtnPotvrdiTiket" runat="server" OnClick="BtnPotvrdiTiket_Click" Text="Potvrdi" Width="395px" />
+           <asp:Button class="btn btn-indigo" ID="BtnDodajRandomTiket" runat="server" OnClick="BtnDodajRandomTiket_Click" Text="Uplati 5 tiketa" Width="395px" />
+      
+          <asp:GridView class="btn-indigo" style="width:405px;margin-left:550px;" ID="GridViewMojiTiketi" runat="server" >
               <Columns>
 
               </Columns>
           </asp:GridView>
-      </div></ContentTemplate></asp:UpdatePanel>      
+        
+           
+       </ContentTemplate></asp:UpdatePanel>      
 
           <div class="card-body" "ciglica">
-              <a href="Cigla.aspx" target="_blank" class="btn btn-indigo">DOK ČEKATE NA IZVLAČENJE!</a>
+              <a href="Cigla.aspx" target="_blank" class="btn btn-indigo" style="margin-left:650px;">DOK ČEKATE NA IZVLAČENJE!</a>
             </div>
 </asp:Content>

@@ -76,9 +76,7 @@
               <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">Administrator</a>
               <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="AdminKombinacije.aspx">Uplaćene kombinacije</a>
                 <a class="dropdown-item" href="AdminFondovi.aspx">Podaci o fondovima</a>
-                <a class="dropdown-item" href="AdminTransakcije.aspx">Transakcije</a>
                 <a class="dropdown-item" href="AdminUklanjanje.aspx">Uklanjanje korisnika</a>
               </div>
             </li>

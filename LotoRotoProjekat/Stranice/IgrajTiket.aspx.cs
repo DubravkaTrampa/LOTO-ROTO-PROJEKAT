@@ -58,10 +58,11 @@ namespace LotoRotoProjekat
 
         List<int> VratiListuIdTiketKombinacija()
         {
+            string naredbaNadjiPoslednjeKolo = "SELECT MAX(pk_kola_id) FROM Kola";
             string naredbaBrojTiketaKorisnikaTrenutnoKolo = "SELECT [tiket_kombinacija_id]" +
                " FROM Tiketi" +
                " WHERE fk_korisnici_id = " + Session["id_ulogovanog_korisnika"]+
-                     " AND fk_kola_id = 10";
+                     " AND fk_kola_id = "+konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaNadjiPoslednjeKolo);
 
             List<int> tiketKombinacijaIdevi = new List<int>();
             SqlConnection conn = konekcija.Connect();
@@ -300,11 +301,14 @@ namespace LotoRotoProjekat
         {
             //TREBA DA SE UNESE DANASNJI DATUM
             int idRacuna = Convert.ToInt32(Session["id_racuna"]);
-            string datum = "'"+DateTime.Now.ToString("yyyy-MM-dd")+"'";
+            string naredbaZavrsniDatum = "SELECT datum FROM Kola WHERE pk_kola_id = (SELECT MAX(pk_kola_id) FROM Kola)";
+            string zavrsniDatumKola = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaZavrsniDatum);
+            DateTime datum = DateTime.Parse(zavrsniDatumKola).AddDays(-1);
             //KLASA ZA RAD SA TRANSAKCIJAMA SA METODOM NAPRAVI TRANSAKCIJU
             string naredbaNapraviTransakciju = "INSERT INTO Transakcije" +
                 " (iznos,datum,fk_racuni_id,tip_transakcije)" +
-                " VALUES (100," +datum+ "," + idRacuna + ",'tiket')";
+                " VALUES (100,'" + datum.ToString("yyyy-MM-dd")
+                + "'," + idRacuna + ",'tiket')";
           
             konekcija.IzvrsiNonQuery(naredbaNapraviTransakciju);
 

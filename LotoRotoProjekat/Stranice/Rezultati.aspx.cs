@@ -52,7 +52,7 @@ namespace LotoRotoProjekat
                 //Kolo je vec zapoceto pa ne moze da bude opet startovano
                 return;
             }
-            int idDobitneKombinacije = 24;
+            int idDobitneKombinacije = 312;
             string naredbaNadjiDatumPoslednjegKola = "SELECT datum FROM Kola WHERE [pk_kola_id] = (SELECT MAX(pk_kola_id) FROM Kola)";
             DateTime datum = DateTime.Parse(konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaNadjiDatumPoslednjegKola));
             string datumNarednogKola = "'"+datum.AddDays(3).ToString("yyyy-MM-dd")+"'";

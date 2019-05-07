@@ -8,12 +8,14 @@ SELECT TOP (1000) [pk_dobitnici_id]
       ,[vrsta_pogotka]
       ,[fk_tiketi_id]
       ,[fk_racuni_id]
+	  ,[fk_kola_id]
   FROM [LotoRotoNovo].[dbo].[Dobitnici]
 
   /****** Script for SelectTopNRows command from SSMS  ******/
 SELECT TOP (1000) [pk_humanitarni_fondovi_id]
       ,[naziv]
       ,[fk_racuni_id]
+	  ,[opis_humanitarnog_fonda]
   FROM [LotoRotoNovo].[dbo].[Humanitarni_Fondovi]
 
   /****** Script for SelectTopNRows command from SSMS  ******/
@@ -65,3 +67,7 @@ SELECT TOP (1000) [pk_transakcije_id]
 	  ,[tip_transakcije]
   FROM [LotoRotoNovo].[dbo].[Transakcije]
 
+  /****** Script for SelectTopNRows command from SSMS  ******/
+SELECT TOP (1000) [pk_postoji_id]
+      ,[kolo_aktivno]
+  FROM [LotoRotoNovo].[dbo].[PostojiAktuelnoKolo]

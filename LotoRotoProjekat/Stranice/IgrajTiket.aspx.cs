@@ -145,7 +145,27 @@ namespace LotoRotoProjekat
         protected void GridViewNov_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             ObradiKlikIAzurirajTiket(e);
+<<<<<<< HEAD
+            PrikazTrenutneKombinacije();
+
+        }
+
+        protected void Button10_Click(object sender, EventArgs e)
+        {
+/* HEAD*/
+            SqlConnection conn = konekcija.Connect();
+/*=======
+>>>>>>> e31ae5226b6d7e68f9c4291dbcc73bd97d5981a8*/
+            List<Int32> kombinacije = KombinacijeKlasa.kombinacije;
+            int maxBrojevaPoTiketu = 14;
+
+            if (kombinacije.Count < maxBrojevaPoTiketu)
+            {
+                return;
+            }
+=======
             ButtonOtvoriTiket.Text = KombinacijeKlasa.kombinacije.Count.ToString();
+>>>>>>> 5155a7f20f38e44a7ef93d7d4b6fbfb41b19e330
 
         }
 

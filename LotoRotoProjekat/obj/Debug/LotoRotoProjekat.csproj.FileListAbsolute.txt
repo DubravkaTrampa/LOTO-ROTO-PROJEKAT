@@ -58,3 +58,7 @@ C:\Users\Dusica\Desktop\1 konacna verzija LT\LotoRotoProjekat\obj\Debug\LotoRoto
 C:\Users\Dusica\Desktop\1 konacna verzija LT\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.csproj.CopyComplete
 C:\Users\Dusica\Desktop\1 konacna verzija LT\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.dll
 C:\Users\Dusica\Desktop\1 konacna verzija LT\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.pdb
+C:\Users\Aleksandar\Documents\Konacno Loto Roto\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.csprojAssemblyReference.cache
+C:\Users\Aleksandar\Documents\Konacno Loto Roto\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.csproj.CoreCompileInputs.cache
+C:\Users\Aleksandar\Documents\Konacno Loto Roto\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.dll
+C:\Users\Aleksandar\Documents\Konacno Loto Roto\LotoRotoProjekat\obj\Debug\LotoRotoProjekat.pdb

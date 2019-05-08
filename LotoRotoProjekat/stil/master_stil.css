@@ -1,0 +1,21 @@
+﻿.pozadinska_slika {
+    background-image: url(/slike/gradient_neon.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.klik_link_stil {
+    margin-right: 50px;
+    background-color: #910b70 !important;
+}
+.footer_stil {
+    position: fixed;
+    height: 50px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #ad1365;
+    color: white;
+    text-align: center;
+}

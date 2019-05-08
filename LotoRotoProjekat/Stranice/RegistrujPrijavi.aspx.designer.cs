@@ -157,6 +157,15 @@ namespace LotoRotoProjekat {
         protected global::System.Web.UI.WebControls.TextBox PlaceHolder_pass2;
         
         /// <summary>
+        /// label_nejednake_lozinke_register control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label label_nejednake_lozinke_register;
+        
+        /// <summary>
         /// register_ime control.
         /// </summary>
         /// <remarks>

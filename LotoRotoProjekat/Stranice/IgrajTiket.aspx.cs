@@ -58,21 +58,22 @@ namespace LotoRotoProjekat
 
         List<int> VratiListuIdTiketKombinacija()
         {
+            string naredbaNadjiPoslednjeKolo = "SELECT MAX(pk_kola_id) FROM Kola";
             string naredbaBrojTiketaKorisnikaTrenutnoKolo = "SELECT [tiket_kombinacija_id]" +
                " FROM Tiketi" +
                " WHERE fk_korisnici_id = " + Session["id_ulogovanog_korisnika"]+
-                     " AND fk_kola_id = 10";
+                     " AND fk_kola_id = "+konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaNadjiPoslednjeKolo);
 
             List<int> tiketKombinacijaIdevi = new List<int>();
             SqlConnection conn = konekcija.Connect();
             conn.Open();
 
             SqlCommand komanda = new SqlCommand(naredbaBrojTiketaKorisnikaTrenutnoKolo, conn);
-            var readerTiketKombinacija = komanda.ExecuteReader();
+            var reader = komanda.ExecuteReader();
 
-            while (readerTiketKombinacija.Read())
+            while (reader.Read())
             {
-                int trenutniTiketKombinacijaId = Convert.ToInt32(readerTiketKombinacija["tiket_kombinacija_id"]);
+                int trenutniTiketKombinacijaId = Convert.ToInt32(reader["tiket_kombinacija_id"]);
                 tiketKombinacijaIdevi.Add(trenutniTiketKombinacijaId);
             }
 
@@ -154,14 +155,16 @@ namespace LotoRotoProjekat
                 ,"Deseto", "Jedanaesto", "Dvanaesto", "Trinaesto"};
             int brojKolona = naziviKolona.Length;
 
-            for (int i = 0; i < brojKolona; i++)
+            //kretanje po kolonama
+            for (int indeksKolone = 0; indeksKolone < brojKolona; indeksKolone++)
             {
                 // ako je naziv kliknute kolone jednak i-tom nazivu kolone
-                if (e.CommandName == naziviKolona[i])
+                if (e.CommandName == naziviKolona[indeksKolone])
                 {
                     // commandArgument = indeks Reda
-                    int broj = (Int32.Parse(e.CommandArgument.ToString()) * brojKolona) + i + 1;
-                    AzurirajTiket(broj, Int32.Parse(e.CommandArgument.ToString()), i);
+                    int indeksReda = Int32.Parse(e.CommandArgument.ToString());
+                    int kliknutBroj = (indeksReda * brojKolona) + indeksKolone + 1;
+                    AzurirajTiket(kliknutBroj, Int32.Parse(e.CommandArgument.ToString()), indeksKolone);
                 }
             }
         }
@@ -205,7 +208,8 @@ namespace LotoRotoProjekat
             {
                 moguciBrojevi[i] = i + 1;
             }
-            for(int i = 0; i < 5; i++)
+            int brojDodatihRandomTiketaPoKliku = 5;
+            for(int i = 0; i < brojDodatihRandomTiketaPoKliku; i++)
             {
                 randomKombinacije = NapraviRandomKombinaciju(moguciBrojevi);
                 PotvrdiTiketSaKombinacijom(randomKombinacije);
@@ -215,6 +219,7 @@ namespace LotoRotoProjekat
 
         List<int> NapraviRandomKombinaciju(int[] moguciBrojevi)
         {
+            //Mesanje niza
             Random rnd = new Random();
             for (int i = moguciBrojevi.Length - 1; i > 0; i--)
             {
@@ -224,6 +229,7 @@ namespace LotoRotoProjekat
                 moguciBrojevi[index] = moguciBrojevi[i];
                 moguciBrojevi[i] = a;
             }
+            //punjenje liste sa prvih 14 izmesanih brojeva
             List<int> izmesanaLista = new List<int>();
             for(int i=0; i < 14; i++)
             {
@@ -297,11 +303,14 @@ namespace LotoRotoProjekat
         {
             //TREBA DA SE UNESE DANASNJI DATUM
             int idRacuna = Convert.ToInt32(Session["id_racuna"]);
-            string datum = "'"+DateTime.Now.ToString("yyyy-MM-dd")+"'";
+            string naredbaZavrsniDatum = "SELECT datum FROM Kola WHERE pk_kola_id = (SELECT MAX(pk_kola_id) FROM Kola)";
+            string zavrsniDatumKola = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaZavrsniDatum);
+            DateTime datum = DateTime.Parse(zavrsniDatumKola).AddDays(-1);
             //KLASA ZA RAD SA TRANSAKCIJAMA SA METODOM NAPRAVI TRANSAKCIJU
             string naredbaNapraviTransakciju = "INSERT INTO Transakcije" +
                 " (iznos,datum,fk_racuni_id,tip_transakcije)" +
-                " VALUES (100," +datum+ "," + idRacuna + ",'tiket')";
+                " VALUES (100,'" + datum.ToString("yyyy-MM-dd")
+                + "'," + idRacuna + ",'tiket')";
           
             konekcija.IzvrsiNonQuery(naredbaNapraviTransakciju);
 

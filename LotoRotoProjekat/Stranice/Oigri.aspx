@@ -2,7 +2,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="col-lg-12 col-md-5 mb-4" style="text-align: justify;  text-align: center; color:#275196; padding:50px";>
+    <link href="../stil/informacije_o_nama.css" rel="stylesheet" />
+
+    <div class="col-lg-12 col-md-5 mb-4 o_igri">
         <h1 style="margin-top:40px";>Dobro došli!</h1><br />
         <ul style="list-style-type:none";>
 					<li>

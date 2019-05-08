@@ -1,0 +1,40 @@
+﻿.brojac_pozicija {
+    float: left;
+    margin-left: 2px;
+    margin-top: 40px;
+}
+.unicef_vel {
+    width: 220px;
+    height: 134px;
+}
+#okvir {
+    float: left;
+    margin-left: 20px;
+    margin-top: 80px;
+    width: 220px;
+    height: 62px;
+    text-align: center;
+    background-color: #910b70 !important;
+}
+#slogan{
+    text-align: justify;
+    text-align: center;
+    padding: 30px;
+    color: #275196;
+    text-transform: uppercase;
+}
+.social_dugmad {
+    text-center;
+    display:inline;
+    padding: 10px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+}
+.social_linkovi {
+    margin: auto;
+    width: 20%;
+    padding: 10px;
+}

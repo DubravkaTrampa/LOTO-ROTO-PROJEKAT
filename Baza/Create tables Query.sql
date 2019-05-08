@@ -134,19 +134,41 @@ GO
 
 -- ************************************** [dbo].[Dobitnici]
 
+-- ****************** SqlDBM: Microsoft SQL Server ******************
+-- ******************************************************************
+
+-- ************************************** [dbo].[Dobitnici]
+USE LotoRotoNovo
+
 CREATE TABLE [dbo].[Dobitnici]
 (
- [pk_dobitnici_id] int IDENTITY(1,1) NOT NULL ,
+ [pk_dobitnici_id]  int Identity(1,1) NOT NULL ,
  [vrsta_pogotka]   varchar(50) NOT NULL ,
  [fk_tiketi_id]    int NOT NULL ,
  [fk_racuni_id]    int NOT NULL ,
+ [fk_kola_id]      int NOT NULL ,
 
- CONSTRAINT [PK_Dobitnik] PRIMARY KEY CLUSTERED ([pk_dobitnici_id] ASC),
+
+ CONSTRAINT [FK_103] FOREIGN KEY ([fk_kola_id])  REFERENCES [dbo].[Kola]([pk_kola_id]),
  CONSTRAINT [FK_81] FOREIGN KEY ([fk_tiketi_id])  REFERENCES [dbo].[Tiketi]([pk_tiketi_id]),
  CONSTRAINT [FK_84] FOREIGN KEY ([fk_racuni_id])  REFERENCES [dbo].[Racuni]([pk_racuni_id])
 );
 GO
 
+
+CREATE UNIQUE CLUSTERED INDEX [PK_Dobitnik] ON [dbo].[Dobitnici] 
+ (
+  [pk_dobitnici_id] ASC
+ )
+
+GO
+
+CREATE NONCLUSTERED INDEX [fkIdx_103] ON [dbo].[Dobitnici] 
+ (
+  [fk_kola_id] ASC
+ )
+
+GO
 
 CREATE NONCLUSTERED INDEX [fkIdx_81] ON [dbo].[Dobitnici] 
  (
@@ -161,6 +183,7 @@ CREATE NONCLUSTERED INDEX [fkIdx_84] ON [dbo].[Dobitnici]
  )
 
 GO
+
 
 
 -- ************************************** [dbo].[Humanitarni_Fondovi]
@@ -196,4 +219,12 @@ CREATE TABLE [dbo].[Kombinacije]
 );
 GO
 
+-- ************** [dbo].[PostojiAktuelnoKolo]
+CREATE TABLE [dbo].[PostojiAktuelnoKolo]
+(
+ pk_postoji_id int IDENTITY(1,1) NOT NULL ,
+ [kolo_aktivno]  bit NOT NULL
 
+ CONSTRAINT [PK_PostojiAktuelnoKolo] PRIMARY KEY CLUSTERED ([pk_postoji_id] ASC)
+);
+GO

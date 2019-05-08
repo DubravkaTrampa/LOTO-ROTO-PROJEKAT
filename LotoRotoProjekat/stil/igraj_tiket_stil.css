@@ -1,0 +1,53 @@
+﻿.labela_prikaz_komb {
+    border-collapse: collapse;
+    width: 280px;
+    height: 50px;
+    font-size: 24px;
+    margin-left: 160px;
+    background-color: #FFFFFF;
+    color: blue;
+}
+.labela_prikaz_komb_panel {
+    padding-top: 30px;
+    margin-left: 250px;
+}
+.izaberi_komb_dugme_div {
+    width: 690px;
+    margin-left: 30px;
+    margin-top: 20px;
+    background-color: #910b70 !important;
+}
+.izaberi_komb_dugme {
+    width: 670px;
+    margin-left: 10px;
+    background-color: #910b70 !important;
+    }
+.grid_nov {
+    width: 320px;
+    height: 100px;
+    margin-left: 180px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    text-align: center;
+    font-size: 14px;
+    color: #b200ff;
+}
+.potvrdi_komb_dugme {
+    width: 670px;
+    margin-left: 10px;
+    background-color: #910b70 !important;
+}
+.dodaj_rand_tik {
+    width: 670px;
+    margin-left: 10px;
+    background-color: #910b70 !important;
+}
+.grid_moji_tiketi {
+    width: 670px;
+    margin-left: 10px;
+    text-align: center;
+    font-size: 14px;
+    background-color: #ffffff;
+    color: #b200ff;
+}

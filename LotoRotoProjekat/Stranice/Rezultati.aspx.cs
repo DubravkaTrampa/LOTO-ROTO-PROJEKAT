@@ -26,7 +26,7 @@ namespace LotoRotoProjekat
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //PrikaziRezultateNaStranici();
+           //PrikaziRezultateNaStranici();
         }
 
 
@@ -301,20 +301,6 @@ namespace LotoRotoProjekat
             rezultatIsplacenoPetice.InnerText = fondZaDobitak5Pogotka.ToString();
             rezultatIsplacenoCetvorke.InnerText = fondZaDobitak4Pogotka.ToString();
 
-            /*LabelUkupanIznosFonda.Text = ukupanIznosFonda.ToString();
-            LabelPreneseniFond.Text = preneseniFondZaSledeceKolo.ToString();
-            LabelUplacenoTiketa.Text = uplacenoTiketa;
-            LabelIzvucenoDobitaka.Text = izvucenoDobitaka;
-
-            LabelSedmica.Text = PrebrojDobitnikeVrste("7").ToString();
-            LabelSestica.Text = PrebrojDobitnikeVrste("6").ToString();
-            LabelPetica.Text = PrebrojDobitnikeVrste("5").ToString();
-            LabelCetvorka.Text = PrebrojDobitnikeVrste("4").ToString();
-
-            LabelIsplataSedmice.Text = fondZaDobitak7Pogotka.ToString();
-            LabelIsplataSestice.Text = fondZaDobitak6Pogotka.ToString();
-            LabelIsplataPetice.Text = fondZaDobitak5Pogotka.ToString();
-            LabelIsplataCetvorke.Text = fondZaDobitak4Pogotka.ToString();*/
         }
 
         public void BazaPromeniStatusKola(bool aktivno)
@@ -337,17 +323,6 @@ namespace LotoRotoProjekat
             public int idTiketa;
             public int idKola;
 
-            public Dobitnik(string vrstaPogotka, int idRacuna)
-            {
-                this.vrstaPogotka = vrstaPogotka;
-                this.idRacuna = idRacuna;
-            }
-            public Dobitnik(string vrstaPogotka, int idRacuna, int idTiketa)
-            {
-                this.vrstaPogotka = vrstaPogotka;
-                this.idRacuna = idRacuna;
-                this.idTiketa = idTiketa;
-            }
             public Dobitnik(string vrstaPogotka, int idRacuna, int idTiketa, int idKola)
             {
                 this.vrstaPogotka = vrstaPogotka;
@@ -362,8 +337,5 @@ namespace LotoRotoProjekat
             return vrednost / (100d / procenat);
         }
 
-     
-
-    
     }
 }

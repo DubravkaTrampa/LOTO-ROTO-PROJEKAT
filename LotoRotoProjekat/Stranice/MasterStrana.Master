@@ -11,11 +11,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 </head>
-<body  style="background-image:url(/slike/gradient_neon.jpg);background-size:cover;background-position: center center;background-repeat: no-repeat;background-attachment: fixed;">
+<body  class="pozadinska_slika">
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"> </script>
+    <link href="../stil/master_stil.css" rel="stylesheet" />
     <link href="../stil/style.css" rel="stylesheet" />
     <link href="../stil/bootstrap.css" rel="stylesheet" />
     <link href="../stil/bootstrap2.css" rel="stylesheet" />
@@ -23,7 +24,7 @@
 
 
     <form id="form1" runat="server">
-        <div>
+<div>
  <!--Main Navigation-->
   <header>
 
@@ -37,61 +38,61 @@
         <a class="navbar-brand" href="Pocetna.aspx" style="font-size:60px;">Loto Roto</a>
 
         <!-- Collapse button -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-          aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+              aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
 
         <!-- Collapsible content -->
-        <div class="collapse navbar-collapse" id="basicExampleNav">
+            <div class="collapse navbar-collapse" id="basicExampleNav">
 
-          <!-- Links -->
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="Pocetna.aspx">Pocetna
-              </a>
-            </li>
-            <!--<li class="nav-item">
-                <asp:HyperLink class="nav-link" ID="linkIgraj" runat="server" Text="Igraj" OnClick="LinkIgraj_Click"></asp:HyperLink>
-              <a class="nav-link" href="IgrajTiket.aspx">Igraj
-              </a>
-            </li>-->
-            <li class="nav-item">
-              <a class="nav-link" href="Rezultati.aspx">Rezultati
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="Oigri.aspx">O igri</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="Onama.aspx">O nama</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="Kontakt.aspx">Kontakt</a>
-            </li>
+              <!-- Links -->
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                      <a class="nav-link" href="Pocetna.aspx">Pocetna
+                      </a>
+                    </li>
+                    <!--<li class="nav-item">
+                        <asp:HyperLink class="nav-link" ID="linkIgraj" runat="server" Text="Igraj" OnClick="LinkIgraj_Click"></asp:HyperLink>
+                      <a class="nav-link" href="IgrajTiket.aspx">Igraj
+                      </a>
+                    </li>-->
+                    <li class="nav-item">
+                      <a class="nav-link" href="Rezultati.aspx">Rezultati
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="Oigri.aspx">O igri</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="Onama.aspx">O nama</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="Kontakt.aspx">Kontakt</a>
+                    </li>
 
-            <!-- Dropdown -->
-              <asp:ContentPlaceHolder runat="server" Visible="false" ID="placeholderAdminDropdown">
-            <li class="nav-item dropdown" >
-              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">Administrator</a>
-              <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="AdminFondovi.aspx">Podaci o fondovima</a>
-                <a class="dropdown-item" href="AdminUklanjanje.aspx">Uklanjanje korisnika</a>
-              </div>
-            </li>
-              </asp:ContentPlaceHolder>
-          </ul>
-          <!-- Links -->
+                <!-- Dropdown -->
+                  <asp:ContentPlaceHolder runat="server" Visible="false" ID="placeholderAdminDropdown">
+                    <li class="nav-item dropdown" >
+                      <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">Administrator</a>
+                      <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="AdminFondovi.aspx">Podaci o fondovima</a>
+                        <a class="dropdown-item" href="AdminUklanjanje.aspx">Uklanjanje korisnika</a>
+                      </div>
+                    </li>
+                  </asp:ContentPlaceHolder>
+              </ul>
+              <!-- Links -->
 
+            </div>
+        <!-- Collapsible content -->
+                <asp:Button class="btn btn-indigo klik_link_stil" style="background-color: #910b70 !important;" ID="linkIgrajTiket"  runat="server" UseSubmitBehavior="false" Text="Igraj" OnClick="LinkIgraj_Click"></asp:Button>
         </div>
-        <!-- Collapsible content -->
-          <asp:Button class="btn btn-indigo" style="margin-right:50px;background-color:#910b70 !important;" ID="linkIgrajTiket"  runat="server" UseSubmitBehavior="false" Text="Igraj" OnClick="LinkIgraj_Click"></asp:Button>
-      </div>
       <!-- Additional container -->
-                <!--<a href="RegistrujPrijavi.aspx" >Registruj/Prijavi se</a> -->
-        <asp:Button ID="btnPrijaviOdjaviSe" class="btn btn-indigo" style="margin-right:50px;background-color:#910b70 !important;" runat="server" UseSubmitBehavior="false" Text="Prijavi/Registruj se" OnClick="btnPrijaviOdjaviSeClick" />
-                <!--Grid column-->
+        <!--<a href="RegistrujPrijavi.aspx" >Registruj/Prijavi se</a> -->
+            <asp:Button ID="btnPrijaviOdjaviSe" class="btn btn-indigo klik_link_stil" style="background-color: #910b70 !important;" runat="server" UseSubmitBehavior="false" Text="Prijavi/Registruj se" OnClick="btnPrijaviOdjaviSeClick" />
+               <!--Grid column-->
 
         <!--Grid column-->
     </nav>
@@ -103,9 +104,9 @@
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-             </form><br /><br /><br />
+    </form><br /><br /><br />
          <!-- Footer -->
-   <footer style="  position: fixed;height:50px;left: 0;bottom: 0;width: 100%;background-color: #ad1365;color: white;text-align: center;">
+   <footer class="footer_stil">
 
             <!-- Copyright -->
             <div >© 2019 Copyright<p>Loto Roto</p>

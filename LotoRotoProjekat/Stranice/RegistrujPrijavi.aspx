@@ -4,7 +4,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="script1" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel ID="panel1" runat="server"><ContentTemplate>
-    <div class="container" style="padding:15px";>
+    
+        <div class="container" style="padding:15px";>
             <!-- Codrops top bar -->
             <div class="codrops-top">
 

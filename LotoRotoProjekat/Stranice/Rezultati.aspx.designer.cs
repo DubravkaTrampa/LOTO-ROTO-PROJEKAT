@@ -76,51 +76,6 @@ namespace LotoRotoProjekat {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl rezultatiIzvucenoDobitaka;
         
         /// <summary>
-        /// LabelPreneseniFond control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelPreneseniFond;
-        
-        /// <summary>
-        /// LabelUkupanIznosFonda control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelUkupanIznosFonda;
-        
-        /// <summary>
-        /// LabelCenaTiketa control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelCenaTiketa;
-        
-        /// <summary>
-        /// LabelUplacenoTiketa control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelUplacenoTiketa;
-        
-        /// <summary>
-        /// LabelIzvucenoDobitaka control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelIzvucenoDobitaka;
-        
-        /// <summary>
         /// rezultatiSedamPogodaka control.
         /// </summary>
         /// <remarks>
@@ -157,42 +112,6 @@ namespace LotoRotoProjekat {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl rezultatiCetiriPogotka;
         
         /// <summary>
-        /// LabelSedmica control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelSedmica;
-        
-        /// <summary>
-        /// LabelSestica control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelSestica;
-        
-        /// <summary>
-        /// LabelPetica control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelPetica;
-        
-        /// <summary>
-        /// LabelCetvorka control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelCetvorka;
-        
-        /// <summary>
         /// rezultatIsplacenoSedmice control.
         /// </summary>
         /// <remarks>
@@ -227,41 +146,5 @@ namespace LotoRotoProjekat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl rezultatIsplacenoCetvorke;
-        
-        /// <summary>
-        /// LabelIsplataSedmice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelIsplataSedmice;
-        
-        /// <summary>
-        /// LabelIsplataSestice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelIsplataSestice;
-        
-        /// <summary>
-        /// LabelIsplataPetice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelIsplataPetice;
-        
-        /// <summary>
-        /// LabelIsplataCetvorke control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelIsplataCetvorke;
     }
 }

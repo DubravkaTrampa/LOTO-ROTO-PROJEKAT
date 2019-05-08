@@ -2,12 +2,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <link href="../stil/informacije_o_nama.css" rel="stylesheet" />
                
     <!--Main container-->
     <div class="container">
     <main>
-    <section  class="text-center" style="margin-left:250px;margin-right:250px;">
-      <h5 class="py-5"style="color:#275196; text-transform: uppercase;">Naš tim</h5>
+    <section  class="text-center o_nama1">
+      <h5 class="py-5 nas_tim">Naš tim</h5>
       <div class="row" style="width:650px">
 
               <!--Grid column-->

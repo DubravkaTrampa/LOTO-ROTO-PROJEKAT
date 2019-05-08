@@ -67,9 +67,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="slike\avatar.png" />
+    <Content Include="slike\cigle.jpg" />
     <Content Include="slike\kartica_loptice.jpg" />
-    <Content Include="slike\slika_cigla.jpg" />
+    <Content Include="stil\igraj_tiket_stil.css" />
+    <Content Include="stil\informacije_o_nama.css" />
+    <Content Include="stil\master_stil.css" />
+    <Content Include="stil\pocetna_stil.css" />
+    <Content Include="stil\admin_fondovi.css" />
     <Content Include="stil\rezultati.css" />
+    <Content Include="stil\rezultati_stil.css" />
     <Content Include="Stranice\AdminFondovi.aspx" />
     <Content Include="Stranice\AdminUklanjanje.aspx" />
     <Content Include="Stranice\Cigla.aspx" />

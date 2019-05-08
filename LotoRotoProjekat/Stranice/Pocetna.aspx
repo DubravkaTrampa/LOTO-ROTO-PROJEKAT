@@ -2,13 +2,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="btn-indigo" style="float:left;margin-left:20px; margin-top:80px; width:220px;height:62px;text-align:center;background-color:#910b70 !important;">
+    <link href="../stil/pocetna_stil.css" rel="stylesheet" />
+
+    <div class="btn-indigo" id="okvir">
                   
         <h5>Uplate se zatvaraju za:</h5> 
             <p id="demo"></p>
                  
         <script src="/javascript/brojac_do_izvlacenja.js"></script>
-              <a href="https://www.unicef.org/" target="_blank" style="float:left;margin-left:2px;margin-top:40px;"><img src="/slike/unicef.gif" style="width:220px;height:134px;"/></a>
+              <a href="https://www.unicef.org/" target="_blank" class="brojac_pozicija"><img src="/slike/unicef.gif" class="unicef_vel"/></a>
     </div>
      
 
@@ -32,17 +34,17 @@
         </div>
 
         <!--Grid column-->
-        <div class="col-md-5 mb-4" style="text-align: justify;  text-align: center;padding:30px; color:#275196; text-transform: uppercase";>
+        <div class="col-md-3 mb-4" id="slogan">
 
           <h2>Donirajte, dok očekujete pogodak!<br />Svaka Vaša uplaćena kombinacija<br />je donacija humanitarnom fondu!</h2>
             <hr>
                 <p>Vaša donacija će stvarno promeniti nečiji život.</p>
          
-            <section id="social-buttons" class="text-center"; style="display:inline; padding: 10px; font-size: 30px;width: 50px;text-align: center;text-decoration: none;margin: 5px 2px;">
+            <section id="social-buttons" class="social_dugmad">
          
-            <a href="https://www.facebook.com/Loto-Roto-2261077554156862/" target="_blank" class="fa fa-facebook"style="margin:auto;width: 20%;padding: 10px;"></a>
-            <a href="https://twitter.com/?lang=en" target="_blank" class="fa fa-twitter"style="margin:auto;width: 20%;padding: 10px;"></a>
-            <a href="https://rs.linkedin.com/" target="_blank" class="fa fa-linkedin"style="margin:auto;width: 20%;padding: 10px;"></a>
+            <a href="https://www.facebook.com/Loto-Roto-2261077554156862/" target="_blank" class="fa fa-facebook social_linkovi"></a>
+            <a href="https://twitter.com/?lang=en" target="_blank" class="fa fa-twitter social_linkovi"></a>
+            <a href="https://rs.linkedin.com/" target="_blank" class="fa fa-linkedin social_linkovi"></a>
           </section>
           
         </div>

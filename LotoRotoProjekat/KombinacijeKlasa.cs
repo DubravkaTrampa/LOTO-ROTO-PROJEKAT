@@ -7,6 +7,7 @@ namespace LotoRotoProjekat
 {
     public class KombinacijeKlasa
     {
+        //lista u kojoj se cuvaju svi trenutno odabrani brojevi unutar tiketa
         public static List<Int32> kombinacije = new List<int>();
 
         public static string stringKombinacija()
@@ -26,6 +27,8 @@ namespace LotoRotoProjekat
 
             return kombinacija;
         }
+
+
 
     }
 }

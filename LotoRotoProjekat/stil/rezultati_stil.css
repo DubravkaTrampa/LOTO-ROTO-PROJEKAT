@@ -1,0 +1,48 @@
+﻿.glavni {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 50%;
+}
+
+.label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+}
+.konte_loptice {
+    width: 188px;
+    margin-left: 70px;
+    background-color: #910b70 !important;
+}
+.prva_kartica {
+    width: 420px;
+    margin-right: 20px;
+}
+.druga_kartica {
+    width: 420px;
+    height: 457px;
+    margin-left: 70px;
+    margin-right: 50px;
+}
+.treca_kartica {
+    width: 420px;
+    height: 457px;
+    margin-left: 140px;
+}
+.kartice_detalji {
+    padding: 100px 0;
+    background: none !important;
+}
+.kartice_konte {
+    margin-left: 70px;
+}

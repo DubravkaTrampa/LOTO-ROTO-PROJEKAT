@@ -13,15 +13,94 @@ namespace LotoRotoProjekat
 {
     public partial class IgrajTiket : System.Web.UI.Page
     {
-
-        String ispis ;
+     
         protected void Page_Load(object sender, EventArgs e)
         { 
             if (!IsPostBack)
             {
                 NapraviTiketGridView();
+                NapraviMojiTiketiGridView();
             }
 
+        }
+
+        void NapraviMojiTiketiGridView()
+        {
+
+            DataTable dt = new DataTable();
+            DodajKoloneUGridViewMojTiket(dt);
+            //lista id-eva svih kombinacija koje je korisnik uplatio u trenutnom kolu
+            List<int> IdkombinacijaTiketaLista = VratiListuIdTiketKombinacija();
+
+            foreach (int trenutniIdKombinacije in IdkombinacijaTiketaLista)
+            {
+                DataRow novRed = NapraviRedOdBrojevaKombinacije(trenutniIdKombinacije, dt);
+                //nakon punjenja reda podacima, dodajemo ga u tabelu
+                dt.Rows.Add(novRed);
+            }
+
+           
+            GridViewMojiTiketi.DataSource = dt;
+            GridViewMojiTiketi.DataBind();
+        }
+
+        void DodajKoloneUGridViewMojTiket(DataTable dt)
+        {
+            string[] naziviKolona = { "Broj 1", "Broj 2", "Broj 3", "Broj 4", "Broj 5", "Broj 6", "Broj 7", "Broj 8", "Broj 9"
+                ,"Broj 10", "Broj 11", "Broj 12", "Broj 13", "Broj 14"};
+            int brojKolona = 14;
+            //dodaj kolone u grid view
+            for (int i = 0; i < brojKolona; i++)
+            {
+                dt.Columns.Add(naziviKolona[i], typeof(string));
+            }
+        }
+
+        List<int> VratiListuIdTiketKombinacija()
+        {
+            string naredbaNadjiPoslednjeKolo = "SELECT MAX(pk_kola_id) FROM Kola";
+            string naredbaBrojTiketaKorisnikaTrenutnoKolo = "SELECT [tiket_kombinacija_id]" +
+               " FROM Tiketi" +
+               " WHERE fk_korisnici_id = " + Session["id_ulogovanog_korisnika"]+
+                     " AND fk_kola_id = "+konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaNadjiPoslednjeKolo);
+
+            List<int> tiketKombinacijaIdevi = new List<int>();
+            SqlConnection conn = konekcija.Connect();
+            conn.Open();
+
+            SqlCommand komanda = new SqlCommand(naredbaBrojTiketaKorisnikaTrenutnoKolo, conn);
+            var reader = komanda.ExecuteReader();
+
+            while (reader.Read())
+            {
+                int trenutniTiketKombinacijaId = Convert.ToInt32(reader["tiket_kombinacija_id"]);
+                tiketKombinacijaIdevi.Add(trenutniTiketKombinacijaId);
+            }
+
+            conn.Close();
+            return tiketKombinacijaIdevi;
+        }
+
+        DataRow NapraviRedOdBrojevaKombinacije(int idKombinacije, DataTable dt)
+        {
+            DataRow NewRow = dt.NewRow();
+            SqlConnection conn = konekcija.Connect();
+            conn.Open();
+
+            string naredbaNadjiKombinaciju = "SELECT [broj] FROM Kombinacije WHERE kombinacija_id = " + idKombinacije;
+            SqlCommand komanda = new SqlCommand(naredbaNadjiKombinaciju, conn);
+            var reader = komanda.ExecuteReader();
+            //promenljiva kolona sluzi za kretanje po kolonama
+            int kolona = 0;
+
+            while (reader.Read())
+            {
+                //u kolonu dodaj vrednost procitanog broja
+                NewRow[kolona] = reader["broj"].ToString();
+                kolona++;
+            }
+
+            return NewRow;
         }
 
         void NapraviTiketGridView()
@@ -38,25 +117,27 @@ namespace LotoRotoProjekat
 
             for (int i = 0; i < brojRedova; i++)
             {
-                DodajRed(brojKolona, dt, i);
+                DodajRedTiketa(brojKolona, dt, i);
             }
             //dodaj podatke u grid view
             GridViewNov.DataSource = dt;
             GridViewNov.DataBind();
         }
 
-        void DodajRed(int brojKolona, DataTable dt, int indeksReda)
+        void DodajRedTiketa(int brojKolona, DataTable dt, int indeksReda)
         {
             DataRow NewRow = dt.NewRow();
             for (int j = 0; j < brojKolona; j++)
             {
+                //1,2,3,4... 37,38,39
                 NewRow[j] = Convert.ToString((indeksReda * brojKolona) + j + 1);
             }
+            //nakon punjenja reda podacima, dodajemo ga u tabelu
             dt.Rows.Add(NewRow);
         }
 
 
-        protected void buttonClick_Click1(object sender, EventArgs e)
+        protected void ButtonOtvoriTiket_Click(object sender, EventArgs e)
         {
             GridViewNov.Visible = true;
         }
@@ -64,6 +145,7 @@ namespace LotoRotoProjekat
         protected void GridViewNov_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             ObradiKlikIAzurirajTiket(e);
+<<<<<<< HEAD
             PrikazTrenutneKombinacije();
 
         }
@@ -81,34 +163,31 @@ namespace LotoRotoProjekat
             {
                 return;
             }
+=======
+            ButtonOtvoriTiket.Text = KombinacijeKlasa.kombinacije.Count.ToString();
+>>>>>>> 5155a7f20f38e44a7ef93d7d4b6fbfb41b19e330
 
-            kombinacije.Sort();
-            //POSLEDNJE KOLO PREKO UPITA
-            int idKola = 10;
-            BazaPodatakaNapraviTiket(idKola);
-            BazaPodatakaNapraviKombinacijuTiketa(kombinacije, NadjiTiketKombinacijaId());
-            BazaPodatakaNapraviTransakcijuTiketa();
-            ResetujTiket(kombinacije);
         }
-
 
         void ObradiKlikIAzurirajTiket(GridViewCommandEventArgs e)
         {
             string[] naziviKolona = { "Prvo", "Drugo", "Trece", "Cetvrto", "Peto", "Sesto", "Sedmo", "Osmo", "Deveto"
                 ,"Deseto", "Jedanaesto", "Dvanaesto", "Trinaesto"};
             int brojKolona = naziviKolona.Length;
-            int broj = 0;
 
-            for (int i = 0; i < brojKolona; i++)
+            //kretanje po kolonama
+            for (int indeksKolone = 0; indeksKolone < brojKolona; indeksKolone++)
             {
-                if (e.CommandName == naziviKolona[i])
+                // ako je naziv kliknute kolone jednak i-tom nazivu kolone
+                if (e.CommandName == naziviKolona[indeksKolone])
                 {
-                    broj = (Int32.Parse(e.CommandArgument.ToString()) * brojKolona) + i + 1;
-                    AzurirajTiket(broj, Int32.Parse(e.CommandArgument.ToString()), i);
+                    // commandArgument = indeks Reda
+                    int indeksReda = Int32.Parse(e.CommandArgument.ToString());
+                    int kliknutBroj = (indeksReda * brojKolona) + indeksKolone + 1;
+                    AzurirajTiket(kliknutBroj, Int32.Parse(e.CommandArgument.ToString()), indeksKolone);
                 }
             }
         }
-
         void AzurirajTiket(int broj, int red, int kolona)
         {
             if (KombinacijeKlasa.kombinacije.Count == 0)
@@ -120,7 +199,7 @@ namespace LotoRotoProjekat
             }
             int i = 0;
             foreach (int trenutni in KombinacijeKlasa.kombinacije)
-                {
+            {
                 if (trenutni == broj)
                 {
                     KombinacijeKlasa.kombinacije.RemoveAt(i);
@@ -134,22 +213,77 @@ namespace LotoRotoProjekat
             }
             if (KombinacijeKlasa.kombinacije.Count < 14)
             {
-                  KombinacijeKlasa.kombinacije.Add(broj);
-                GridViewNov.Rows[red].Cells[kolona].BackColor =ColorTranslator.FromHtml("#e83e8c");
+                KombinacijeKlasa.kombinacije.Add(broj);
+                GridViewNov.Rows[red].Cells[kolona].BackColor = ColorTranslator.FromHtml("#e83e8c");
                 LabelPrikazKombinacijeTiketa.Text = KombinacijeKlasa.stringKombinacija();
 
             }
         }
 
-        void PrikazTrenutneKombinacije()
+        protected void BtnDodajRandomTiket_Click(object sender, EventArgs e)
         {
-            foreach (int trenutni in KombinacijeKlasa.kombinacije)
+            List<int> randomKombinacije = new List<int>();
+            int[] moguciBrojevi = new int[39];
+            for (int i = 0; i < moguciBrojevi.Length; i++)
             {
-                ispis += Convert.ToString(trenutni) + " , ";
+                moguciBrojevi[i] = i + 1;
+            }
+            int brojDodatihRandomTiketaPoKliku = 5;
+            for(int i = 0; i < brojDodatihRandomTiketaPoKliku; i++)
+            {
+                randomKombinacije = NapraviRandomKombinaciju(moguciBrojevi);
+                PotvrdiTiketSaKombinacijom(randomKombinacije);
+            }
+           
+        }
+
+        List<int> NapraviRandomKombinaciju(int[] moguciBrojevi)
+        {
+            //Mesanje niza
+            Random rnd = new Random();
+            for (int i = moguciBrojevi.Length - 1; i > 0; i--)
+            {
+                int index = rnd.Next(i + 1);
+                // Simple swap
+                int a = moguciBrojevi[index];
+                moguciBrojevi[index] = moguciBrojevi[i];
+                moguciBrojevi[i] = a;
+            }
+            //punjenje liste sa prvih 14 izmesanih brojeva
+            List<int> izmesanaLista = new List<int>();
+            for(int i=0; i < 14; i++)
+            {
+                izmesanaLista.Add(moguciBrojevi[i]); 
+            }
+            return izmesanaLista;
+        }
+
+        protected void BtnPotvrdiTiket_Click(object sender, EventArgs e)
+        {
+
+            List<Int32> kombinacije = KombinacijeKlasa.kombinacije;
+            PotvrdiTiketSaKombinacijom(kombinacije);
+        }
+
+        void PotvrdiTiketSaKombinacijom(List<int> kombinacije)
+        {
+            int maxBrojevaPoTiketu = 14;
+
+            if (kombinacije.Count < maxBrojevaPoTiketu)
+            {
+                return;
             }
 
-            ButtonOtvoriTiket.Text = KombinacijeKlasa.kombinacije.Count.ToString();
-        }
+            kombinacije.Sort();
+            //UPIT ZA NALAZENJE ID-A POSLEDNJEG KOLA U POMOCNOJ KLASI
+            string naredbaNadjiPoslednjeKolo = "SELECT pk_kola_id FROM Kola WHERE pk_kola_id = (SELECT MAX(pk_kola_id) FROM Kola)";
+            string idKolaString = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaNadjiPoslednjeKolo);
+            int idKola = Convert.ToInt32(idKolaString);
+            BazaPodatakaNapraviTiket(idKola);
+            BazaPodatakaNapraviKombinacijuTiketa(kombinacije, NadjiTiketKombinacijaId());
+            BazaPodatakaNapraviTransakcijuTiketa();
+            ResetujTiket(kombinacije);
+        } 
 
 
         public void BazaPodatakaNapraviTiket(int idKola)
@@ -189,10 +323,14 @@ namespace LotoRotoProjekat
         {
             //TREBA DA SE UNESE DANASNJI DATUM
             int idRacuna = Convert.ToInt32(Session["id_racuna"]);
+            string naredbaZavrsniDatum = "SELECT datum FROM Kola WHERE pk_kola_id = (SELECT MAX(pk_kola_id) FROM Kola)";
+            string zavrsniDatumKola = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaZavrsniDatum);
+            DateTime datum = DateTime.Parse(zavrsniDatumKola).AddDays(-1);
             //KLASA ZA RAD SA TRANSAKCIJAMA SA METODOM NAPRAVI TRANSAKCIJU
             string naredbaNapraviTransakciju = "INSERT INTO Transakcije" +
                 " (iznos,datum,fk_racuni_id,tip_transakcije)" +
-                " VALUES (100,'2019-04-21'," + idRacuna + ",'tiket')";
+                " VALUES (100,'" + datum.ToString("yyyy-MM-dd")
+                + "'," + idRacuna + ",'tiket')";
           
             konekcija.IzvrsiNonQuery(naredbaNapraviTransakciju);
 
@@ -200,8 +338,10 @@ namespace LotoRotoProjekat
         public void ResetujTiket(List<int> kombinacije) {
 
             kombinacije.Clear();
+            // GridViewNov.Rows.Count = broj redova
             for (int i = 0; i < GridViewNov.Rows.Count; i++)
             {
+                //GridViewNov.Rows[i].Cells.Count = broj kolona
                 for (int j = 0; j < GridViewNov.Rows[i].Cells.Count; j++)
                 {
                     GridViewNov.Rows[i].Cells[j].BackColor = ColorTranslator.FromHtml("#ffffff");

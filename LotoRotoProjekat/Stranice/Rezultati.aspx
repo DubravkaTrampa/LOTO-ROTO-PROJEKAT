@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="MasterStrana.Master" AutoEventWireup="true" CodeBehind="Rezultati.aspx.cs" Inherits="LotoRotoProjekat.Rezultati" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="../stil/rezultati_stil.css" rel="stylesheet" />
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
    
@@ -10,7 +12,7 @@
 
     <div class="container-fluid">
         <div>
-            <input class="btn btn-indigo"style="width:188px;margin-left:70px;background-color:#910b70 !important;" type=button value='Dobitna kombinacija' onClick="lotto(); StOp()">
+            <input class="btn btn-indigo konte_loptice" type=button value='Dobitna kombinacija' onClick="lotto(); StOp()">
                
             <div class="wrap" style="float:right; margin-right:100px;">
               <section class="stage">
@@ -51,93 +53,105 @@
             </div>
             </div>
         </div>
-            <!--IZVESTAJI-->
-    <asp:Button ID="BtnZavrsiKolo" runat="server" OnClick="BtnZavrsiKolo_Click" Text =" Zavrsi kolo"/>
+            <!--IZVESTAJI-->       
+    <asp:Button ID="BtnZapocniKolo" class="btn btn-indigo" style="margin-right:10px;margin-left:350px;background-color:#910b70 !important;" runat="server" OnClick="BtnZapocniKolo_Click" Text =" Započni kolo"/>
+    <asp:Button ID="BtnZavrsiKolo" class="btn btn-indigo" style="margin-left:10px;background-color:#910b70 !important;" runat="server" OnClick="BtnZavrsiKolo_Click" Text =" Završi kolo"/>
    <!--KARTICE-->
     <section class="details-card" style="padding: 100px 0;background:none !important;">
         <div class="container" style="margin-left:70px;">
             <div class="row">
-                <!--/PRVA KARTICA-->
+                <!--PRVA KARTICA-->
                 <div class="col-md-4">
                     <div class="card-content" style="width:420px;margin-right:20px;">
                         <div class="card-img">
                             <img src="../slike/kartica_loptice.jpg" alt="">                  
+                             </div>
+                                 <div class="card-desc">
+                                     <h3>FOND</h3>
+                                        <hr />
+
+                              <div class="glavni">
+
+                                <div class="header">
+
+                                    <h4 class="horizontalno">Preneseni fond:</h4>
+                                    <h4 class="horizontalno">Ukupan iznos fonda:</h4>
+                                    <h4 class="horizontalno">Cena tiketa:</h4>
+                                    <h4 class="horizontalno">Uplaćeno tiketa:</h4>
+                                    <h4 class="horizontalno">Izvučeno dobitaka:</h4>
+                                </div>
+                              <div class="label">
+
+                                    <h4 ID="rezultatiPreneseniFond" class="horizontalno" runat="server" Text=""></h4>
+                                    <h4 ID="rezultatiUkupanIznosFonda" class="horizontalno" runat="server" Text=""></h4>
+                                    <h4 ID="rezultatiCenaTiketa" class="horizontalno" runat="server" Text=""></h4>
+                                    <h4 ID="rezultatiUplacenoTiketa" class="horizontalno" runat="server" Text=""></h4>
+                                    <h4 ID="rezultatiIzvucenoDobitaka" class="horizontalno" runat="server" Text=""></h4>
+                              </div>
+                          </div>
                         </div>
-                        <div class="card-desc">
-                            <h3>FOND</h3>
-                                <hr />
-                                  <h4 class="horizontalno">Ukupno uplaćeno:</h4>
-                                    <asp:Label ID="LabelUkupnoUplaceno" class="dejavu" runat="server" Text="1.000.000.000 dinara"></asp:Label>
-                            <hr />
-                                  <h4 class="horizontalno">Preneseni fond:</h4>
-                                    <asp:Label ID="LabelPreneseniFond" class="dejavu" runat="server" Text="50.000 dinara"></asp:Label>
-                                <hr />
-                                  <h4 class="horizontalno">Ukupan iznos fonda:</h4>
-                                    <asp:Label ID="LabelUkupanIznosFonda" class="dejavu" runat="server" Text="1.050.000 dinara"></asp:Label>
-                                <hr />
-                                  <h4 class="horizontalno">Cena tiketa:</h4>
-                                    <asp:Label ID="LabelCenaTiketa" class="dejavu" runat="server" Text="100 dinara"></asp:Label>
-                                <hr />    
-                                  <h4 class="horizontalno">Uplaćeno tiketa:</h4>
-                                    <asp:Label ID="LabelUplacenoTiketa" class="dejavu" runat="server" Text="10.000"></asp:Label>
-                                <hr />
-                                  <h4 class="horizontalno">Izvučeno dobitaka:</h4>
-                                    <asp:Label ID="LabelIzvucenoDobitaka" class="dejavu" runat="server" Text="60"></asp:Label>  
-                         </div>
-                        </div>
+                      </div>
                     </div>
-            <!--./PRVA KARTICA-->
+     <!--./PRVA KARTICA-->
 
                 <!--DRUGA KARTICA-->
                 <div class="col-md-4">
-                    <div class="card-content" style="width:420px;height:610px;margin-left:70px;margin-right:50;">
+                    <div class="card-content" style="width:420px;height:457px;margin-left:70px;margin-right:50px;">
                         <div class="card-img">
                             <img src="../slike/kartica_loptice.jpg" alt="">                  
                         </div>
-                        <div class="card-desc">
-                            <h3>VRSTA DOBITAKA</h3>
-                                <hr />
-                                    <h4 class="horizontalno">Sedam pogodaka:</h4>
-                                        <asp:Label ID="LabelSedmica" class="dejavu" runat="server" Text="1"></asp:Label>
-                                <hr />
-                                    <h4 class="horizontalno">Šest pogodaka:</h4>
-                                        <asp:Label ID="LabelSestica" class="dejavu" runat="server" Text="2"></asp:Label>
-                                <hr />
-                                    <h4 class="horizontalno">Pet pogodaka:</h4>
-                                        <asp:Label ID="LabelPetica" class="dejavu" runat="server" Text="7"></asp:Label>
-                                <hr />     
-                                     <h4 class="horizontalno">Četiri pogotka:</h4>
-                                        <asp:Label ID="LabelCetvorka" class="dejavu" runat="server" Text="50"></asp:Label>  
-                        </div>
-                    </div>
-                </div>
-            <!--./DRUGA KARTICA-->
+                            <div class="card-desc">
+                                <h3>VRSTA DOBITAKA</h3>
+                                    <hr />
+                                     <div class="glavni">
+                                        <div class="header">
+                                                <h4 class="horizontalno">Sedam pogodaka:</h4>
+                                                <h4 class="horizontalno">Šest pogodaka:</h4>
+                                                <h4 class="horizontalno">Pet pogodaka:</h4>
+                                                <h4 class="horizontalno">Četiri pogotka:</h4>
+                                        </div>
+                                           <div class="label">
+                                                <h4 ID="rezultatiSedamPogodaka" class="horizontalno" runat="server" Text=""></h4>
+                                                <h4 ID="rezultatiSestPogodaka" class="horizontalno" runat="server" Text=""></h4>
+                                                <h4 ID="rezultatiPetPogotka" class="horizontalno" runat="server" Text=""></h4>
+                                                <h4 ID="rezultatiCetiriPogotka" class="horizontalno" runat="server" Text=""></h4>
+                                          </div>
+                                       </div>
+                                    </div>
+                                </div>
+                            </div>
+     <!--./DRUGA KARTICA-->
+
                  <!--TRECA KARTICA-->
                 <div class="col-md-4">
-                    <div class="card-content" style="width:420px;height:610px;margin-left:140px;">
+                    <div class="card-content" style="width:420px;height:457px;margin-left:140px;">
                         <div class="card-img">
-                            <img src="../slike/kartica_loptice.jpg" alt="">
-                        </div>
+                            <img src="../slike/kartica_loptice.jpg" alt="">                  
+                                </div>
                             <div class="card-desc">
-                              <h3>ISPLAĆENO</h3>
-                                <hr />
-                                    <h4 class="horizontalno">Sedmice:</h4> 
-                                        <asp:Label ID="LabelIsplataSedmice" class="dejavu" runat="server" Text="16151554654 dinara"></asp:Label>
-                                <hr />
-                                    <h4 class="horizontalno">Šestice:</h4> 
-                                        <asp:Label ID="LabelIsplataSestice" class="dejavu" runat="server" Text="5000000 dinara"></asp:Label>
-                                <hr />
-                                    <h4 class="horizontalno">Petice:</h4> 
-                                        <asp:Label ID="LabelIsplataPetice" class="dejavu" runat="server" Text="15000 dinara"></asp:Label>
-                                <hr />
-                                    <h4 class="horizontalno">Četvorke:</h4> 
-                                        <asp:Label ID="LabelIsplataCetvorke" class="dejavu" runat="server" Text="5000 dinara"></asp:Label>
+                                <h3>ISPLAĆENO</h3>
+                                    <hr />
+                                     <div class="glavni">
+                                         <div class="header">
+                                                <h4 class="horizontalno">Sedmice:</</h4>
+                                                <h4 class="horizontalno">Šestice:</h4>
+                                                <h4 class="horizontalno">Petice:</h4>
+                                                <h4 class="horizontalno">Četvorke:</h4>
+
+                                        </div>
+                                           <div class="label">
+                                                <h4 ID="rezultatIsplacenoSedmice" class="horizontalno" runat="server" Text=""></h4>
+                                                <h4 ID="rezultatIsplacenoSestice" class="horizontalno" runat="server" Text=""></h4>
+                                                <h4 ID="rezultatIsplacenoPetice" class="horizontalno" runat="server" Text=""></h4>
+                                                <h4 ID="rezultatIsplacenoCetvorke" class="horizontalno" runat="server" Text=""></h4>
+                                          </div>
+                                     </div>
+                                 </div>
+                              </div>
                            </div>
-                    </div>
+      <!--./TRECA KARTICA-->
                 </div>
-                <!--./TRECA KARTICA-->
-        </div>
-    </div>
+            </div>
 </section>
 
 </asp:Content>

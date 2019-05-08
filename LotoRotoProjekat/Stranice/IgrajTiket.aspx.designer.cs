@@ -58,12 +58,30 @@ namespace LotoRotoProjekat {
         protected global::System.Web.UI.WebControls.GridView GridViewNov;
         
         /// <summary>
-        /// Button10 control.
+        /// BtnPotvrdiTiket control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button10;
+        protected global::System.Web.UI.WebControls.Button BtnPotvrdiTiket;
+        
+        /// <summary>
+        /// BtnDodajRandomTiket control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnDodajRandomTiket;
+        
+        /// <summary>
+        /// GridViewMojiTiketi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewMojiTiketi;
     }
 }

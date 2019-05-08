@@ -13,6 +13,33 @@ namespace LotoRotoProjekat {
     public partial class RegistrujPrijavi {
         
         /// <summary>
+        /// script1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager script1;
+        
+        /// <summary>
+        /// panel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel panel1;
+        
+        /// <summary>
+        /// panel_login control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panel_login;
+        
+        /// <summary>
         /// login_uname control.
         /// </summary>
         /// <remarks>
@@ -47,6 +74,33 @@ namespace LotoRotoProjekat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox PlaceHolder_pass;
+        
+        /// <summary>
+        /// Label_poruka_los_unos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label_poruka_los_unos;
+        
+        /// <summary>
+        /// register_redirect control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button register_redirect;
+        
+        /// <summary>
+        /// panel_register control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panel_register;
         
         /// <summary>
         /// register_uname control.
@@ -101,6 +155,15 @@ namespace LotoRotoProjekat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox PlaceHolder_pass2;
+        
+        /// <summary>
+        /// label_nejednake_lozinke_register control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label label_nejednake_lozinke_register;
         
         /// <summary>
         /// register_ime control.
@@ -227,5 +290,41 @@ namespace LotoRotoProjekat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox PlaceHolder_email;
+        
+        /// <summary>
+        /// login_redirect control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button login_redirect;
+        
+        /// <summary>
+        /// panel_uspesan_redirect_msg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panel_uspesan_redirect_msg;
+        
+        /// <summary>
+        /// Label_uspesan_redirect control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label_uspesan_redirect;
+        
+        /// <summary>
+        /// btn_uspesan_redirect control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_uspesan_redirect;
     }
 }

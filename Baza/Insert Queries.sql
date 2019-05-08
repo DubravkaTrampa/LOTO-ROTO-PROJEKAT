@@ -1,4 +1,21 @@
   
+  /*
+  
+  INSERT INTO Racuni (broj_racuna) VALUES ('111222333444555666');
+  INSERT INTO Racuni (broj_racuna) VALUES ('666555444333222111');
+  INSERT INTO Racuni (broj_racuna) VALUES ('555666444333222111');
+  INSERT INTO Racuni (broj_racuna) VALUES ('444555666333222111');
+  INSERT INTO Racuni (broj_racuna) VALUES ('333444555666222111');
+  INSERT INTO Racuni (broj_racuna) VALUES ('222333444555666111');
+  INSERT INTO Racuni (broj_racuna) VALUES ('111333555666444222');
+  INSERT INTO Racuni (broj_racuna) VALUES ('111333555222444666');
+  INSERT INTO Racuni (broj_racuna) VALUES ('222444666111333555');
+  INSERT INTO Racuni (broj_racuna) VALUES ('222444666555333111');
+  INSERT INTO Racuni (broj_racuna) VALUES ('123456123456123456');
+  INSERT INTO Racuni (broj_racuna) VALUES ('112233445566123456');
+
+
+
   --Insert pocetnih kola , lazni podaci za testiranje, pravo kolo ce se kreirati u c#-u
 
   INSERT INTO Kola (datum,dobitna_kombinacija_id,redni_broj)
@@ -70,7 +87,74 @@ GO
 
 	DELETE FROM Fondovi WHERE  [pk_fondovi_id] = (SELECT MAX(pk_fondovi_id) FROM Fondovi)-1
 
+	--Ciscenje svih tabela nakon raznih testiranja
+	DELETE FROM dbo.Fondovi
+	DELETE FROM dbo.Dobitnici
+	DELETE FROM dbo.Humanitarni_Fondovi
+	DELETE FROM dbo.Kola
+	DELETE FROM dbo.Kombinacije
+	DELETE FROM dbo.Korisnici
+	DELETE FROM dbo.Racuni
+	DELETE FROM dbo.Tiketi
+	DELETE FROM dbo.Transakcije
 
+	INSERT INTO Humanitarni_Fondovi (naziv, fk_racuni_id) VALUES ('Crveni Krst' , 3)
 
+	INSERT INTO Dobitnici (vrsta_pogotka,fk_tiketi_id,fk_racuni_id) VALUES 
+	('7',21,8),
+	('6',20,9),
+	('6',19,10),
+	('5',18,11),
+	('5',17,7),
+	('5',16,7),
+	('4',15,8),
+	('4',14,8),
+	('4',13,13),
+	('4',12,6)
 
-  
+   INSERT INTO Kombinacije (broj, kombinacija_id)
+   VALUES (1,24),(4,24), (7,24),(10,24), (13,24), (16,24),
+   (17,24);
+
+	SELECT COUNT(*) FROM Tiketi WHERE fk_kola_id = 10;
+	SELECT COUNT(*) FROM Dobitnici;
+
+	UPDATE Korisnici
+	SET log_in_date = '2019-01-25'
+	WHERE ime = 'Neaktivan'
+
+	DELETE FROM Korisnici  WHERE log_in_date < '2019-01-30'
+
+	ALTER TABLE Humanitarni_Fondovi
+	ADD opis_humanitarnog_fonda varchar(400);
+
+	INSERT INTO Humanitarni_Fondovi(naziv,opis_humanitarnog_fonda,fk_racuni_id)
+	 VALUES('Humanitarni fond 1', 'Ovaj fond potpomaze ljudima kojima je novac najpotrebniji',3);
+
+	SELECT [tiket_kombinacija_id] FROM Tiketi WHERE fk_korisnici_id = 3 AND fk_kola_id = 10
+
+	SELECT [broj] FROM Kombinacije WHERE kombinacija_id = 12
+									  OR kombinacija_id = 13
+									  OR kombinacija_id = 19
+	
+	SELECT MAX(redni_broj) FROM Kola 
+
+	INSERT INTO Kola (datum,redni_broj,dobitna_kombinacija_id) VALUES 
+	('2019-05-05', (SELECT MAX(redni_broj)+1 FROM Kola), 24)
+
+	SELECT datum FROM Kola WHERE [pk_kola_id] = (SELECT MAX(pk_kola_id) FROM Kola)
+
+	SELECT pk_kola_id FROM Kola WHERE pk_kola_id = (SELECT MAX(pk_kola_id) FROM Kola)
+
+	SELECT datum FROM Kola WHERE pk_kola_id = (SELECT MAX(pk_kola_id) FROM Kola)-1
+
+	INSERT INTO [PostojiAktuelnoKolo] ([kolo_aktivno]) VALUES ('false')
+
+	UPDATE PostojiAktuelnoKolo SET kolo_aktivno = 'true'
+
+	SELECT kolo_aktivno FROM PostojiAktuelnoKolo */
+
+	SELECT COUNT(*) AS broj FROM Dobitnici WHERE vrsta_pogotka = '5'
+	 AND fk_kola_id  =( SELECT MAX(pk_kola_id) FROM Kola) ; 
+
+	 SELECT MAX(pk_kola_id) FROM Kola

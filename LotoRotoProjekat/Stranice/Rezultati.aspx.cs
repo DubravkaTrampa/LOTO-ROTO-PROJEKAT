@@ -26,25 +26,77 @@ namespace LotoRotoProjekat
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+           //PrikaziRezultateNaStranici();
         }
+
 
         protected void BtnZavrsiKolo_Click(object sender, EventArgs e)
         {
-            bool izvucenaSedmica = ProveriIzvucenaSedmica();
-            DopuniFond();
-            UcitajDobitnike();
-            IzracunajFondove(VratiNagradniFondIzBaze(), 4, izvucenaSedmica);
-            IzvrsiNaplateIzFonda();
-            AzurirajFond(izvucenaSedmica);
-            PrikaziRezultateNaStranici();
+            if (BazaKoloAktivno() == true)
+            {
+                bool izvucenaSedmica = ProveriIzvucenaSedmica();
+                BazaObradiTiketeUnesiDobitnike();
+                DopuniFond();
+                IzracunajFondove(VratiNagradniFondIzBaze(), izvucenaSedmica);
+                IzvrsiNaplateIzFonda();
+                AzurirajFond(izvucenaSedmica);
+                PrikaziRezultateNaStranici();
+                BazaPromeniStatusKola(false);
+            }
+        }
+
+        protected void BtnZapocniKolo_Click(object sender, EventArgs e)
+        {
+            if(BazaKoloAktivno() == true)
+            {
+                //Kolo je vec zapoceto pa ne moze da bude opet startovano
+                return;
+            }
+            int idDobitneKombinacije = 312;
+            string naredbaNadjiDatumPoslednjegKola = "SELECT datum FROM Kola WHERE [pk_kola_id] = (SELECT MAX(pk_kola_id) FROM Kola)";
+            DateTime datum = DateTime.Parse(konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaNadjiDatumPoslednjegKola));
+            string datumNarednogKola = "'"+datum.AddDays(3).ToString("yyyy-MM-dd")+"'";
+            string naredbaNovoKolo = "INSERT INTO Kola (datum,redni_broj,dobitna_kombinacija_id) VALUES (" +
+                datumNarednogKola + ",(SELECT MAX(redni_broj)+1 FROM Kola) , "+ idDobitneKombinacije + ");";
+            konekcija.IzvrsiNonQuery(naredbaNovoKolo);
+            BazaPromeniStatusKola(true);
+        }
+
+        public void BazaObradiTiketeUnesiDobitnike()
+        {
+            SqlConnection conn = konekcija.Connect();
+            conn.Open();
+            //izvrsi stored proceduru
+            var reader = new SqlCommand("EXEC NadjiDobitnike", conn).ExecuteReader();
+            while (reader.Read())
+            {
+                dobitnici.Add(
+                new Dobitnik(
+                 reader["vrsta_pogotka"].ToString(),
+                 Convert.ToInt32(reader["fk_racuni_id"]),
+                 Convert.ToInt32(reader["pk_tiketi_id"]),
+                 Convert.ToInt32(reader["pk_kola_id"])
+                 ));
+            }
+            StringBuilder naredbaDodajDobitnike = new StringBuilder("INSERT INTO Dobitnici(vrsta_pogotka,fk_tiketi_id,fk_racuni_id,fk_kola_id) VALUES ");
+                for(int i=0; i < dobitnici.Count-1; i++)
+            {
+                naredbaDodajDobitnike.Append($"({dobitnici[i].vrstaPogotka},{dobitnici[i].idTiketa}," +
+                    $" {dobitnici[i].idRacuna}, {dobitnici[i].idKola}),");
+            }
+            int poslednjiIndeks = dobitnici.Count-1;
+                naredbaDodajDobitnike.Append($"({dobitnici[poslednjiIndeks].vrstaPogotka},{dobitnici[poslednjiIndeks].idTiketa}," +
+                    $" {dobitnici[poslednjiIndeks].idRacuna},{dobitnici[poslednjiIndeks].idKola});");
+           // konekcija.IzvrsiNonQuery("DELETE FROM Dobitnici");
+            konekcija.IzvrsiNonQuery(naredbaDodajDobitnike.ToString());
         }
 
         public bool ProveriIzvucenaSedmica()
         {
-            string naredbaPrebrojDobitnijeVrste = "SELECT COUNT(*) AS broj FROM Dobitnici WHERE vrsta_pogotka = '7' ";
+            string naredbaPrebrojDobitnikeVrste = "SELECT COUNT(*) AS broj FROM Dobitnici WHERE vrsta_pogotka = '7'" +
+                " AND fk_kola_id = " + konekcija.IzvrsiScalarQueryIVratiVrednost("(SELECT MAX(pk_kola_id) FROM Kola)");
         
-            string brojIzvucenihString = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaPrebrojDobitnijeVrste);
+            string brojIzvucenihString = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaPrebrojDobitnikeVrste);
             int brojIzvucenih = Convert.ToInt32(brojIzvucenihString);
             return brojIzvucenih > 0;
 
@@ -52,8 +104,12 @@ namespace LotoRotoProjekat
 
         private void DopuniFond()
         {
-
-            string pocetniDatum = "'2019-04-20'", zavrsniDatum = "'2019-04-23'";
+            //pocetni datum treba da je datum zavrsetka prethodnog kola; zavrsni datum je zavrsni datum tekuceg kola
+            string naredbaPocetniDatum = "SELECT datum FROM Kola WHERE pk_kola_id = (SELECT MAX(pk_kola_id) FROM Kola)-1";
+            string pocetniDatum ="'" + konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaPocetniDatum) + "'";
+            string naredbaZavrsniDatum = "SELECT datum FROM Kola WHERE pk_kola_id = (SELECT MAX(pk_kola_id) FROM Kola)";
+            string zavrsniDatum = "'"+ konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaZavrsniDatum) + "'";
+            //string pocetniDatum = "'2019-04-20'", zavrsniDatum = "'2019-04-23'";
 
             string naredbaDodajSumuTiketaUFond =
                 "INSERT INTO Fondovi " +
@@ -69,38 +125,17 @@ namespace LotoRotoProjekat
                 "DELETE FROM Fondovi " +
                 "WHERE  [pk_fondovi_id] = (SELECT MAX(pk_fondovi_id) FROM Fondovi)-1";
 
-
-            SqlConnection conn = konekcija.Connect();
-            conn.Open();
-            new SqlCommand(naredbaDodajSumuTiketaUFond, conn).ExecuteNonQuery();
-            conn.Close();
             konekcija.IzvrsiNonQuery(naredbaDodajSumuTiketaUFond);
         }
 
-        public void UcitajDobitnike()
-        {
-            SqlConnection conn = konekcija.Connect();
-            conn.Open();
-            SqlCommand komandaVratiSveDobitnike = new SqlCommand("SELECT [vrsta_pogotka],[fk_racuni_id] FROM Dobitnici", conn);
-            var reader = komandaVratiSveDobitnike.ExecuteReader();
-            while (reader.Read())
-            {
-                dobitnici.Add(
-                   new Dobitnik(
-                    reader["vrsta_pogotka"].ToString(),
-                    Convert.ToInt32(reader["fk_racuni_id"])
-                    ));
-            }
-            conn.Close();
-
-        }
 
         public void IzracunajFondove(double ukupanFond,
-                                    int brojDobitnika4Kombinacije,
                                     bool izvucenaSedmica)
         {
+            int brojDobitnika4Vrste = Convert.ToInt32(PrebrojDobitnikeVrste("4"));
+
             //Izvaja se fond za cetiri dobitaka(zamena) od ukupnog fonda, pre racunanja fondova za vece dobitke
-            ukupanFond -= fondZaDobitak4Pogotka = brojDobitnika4Kombinacije * cenaJednogTiketa;
+            ukupanFond -= fondZaDobitak4Pogotka = brojDobitnika4Vrste * cenaJednogTiketa;
             fondZaDobitak5Pogotka = VratiProcenat(ukupanFond, 10d);
             fondZaDobitak6Pogotka = VratiProcenat(ukupanFond, 30d);
             fondZaDobitak7Pogotka = VratiProcenat(ukupanFond, 60d);
@@ -141,9 +176,10 @@ namespace LotoRotoProjekat
         {
             double broj = 0;
 
-            string naredbaPrebrojDobitnijeVrste = "SELECT COUNT(*) AS broj FROM Dobitnici WHERE vrsta_pogotka = '" + vrstaDobitka + "' ";
+            string naredbaPrebrojDobitnikeVrste = "SELECT COUNT(*) AS broj FROM Dobitnici WHERE vrsta_pogotka = '" + vrstaDobitka + "' " +
+                " AND fk_kola_id = " + konekcija.IzvrsiScalarQueryIVratiVrednost("(SELECT MAX(pk_kola_id) FROM Kola)");
          
-            string brojString = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaPrebrojDobitnijeVrste);
+            string brojString = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaPrebrojDobitnikeVrste);
             broj = Convert.ToDouble(brojString);
             return broj;
         }
@@ -151,40 +187,56 @@ namespace LotoRotoProjekat
 
         public void IzvrsiNaplateIzFonda()
         {
+           // double brojDobitnikaVrste5 = PrebrojDobitnikeVrste("5");
+           // double brojDobitnikaVrste6 = PrebrojDobitnikeVrste("6");
+
             double pojedinacniDobitakZa4Pogotka = fondZaDobitak4Pogotka / PrebrojDobitnikeVrste("4");
             double pojedinacniDobitakZa5Pogotka = fondZaDobitak5Pogotka / PrebrojDobitnikeVrste("5");
             double pojedinacniDobitakZa6Pogotka = fondZaDobitak6Pogotka / PrebrojDobitnikeVrste("6");
+
+            /*if (brojDobitnikaVrste5 == 0)
+            {
+                fondZaDobitak7Pogotka += fondZaDobitak5Pogotka;
+                pojedinacniDobitakZa5Pogotka = 0;
+            }
+            if (brojDobitnikaVrste6 == 0)
+            {
+                fondZaDobitak7Pogotka += fondZaDobitak6Pogotka;
+                pojedinacniDobitakZa6Pogotka = 0;
+            }*/
             double pojedinacniDobitakZa7Pogotka = fondZaDobitak7Pogotka / PrebrojDobitnikeVrste("7");
+
+
             string datum = "'" + DateTime.Now.ToString("yyyy-MM-dd") + "'";
 
             foreach (Dobitnik trenutni in dobitnici)
             {
                 if (trenutni.vrstaPogotka == "4")
                 {
-                    NapraviTransakciju(pojedinacniDobitakZa4Pogotka, datum, trenutni.idRacuna, "'nagrada'");
+                    BazaNapraviTransakciju(pojedinacniDobitakZa4Pogotka, datum, trenutni.idRacuna, "'nagrada'");
                 }
                 if (trenutni.vrstaPogotka == "5")
                 {
-                    NapraviTransakciju(pojedinacniDobitakZa5Pogotka, datum, trenutni.idRacuna, "'nagrada'");
+                    BazaNapraviTransakciju(pojedinacniDobitakZa5Pogotka, datum, trenutni.idRacuna, "'nagrada'");
                 }
                 if (trenutni.vrstaPogotka == "6")
                 {
-                    NapraviTransakciju(pojedinacniDobitakZa6Pogotka, datum, trenutni.idRacuna, "'nagrada'");
+                    BazaNapraviTransakciju(pojedinacniDobitakZa6Pogotka, datum, trenutni.idRacuna, "'nagrada'");
                 }
                 if (trenutni.vrstaPogotka == "7")
                 {
-                    NapraviTransakciju(pojedinacniDobitakZa7Pogotka, datum, trenutni.idRacuna, "'nagrada'");
+                    BazaNapraviTransakciju(pojedinacniDobitakZa7Pogotka, datum, trenutni.idRacuna, "'nagrada'");
                 }
             }
 
             int idRacunaHumanitarneOrganizacije = Convert.ToInt32(Session["humanitarni_fond_racun_id"]);
             int idRacunaAdmina = Convert.ToInt32(Session["admin_racun_id"]);
-            NapraviTransakciju(fondZaHumanitarneSvrhe, datum, idRacunaHumanitarneOrganizacije, "'humanitarna'");
-            NapraviTransakciju(fondZaNaplatuAdministratoru, datum, idRacunaAdmina, "'organizatoru'");
+            BazaNapraviTransakciju(fondZaHumanitarneSvrhe, datum, idRacunaHumanitarneOrganizacije, "'humanitarna'");
+            BazaNapraviTransakciju(fondZaNaplatuAdministratoru, datum, idRacunaAdmina, "'organizatoru'");
 
         }
 
-        public void NapraviTransakciju(double novac, string datum, int idRacuna, string tipTransakcije)
+        public void BazaNapraviTransakciju(double novac, string datum, int idRacuna, string tipTransakcije)
         {
             //SVE VREDNOSTI U JEDNOJ NAREDBI MOZDA? Klasa Transakcija
             string naredbaNapraviTransakcijuKorisniku = "INSERT INTO Transakcije " +
@@ -220,31 +272,47 @@ namespace LotoRotoProjekat
             int pretposlednjiIzFonda = 1;
             double ukupanIznosFonda = VratiNagradniFondIzBaze(pretposlednjiIzFonda);
 
-            double preneseniFondZaSledeceKolo = fondZaDobitak7Pogotka;
-            if (ProveriIzvucenaSedmica())
-                preneseniFondZaSledeceKolo = 0;
-
-            int idPoslednjegKola = 10;
+            double preneseniFondZaSledeceKolo = VratiNagradniFondIzBaze();
+            //UPIT ZA NALAZENJE POSLEDNJEG KOLA KAO I ZA NALAZENJE DATUMA KOLA U ODVOJENOJ KLASI
+            string naredbaIdPoslednjegKola = "SELECT pk_kola_id FROM Kola WHERE pk_kola_id = (SELECT MAX(pk_kola_id) FROM Kola)";
+            string idPoslednjegKolaString = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaIdPoslednjegKola);
+            int idPoslednjegKola = Convert.ToInt32(idPoslednjegKolaString);
             string naredbaPrebrojUplacenoTiketa = "SELECT COUNT(*) FROM Tiketi WHERE fk_kola_id =" + idPoslednjegKola + ";";
             string uplacenoTiketa = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaPrebrojUplacenoTiketa);
 
-            string naredbaPrebrojIzvuceneDobitnike = "SELECT COUNT(*) FROM Dobitnici ";
+            string naredbaPrebrojIzvuceneDobitnike = "SELECT COUNT(*) FROM Dobitnici where fk_kola_id = " + konekcija.IzvrsiScalarQueryIVratiVrednost("(SELECT MAX(pk_kola_id) FROM Kola)");
             string izvucenoDobitaka = konekcija.IzvrsiScalarQueryIVratiVrednost(naredbaPrebrojIzvuceneDobitnike);
 
-            LabelUkupanIznosFonda.Text = ukupanIznosFonda.ToString();
-            LabelPreneseniFond.Text = preneseniFondZaSledeceKolo.ToString();
-            LabelUplacenoTiketa.Text = uplacenoTiketa;
-            LabelIzvucenoDobitaka.Text = izvucenoDobitaka;
 
-            LabelSedmica.Text = PrebrojDobitnikeVrste("7").ToString();
-            LabelSestica.Text = PrebrojDobitnikeVrste("6").ToString();
-            LabelPetica.Text = PrebrojDobitnikeVrste("5").ToString();
-            LabelCetvorka.Text = PrebrojDobitnikeVrste("4").ToString();
+            //moj.InnerHtml = ukupanIznosFonda.ToString();
+            rezultatiPreneseniFond.InnerText = preneseniFondZaSledeceKolo.ToString();
+            rezultatiUkupanIznosFonda.InnerText = ukupanIznosFonda.ToString();
+            rezultatiCenaTiketa.InnerText = "100";
+            rezultatiUplacenoTiketa.InnerText = uplacenoTiketa;
+            rezultatiIzvucenoDobitaka.InnerText = izvucenoDobitaka;
 
-            LabelIsplataSedmice.Text = fondZaDobitak7Pogotka.ToString();
-            LabelIsplataSestice.Text = fondZaDobitak6Pogotka.ToString();
-            LabelIsplataPetice.Text = fondZaDobitak5Pogotka.ToString();
-            LabelIsplataCetvorke.Text = fondZaDobitak4Pogotka.ToString();
+            rezultatiSedamPogodaka.InnerText = PrebrojDobitnikeVrste("7").ToString();
+            rezultatiSestPogodaka.InnerText = PrebrojDobitnikeVrste("6").ToString();
+            rezultatiPetPogotka.InnerText = PrebrojDobitnikeVrste("5").ToString();
+            rezultatiCetiriPogotka.InnerText = PrebrojDobitnikeVrste("4").ToString();
+
+            rezultatIsplacenoSedmice.InnerText = fondZaDobitak7Pogotka.ToString();
+            rezultatIsplacenoSestice.InnerText = fondZaDobitak6Pogotka.ToString();
+            rezultatIsplacenoPetice.InnerText = fondZaDobitak5Pogotka.ToString();
+            rezultatIsplacenoCetvorke.InnerText = fondZaDobitak4Pogotka.ToString();
+
+        }
+
+        public void BazaPromeniStatusKola(bool aktivno)
+        {
+            string naredba = "UPDATE PostojiAktuelnoKolo SET kolo_aktivno = '" + aktivno + "'";
+            konekcija.IzvrsiNonQuery(naredba);
+        }
+
+        public bool BazaKoloAktivno()
+        {
+            string naredba = "SELECT kolo_aktivno FROM PostojiAktuelnoKolo ";
+            return Convert.ToBoolean(konekcija.IzvrsiScalarQueryIVratiVrednost(naredba));
         }
 
         private class Dobitnik
@@ -253,11 +321,14 @@ namespace LotoRotoProjekat
             public string vrstaPogotka;
             public int idRacuna;
             public int idTiketa;
+            public int idKola;
 
-            public Dobitnik(string vrstaPogotka, int idRacuna)
+            public Dobitnik(string vrstaPogotka, int idRacuna, int idTiketa, int idKola)
             {
                 this.vrstaPogotka = vrstaPogotka;
                 this.idRacuna = idRacuna;
+                this.idTiketa = idTiketa;
+                this.idKola = idKola;
             }
         }
 
@@ -266,6 +337,5 @@ namespace LotoRotoProjekat
             return vrednost / (100d / procenat);
         }
 
-    
     }
 }

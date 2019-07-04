@@ -1,3 +1,86 @@
+ LOTO  ROTO  LOTTERY
+
+                                                  CONCEPT OF THE PROJECT
+
+The idea of this web application is to encourage users to donate for humanitarian purposes through the game LOTO ROTO. 
+The slogan of the game is: "Donate, as you win! Every winning ticket is a donation to the humanitarian fund! Your donation will really change someone's life. "
+
+The game relies on the rules of the LOTO State of Serbia Lottery, with a few changes. Each player has the option of paying at least one combination of 14 numbers, which is chosen on a ticket with 39 numbers. The premium is achieved in the case of the seven affected numbers, while:
+
+• second prize - combination with six hits;
+
+• third prize - combination with five hits;
+
+• with four hits, a ticket is replaced.
+
+With 14 combinations, there is more chance for win.
+
+Why is that important?
+
+Because, apart from the winner, the payout is divided in percentages on behalf of the humanitarian aid fund, while a smaller percentage goes to the organizer (2%), but only in the event of a win. Thus, more tickets -> bigger rewards -> more hits -> more money for charity funds!
+
+                                                           PRIZES
+
+We can not predict the number of winners with square footage (change of ticket), so that a weekly fund immediately separates the funds that will cover the cost of replacing the ticket, whose price is fixed. The rest of the money is for funding other three awards.
+
+• Earnings from seven winning numbers - 60% of the total fund;
+
+• Earnings from six winning numbers - 30% of the total fund;
+
+• Earnings from five winning numbers - 10% of the total fund;
+
+• Four-digit gain is a replacement ticket.
+
+Each winner (with seven, six and five hits) divides part of their prize- 20% as a donation for humanitarian purposes, as well as 2% for the organizer of the game. Funds are automatically transferred to a humanitarian fund. The rest of the money is paid to the winner.
+
+                                                    THE PAGES SHALL CONTAIN
+
+The user interface will include a logo, a slogan, a site-to-page navigation, a generator of winning numbers. Navigation options for: game rules (About game), user registration, user login, ticketing, withdrawal results, winning combination report as well as fund information (total paid, number of winners with the amount of winnings, , information about organizer and organization of humanitarian aid, contact. The SQL database will contain tables: winners, fund, city, humanitarian fund, round, combination, user, ticket, transaction, type of winner.
+
+We will upload the database with about 20 users for presentation, while the registration pages of the site will be able to enter new user registration information. Project design will be executed using Microsoft Visual Studio 2017 software, as ASP.NET application, with the MVC project (master page) structure. For user interface design we will use CSS, javascript and Bootstrap library.
+
+                                                  APPLICATION-DESIGN-NAVIGATION
+
+Application was made using blank web form (asp with master page). It consists of multiple pages, the main master page - in which we created a header and footer that is common to all the other pages, as well as navigation via links to most pages. We used bootstrap for responsiveness, which means that the application is customize for all devices. Navigation consists of links to home, about the game, results, about us, contact, sign up and sign in, and play buttons.  Pages - about the game, about us and the contact contains only information about site and the organizers. Any site visitor has access to all pages other than the game itself, to access this page he must be a registered user. That is why the user registration page contains both forms, both the login and the registry, which we have edited using css. We have edited the logic so that if a user attempts to log in, and the password or name is incorrectly entered / does not exist, a message is displayed to indicate that the user did not enter the correct one. If the user knows that he has no registered order, he can go to  registration panel, where he will enter the information required for registration. If you do not enter a particular item, using the required command, we have specified warning message that not all fields (textboxes) are filled. Once the registrations have been entered, we confirm that by clicking registration button, a pop-up message about successful registration becomes visible and displays info about successful registration. After that we can login.
+
+After the user gets logged in, the button with  the sign up / sign in text changes to "Log off" option. By clicking on this button we will now log out and return to the login page. As long as we are logged in we can play and pay for the ticket. By clicking on the "Play" button we are redirected on "Play ticket" page.
+
+On the "Play" page there is a button with a grid view with the offered numbers for the ticket combination(one ticket). By clicking on each cell within the ticket, numbers are selected, chosen and separated in the label above showed as sorted numbers. We have determined that there is an option to reset one(or any) selected number. Each click by the user gets an overview of the selected number (or canceled) by changing the color of the cell.
+
+Clicking on the button "OK" user confirms that he has chosen the maximum number of 14 combinations. After that, we call methods that insert the combination into the database. The inserted combination belongs to currently logged in user. Since we have successfully made a ticket, it is necessary to enter a 100 dollar transaction into our database, and it is also noted that the type of transaction is "ticket". After confirming the ticket  with the combinations, label above the ticket gets changed to "you have successfully paid the ticket" and the message "SELECT NEW COMBINATION" take place and the grid gets restored to the initial state.
+
+Also within the page we have added an option that the user can have insights into all paid tickets that he made in the current weekly draw. For the user entertainment while waiting for a draw, we added a link to a page containing a simple "Bricks" game, which was made in javascript. 
+Optionally, we can provide more links with similar game types. Those links could be potential sponsors of the lottery or a humanitarian fundraiser.
+
+We added a button that would allow you to pay a combination of random numbers of 5 tickets at a time.
+
+The results page shows the data on the completed weekly lottery result. How many tickets(sum), what is the amount of the fund, how many - four, six, prizes etc .... We also inserted the random number generator and by clicking on the button - winning combination, that way we can get 7 random numbers. This generator could serve to extract the winning combination of the current weekly draw. However, our idea is that a winning combination should be the one that is obtained in the official drawing of the state lottery of Serbia, because it would be impossible to abuse the results.
+
+On the start page there is a timer / counter until beginning of the draw in which we are currently setting up the date of this exam / served as a reminder of how much time left. Why did we not link it to the game weekly drawing? Because testing this app can not work in real time. We simulate the game(whole process) using two buttons, one to start game and second  to finish(close). By clicking the start button, we replace the start of the timer. When we start the game we add a new round to the base, login user, by few tickets and (simulation) end three days after the start, with "Close(Finish)" button.
+
+By clicking "end", we change the timer outbreak event. When the game is over, winners are counted, same as the fund with the charged bets. The fund is transferred if there wasn't any winnings, bonuses are awarded depending on the winnings, the fund is updated for the next weekly draw, and the results are displayed on the above mentioned page.
+
+It should be noted that we have enabled the administrator to enter the site. Pages that are visible to the administrator in this case are not visible to other users (this is verified by the type of user in the database). We've created two pages for the Admin. Navigation to them is visible in the dropdown header. On these two pages, admin can  remove all inactive users (they have not been logged for more than three months) or add a new humanitarian fund to the database (name, description, and fund account number).
+
+Our primary goal for us was that the game is working, and the admin side is added to show that the administrator can make changes and has special access rights.
+
+
+                                                         PROBLEMS
+
+- On the login page we had to use UseSubmitBehavior = "false"
+
+It was necessary to set a specific button  not act as a submit button because it must be done regardless of any fields on the site that are "required".
+
+-A buttonClickEvent page refreshes
+
+This behavior did not always fit us, for example, with tickets on the "PlayTicket" page. This is solved by adding UpdatePanel with ContentTemplate and ScriptManager.
+
+-Within page Register / Login  when redirecting to one options, the other remains hidden, but its fields remain active due to CSS.
+
+- This rule is a big problem because the fields were required and they reported bugs from invisible locations when attempting to log in / register the user. We solved this by framing both forms with the Panel and then this panel appears visible or not depending on what form we are in.
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
 # LOTO-ROTO-PROJEKAT
 
                                                         LOTO  ROTO  LUTRIJA
